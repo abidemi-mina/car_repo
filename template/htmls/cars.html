@@ -33,12 +33,12 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                             <div class="form-group">
-                                <label>Used/New:</label>
+                                <label>Offer Type</label>
                      
                                  <select>
                                       <option value="">All</option>
-                                      <option value="new">New vehicle</option>
-                                      <option value="used">Used vehicle</option>
+                                      <option value="new">Rent</option>
+                                      <option value="used">Sale</option>
                                  </select>
                             </div>
                         </div>
@@ -46,13 +46,17 @@
                         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <label>Vehicle Type:</label>
-                     
+
                                  <select>
-                                      <option value="">--All --</option>
-                                      <option value="">--All --</option>
-                                      <option value="">--All --</option>
-                                      <option value="">--All --</option>
-                                      <option value="">--All --</option>
+                                      <option value="">--Sedan --</option>
+                                      <option value="">--Coupe --</option>
+                                      <option value="">--Truck --</option>
+                                      <option value="">--Hatchback --</option>
+                                      <option value="">--Wagon --</option>
+                                      <option value="">--Crossover --</option>
+                                      <option value="">--Convertible --</option>
+                                      <option value="">--Sport Car --</option>
+                                      <option value="">--MVP --</option>
                                  </select>
                             </div>
                         </div>
@@ -99,18 +103,7 @@
                             </div>
                         </div>
                 
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label>Mileage:</label>
-                     
-                                 <select>
-                                      <option value="">-- All --</option>
-                                      <option value="">-- All --</option>
-                                      <option value="">-- All --</option>
-                                      <option value="">-- All --</option>
-                                 </select>
-                            </div>
-                        </div>
+                        
                 
                         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                             <div class="form-group">
@@ -125,71 +118,15 @@
                             </div>
                         </div>
                 
+
+
                         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                             <div class="form-group">
-                                <label>Power:</label>
-                     
-                                 <select>
-                                      <option value="">-- All --</option>
-                                      <option value="">-- All --</option>
-                                      <option value="">-- All --</option>
-                                      <option value="">-- All --</option>
-                                 </select>
+                                <label>Car  Year :</label>
+                                <input type="number"  placeholder="Enter the car year">
                             </div>
                         </div>
                 
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label>Fuel:</label>
-                     
-                                 <select>
-                                      <option value="">-- All --</option>
-                                      <option value="">-- All --</option>
-                                      <option value="">-- All --</option>
-                                      <option value="">-- All --</option>
-                                 </select>
-                            </div>
-                        </div>
-                
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label>Gearbox:</label>
-                     
-                                 <select>
-                                      <option value="">-- All --</option>
-                                      <option value="">-- All --</option>
-                                      <option value="">-- All --</option>
-                                      <option value="">-- All --</option>
-                                 </select>
-                            </div>
-                        </div>
-                
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label>Doors:</label>
-                     
-                                 <select>
-                                      <option value="">-- All --</option>
-                                      <option value="">-- All --</option>
-                                      <option value="">-- All --</option>
-                                      <option value="">-- All --</option>
-                                 </select>
-                            </div>
-                        </div>
-                
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label>Number of seats:</label>
-                     
-                                 <select>
-                                      <option value="">-- All --</option>
-                                      <option value="">-- All --</option>
-                                      <option value="">-- All --</option>
-                                      <option value="">-- All --</option>
-                                 </select>
-                            </div>
-                        </div>
-                    </div>
                     
                     <div class="col-sm-4 offset-sm-4">
                       <div class="main-button text-center">
@@ -202,7 +139,7 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <div class="trainer-item">
                         <div class="image-thumb">
                             <img src="{% static 'assets/images/product-1-720x480.jpg' %}" alt="">
@@ -226,7 +163,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <div class="trainer-item">
                         <div class="image-thumb">
                             <img src="{% static 'assets/images/product-2-720x480.jpg' %}" alt="">
@@ -250,7 +187,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <div class="trainer-item">
                         <div class="image-thumb">
                             <img src="{% static 'assets/images/product-3-720x480.jpg' %}" alt="">
@@ -275,7 +212,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <div class="trainer-item">
                         <div class="image-thumb">
                             <img src="{% static 'assets/images/product-4-720x480.jpg' %}" alt="">
@@ -299,7 +236,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <div class="trainer-item">
                         <div class="image-thumb">
                             <img src="{% static 'assets/images/product-5-720x480.jpg' %}" alt="">
@@ -323,7 +260,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <div class="trainer-item">
                         <div class="image-thumb">
                             <img src="{% static 'assets/images/product-6-720x480.jpg' %}" alt="">
