@@ -22,7 +22,6 @@ class DealerInfo(models.Model):
 
 class Brands(models.Model):
     name = models.CharField(max_length=30)
-    image = models.FileField()
     
     def __str__(self):
         return self.name
@@ -74,7 +73,7 @@ class Cars(models.Model):
 
 
 
-    car_name = models.OneToOneField(User,on_delete=models.CASCADE)
+    car_name = models.CharField(max_length=200)
     location_id = models.ForeignKey(Location,related_name='car_location', on_delete=models.CASCADE)
     color = models.CharField(max_length=20)
     slug = models.SlugField(max_length=200)
@@ -102,9 +101,30 @@ class Cars(models.Model):
     def disapprove_car(self):
         self.approve = False
         self.save()
+    
 
+    def img_url1(self):
+        if self.car_image1:
+            return self.car_image1.url
+        else:
+            return '/static/assets/images/img_1.jpg'
+
+
+    def img_url2(self):
+        if self.car_image2:
+            return self.car_image2.url
+        else:
+            return '/static/assets/images/img_2.jpg'
 
     
+
+    def img_url3(self):
+        if self.car_image3:
+            return self.car_image3.url
+        else:
+            return '/static/assets/images/img_3.jpg'
+
+
     class Meta():
         verbose_name_plural = 'Car'
 
