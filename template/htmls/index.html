@@ -40,30 +40,30 @@ Home
                 {% if featured %}
                     {% for f in featured %}
                     <div class="col-lg-3">
-                        <div class="trainer-item">
-                            <div class="image-thumb">
-                                <img src="{%  %}" alt="">
-                            </div>
-                            <div class="down-content">
-                                <span>
-                                    <del><sup>$</sup>11999 </del> &nbsp; <sup>$</sup>11779
-                                </span>
-    
-                                <h4>Lorem ipsum dolor sit amet, consectetur</h4>
-    
-                                <p>
-                                    <i class="fa fa-dashboard"></i> 130 000km &nbsp;&nbsp;&nbsp;
-                                    <i class="fa fa-cube"></i> 1800 cc &nbsp;&nbsp;&nbsp;
-                                    <i class="fa fa-cog"></i> Manual &nbsp;&nbsp;&nbsp;
-                                </p>
-    
-                                <ul class="social-icons">
-                                    <li><a href="{% url 'Cars:car_detail' %}">+ View Car</a></li>
-                                </ul>
-                            </div>
+                    <div class="trainer-item">
+                        <div class="image-thumb">
+                            <img src="{% static 'assets/images/product-1-720x480.jpg' %}" alt="">
+                        </div>
+                        <div class="down-content">
+                            <span>
+                                <del><sup>$</sup>11999 </del> &nbsp; <sup>$</sup>11779
+                            </span>
+
+                            <h4>Lorem ipsum dolor sit amet, consectetur</h4>
+
+                            <p>
+                                <i class="fa fa-dashboard"></i> 130 000km &nbsp;&nbsp;&nbsp;
+                                <i class="fa fa-cube"></i> 1800 cc &nbsp;&nbsp;&nbsp;
+                                <i class="fa fa-cog"></i> Manual &nbsp;&nbsp;&nbsp;
+                            </p>
+
+                            <ul class="social-icons">
+                                <li><a href="{% url 'Cars:car_detail' %}">+ View Car</a></li>
+                            </ul>
                         </div>
                     </div>
-                    
+                </div>
+                
                     {% endfor  %}
                 {% endif  %}
                 

@@ -4,7 +4,7 @@ from django.shortcuts import reverse
 
 # Create your models here.
 
-class DealerInfo(models.Model):
+class Dealer_Info(models.Model):
     user_id = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='Dealer')
     phone = models.CharField(max_length=17)
     website = models.URLField(blank=True, null=True)
@@ -16,7 +16,7 @@ class DealerInfo(models.Model):
         return self.name
     
     class Meta():
-        verbose_name_plural = 'DealerInfo'
+        verbose_name_plural = 'Dealer Info'
 
 
 
@@ -79,12 +79,13 @@ class Cars(models.Model):
     color = models.CharField(max_length=20)
     slug = models.SlugField(max_length=200)
     status = models.CharField(max_length= 10 ,choices=CONDITION, default=CHOOSE )
-    prize = models. DecimalField(max_digits=9, decimal_places=2)
+    prize = models.DecimalField(max_digits=9, decimal_places=2)
+    old_prize = models.DecimalField(max_digits=9, decimal_places=2 ,null=True)
     make = models.ForeignKey(Brands,related_name='car_brand', on_delete=models.CASCADE)
     car_image1 = models.ImageField(blank=True, null=True, upload_to='uploads/profile')
     car_image2 = models.ImageField(blank=True, null=True, upload_to='uploads/profile')
     car_image3 = models.ImageField(blank=True, null=True, upload_to='uploads/profile')
-    car_type = models.CharField(max_length=20)
+    car_types = models.CharField(max_length=20)
     car_description = models.TextField(blank=True, null=True)
     manufacturing_date = models.DateField()
     offer_type = models.CharField(max_length=10, choices=OFFER_TYPE, default=CHOOSE)
@@ -146,7 +147,7 @@ class Team(models.Model):
 
 
 
-class CarType(models.Model):
+class Car_Type(models.Model):
     SEDAN = 'Sedan'
     COUPE = 'Coupe'
     SUV = 'SUV'
@@ -159,7 +160,7 @@ class CarType(models.Model):
     MVP = 'MVP'
     SELECT = ''
     CAR_TYPE = [
-        (SEDAN, 'Sedan'),
+        (SEDAN, 'Sedan (car)'),
         (COUPE,'Coupe'),
         (SUV,'SUV'),
         (TRUCK, 'Truck'),
@@ -171,15 +172,15 @@ class CarType(models.Model):
         (SELECT, 'Select An Engine Type'),
     ]
 
-    Type = models.OneToOneField(Cars,on_delete=models.CASCADE)
+    Type = models.OneToOneField(Cars, choices=CAR_TYPE, default=SELECT, on_delete=models.CASCADE)
     def __str__(self):
         return self.Type
     
     class Meta():
-        verbose_name_plural = 'carType'
+        verbose_name_plural = 'Car Type'
 
 
-class CarEngine(models.Model):
+class Car_Engine(models.Model):
     
     engine_name = models.CharField(max_length=30)
 
@@ -187,10 +188,10 @@ class CarEngine(models.Model):
         return self.engine_name
     
     class Meta():
-        verbose_name_plural = 'carEngine'
+        verbose_name_plural = 'Car Engine'
 
 
-class ContactDealer(models.Model):
+class Contact_Dealer(models.Model):
     name = models.CharField(max_length=50)
     phone = models.CharField(max_length=17)
     location_id = models.ForeignKey(Location, on_delete=models.CASCADE)
@@ -198,7 +199,7 @@ class ContactDealer(models.Model):
 
 
     class Meta():
-        verbose_name_plural = 'ContactDealer'
+        verbose_name_plural = 'Contact Dealer'
 
 
     def __str__(self):
