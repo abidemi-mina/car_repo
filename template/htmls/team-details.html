@@ -1,0 +1,58 @@
+{% extends 'htmls/base.html' %}
+{% load static %}
+{% block title%}
+Team-Details  
+{% endblock%}
+
+    
+  {% block content %}
+    <section class="section section-bg" id="call-to-action" style="background-image: url({% static 'assets/images/banner-image-1-1920x500.jpg' %})">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="cta-content">
+                        <br>
+                        <br>
+                        <h2>Meet our <em>Team</em></h2>
+                        <p>Ut consectetur, metus sit amet aliquet placerat, enim est ultricies ligula</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="trainers">
+        <div class="container">
+            <br>
+            <br>
+            <div class="row">
+                {% if det %}
+                <div class="col-md-8 col-sm-8">
+                    <div class="trainer-item">
+                        <div class="image-thumb">
+                            <img src="{{ det.profile.url }}" alt="">
+                        </div>
+                        <div class="down-content">
+                            <span>{{ det.title }}</span>
+                            <h4>{{ det.team_name }}</h4>
+                            <p>{{ det.description }}</p>
+                            <ul class="social-icons">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                   
+                  
+               
+              
+            </div>
+        </div>
+    </section>
+
+    <!-- ***** Footer Start ***** -->
+   {% endblock %}

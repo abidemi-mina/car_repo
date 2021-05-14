@@ -22,7 +22,7 @@ class Dealer_Info(models.Model):
 
 class Brands(models.Model):
     name = models.CharField(max_length=30)
-    image = models.FileField()
+    
     
     def __str__(self):
         return self.name
@@ -74,7 +74,7 @@ class Cars(models.Model):
 
 
 
-    car_name = models.OneToOneField(User,on_delete=models.CASCADE)
+    car_name = models.CharField(max_length=200)
     location_id = models.ForeignKey(Location,related_name='car_location', on_delete=models.CASCADE)
     color = models.CharField(max_length=20)
     slug = models.SlugField(max_length=200)
@@ -169,12 +169,12 @@ class Car_Type(models.Model):
         (CONVERTIBLE, 'Convertible'),
         (SPORTCAR, 'Sport Car'),
         (MVP, 'MVP'),
-        (SELECT, 'Select An Engine Type'),
+        (SELECT, 'Select An Car Type'),
     ]
 
-    Type = models.OneToOneField(Cars, choices=CAR_TYPE, default=SELECT, on_delete=models.CASCADE)
+    car_type = models.CharField(max_length=30, choices=CAR_TYPE, default=SELECT)
     def __str__(self):
-        return self.Type
+        return self.car_type
     
     class Meta():
         verbose_name_plural = 'Car Type'

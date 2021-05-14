@@ -26,79 +26,30 @@ Teams
             <br>
             <br>
             <div class="row">
-                <div class="col-md-3 col-sm-6">
-                    <div class="trainer-item">
-                        <div class="image-thumb">
-                            <img src="{% static 'assets/images/team-image-1-646x680.jpg' %}" alt="">
-                        </div>
-                        <div class="down-content">
-                            <span>CEO</span>
-                            <h4>John Doe</h4>
-                            <p>Vestibulum id est eu felis vulputate hendrerit. Suspendisse dapibus turpis in dui pulvinar imperdiet. Nunc consectetur.</p>
-                            <ul class="social-icons">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="trainer-item">
-                        <div class="image-thumb">
-                            <img src="{% static 'assets/images/team-image-2-646x680.jpg' %}" alt="">
-                        </div>
-                        <div class="down-content">
-                            <span>Customer Support</span>
-                            <h4>Jane Smith</h4>
-                            <p>Vestibulum id est eu felis vulputate hendrerit. Suspendisse dapibus turpis in dui pulvinar imperdiet. Nunc consectetur.</p>
-                            <ul class="social-icons">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                            </ul>
+                {% if team_key %}
+                    {% for t in team_key %}
+                    <div class="col-md-3 col-sm-6">
+                        <div class="trainer-item">
+                            <div class="image-thumb">
+                                <a href="{% url 'Cars:team_details' t.id %}"><img src="{{ t.profile.url }}" alt=""></a>
+                            </div>
+                            <div class="down-content">
+                                <span>{{ t.title }}</span>
+                                <h4>{{ t.team_name }}</h4>
+                                <p>{{ t.description|truncatewords:20 }}</p>
+                                <ul class="social-icons">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="trainer-item">
-                        <div class="image-thumb">
-                            <img src="{% static 'assets/images/team-image-3-646x680.jpg' %}" alt="">
-                        </div>
-                        <div class="down-content">
-                            <span>Customer Support</span>
-                            <h4>Kate Johnson</h4>
-                            <p>Vestibulum id est eu felis vulputate hendrerit. Suspendisse dapibus turpis in dui pulvinar imperdiet. Nunc consectetur.</p>
-                            <ul class="social-icons">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="trainer-item">
-                        <div class="image-thumb">
-                            <img src="{% static 'assets/images/team-image-4-646x680.jpg' %}" alt="">
-                        </div>
-                        <div class="down-content">
-                            <span>Customer Support</span>
-                            <h4>Mark Green</h4>
-                            <p>Vestibulum id est eu felis vulputate hendrerit. Suspendisse dapibus turpis in dui pulvinar imperdiet. Nunc consectetur.</p>
-                            <ul class="social-icons">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                    {% endfor %}
+                {% endif %}
+               
+              
             </div>
         </div>
     </section>
