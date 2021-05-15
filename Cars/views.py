@@ -20,8 +20,12 @@ def blog_detail(request):
     return render(request, 'htmls/blog-details.html')
 def blog(request):
     return render(request, 'htmls/blog.html')
-def car_detail(request):
-    return render(request, 'htmls/car-details.html')
+    
+def car_detail(request,car_id):
+    cardet = Cars.objects.get(id=car_id)
+    return render(request, 'htmls/car-details.html', {'det':cardet})
+
+
 def login(request):
     return render(request, 'htmls/login.html')
 def logout(request):

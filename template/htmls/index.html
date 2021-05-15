@@ -139,27 +139,28 @@ Home
             </div>
             <div class="row">
                 {% if sale  %}
-                    {% for x in sale  %}
+                    {% for s in sale  %}
                     <div class="col-lg-3">
                         <div class="trainer-item">
                             <div class="image-thumb">
-                                <img src="{% static 'assets/images/product-1-720x480.jpg' %}" alt="">
+                                <img src="{{ s.img_url1 }}" alt="">
                             </div>
                             <div class="down-content">
                                 <span>
-                                    <del><sup>$</sup>11999 </del> &nbsp; <sup>$</sup>11779
+                                    <del><sup>&#8358;</sup>{{ s.prize }} </del> &nbsp; <sup>&#8358;</sup>{{ s.prize }}
                                 </span>
     
-                                <h4>Lorem ipsum dolor sit amet, consectetur</h4>
+                                <h4>{{ s.car_model }}</h4>
+                                <h4>{{ s.location_id.name }}</h4>
     
                                 <p>
                                     <i class="fa fa-dashboard"></i> 130 000km &nbsp;&nbsp;&nbsp;
                                     <i class="fa fa-cube"></i> 1800 cc &nbsp;&nbsp;&nbsp;
-                                    <i class="fa fa-cog"></i> Manual &nbsp;&nbsp;&nbsp;
+                                    <i class="fa fa-cog"></i> Automatic &nbsp;&nbsp;&nbsp;
                                 </p>
     
                                 <ul class="social-icons">
-                                    <li><a href="{% url 'Cars:car_detail' %}">+ View Car</a></li>
+                                    <li><a href="{{s.id }}">+ View Car</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -194,19 +195,20 @@ Home
                     <div class="col-lg-3">
                         <div class="trainer-item">
                             <div class="image-thumb">
-                                <img src="{% static 'assets/images/product-1-720x480.jpg' %}" alt="">
+                                <img src="{{r.img_url1}}" alt="">
                             </div>
                             <div class="down-content">
                                 <span>
-                                    <del><sup>$</sup>11999 </del> &nbsp; <sup>$</sup>11779
+                                    <del><sup>&#8358;</sup>{{ r.prize}} </del> &nbsp; <sup>&#8358;</sup>{{r.prize}}
                                 </span>
     
-                                <h4>Lorem ipsum dolor sit amet, consectetur</h4>
+                                <h4>{{ r.car_model }}</h4>
+                                <h4>{{ r.location_id.name }}</h4>
     
                                 <p>
                                     <i class="fa fa-dashboard"></i> 130 000km &nbsp;&nbsp;&nbsp;
                                     <i class="fa fa-cube"></i> 1800 cc &nbsp;&nbsp;&nbsp;
-                                    <i class="fa fa-cog"></i> Manual &nbsp;&nbsp;&nbsp;
+                                    <i class="fa fa-cog"></i> Automatic &nbsp;&nbsp;&nbsp;
                                 </p>
     
                                 <ul class="social-icons">

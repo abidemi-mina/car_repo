@@ -74,7 +74,7 @@ class Cars(models.Model):
 
 
 
-    car_name = models.CharField(max_length=200)
+    car_model = models.CharField(max_length=200)
     location_id = models.ForeignKey(Location,related_name='car_location', on_delete=models.CASCADE)
     color = models.CharField(max_length=20)
     slug = models.SlugField(max_length=200)
@@ -96,6 +96,25 @@ class Cars(models.Model):
     featured= models.DateTimeField(auto_now=True)
     approve = models.BooleanField(default=False)
 
+
+    def img_url1(self):
+        if self.car_image1:
+            return self.car_image1.url
+        else:
+            return '/static/public/images/img_1.jpg'
+    
+    def img_url2(self):
+        if self.car_image2.url:
+            return self.car_image2.url
+        else:
+            return '/static/public/images/img_1.jpg'
+
+    def img_url3(self):
+        if self.car_image3.url:
+            return self.car_image3.url
+        else:
+            return '/static/public/images/img_1.jpg'
+
     def approve_car(self):
         self.approve = True
         self.save()
@@ -110,7 +129,7 @@ class Cars(models.Model):
         verbose_name_plural = 'Car'
 
     def __str__(self):
-        return self.car_name
+        return self.car_model
 
 class Blog(models.Model):
     title = models.TextField()
