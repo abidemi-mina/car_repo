@@ -44,87 +44,6 @@ class Location(models.Model):
 
 
  
-class Cars(models.Model):
-    RENT = 'Rent'
-    SALE = 'Sale'
-    CHOOSE = ''
-    OFFER_TYPE = [
-        (RENT, 'Rent'),
-        (SALE, 'Sale'),
-        (CHOOSE, 'Choose An Offer Type'),
-    ]
-
-    USED = 'Used'
-    NEW = 'New '
-    CHOOSE = ''
-    CONDITION = [
-        (USED , 'Used'),
-        (NEW , 'New'),
-        (CHOOSE, 'What is the car status')
-    ]
-
-    AUTOMATIC = 'Automatic'
-    MANUAL = 'Manual'
-    CHOOSE = ""
-    SELECT = [
-        (AUTOMATIC, 'Automatic'),
-        (MANUAL, 'Manual'),
-        (CHOOSE, "Select Transmission")
-    ]
-
-
-
-    car_name = models.OneToOneField(User,on_delete=models.CASCADE)
-    location_id = models.ForeignKey(Location,related_name='car_location', on_delete=models.CASCADE)
-    color = models.CharField(max_length=20)
-    slug = models.SlugField(max_length=200)
-    status = models.CharField(max_length= 10 ,choices=CONDITION, default=CHOOSE )
-    prize = models.DecimalField(max_digits=9, decimal_places=2)
-    old_prize = models.DecimalField(max_digits=9, decimal_places=2 ,null=True)
-    make = models.ForeignKey(Brands,related_name='car_brand', on_delete=models.CASCADE)
-    car_image1 = models.ImageField(blank=True, null=True, upload_to='uploads/profile')
-    car_image2 = models.ImageField(blank=True, null=True, upload_to='uploads/profile')
-    car_image3 = models.ImageField(blank=True, null=True, upload_to='uploads/profile')
-    car_types = models.CharField(max_length=20)
-    car_description = models.TextField(blank=True, null=True)
-    manufacturing_date = models.DateField()
-    offer_type = models.CharField(max_length=10, choices=OFFER_TYPE, default=CHOOSE)
-    maintenance = models.TextField()
-    transmission = models.CharField(max_length=20, choices=SELECT, default=CHOOSE)
-    created= models.DateTimeField(auto_now_add=True)
-    sponsored= models.DateTimeField(auto_now=True)
-    featured= models.DateTimeField(auto_now=True)
-    approve = models.BooleanField(default=False)
-
-    def approve_car(self):
-        self.approve = True
-        self.save()
-    
-    def disapprove_car(self):
-        self.approve = False
-        self.save()
-
-
-    
-    class Meta():
-        verbose_name_plural = 'Car'
-
-    def __str__(self):
-        return self.car_name
-
-class Blog(models.Model):
-    title = models.TextField()
-    author = models.CharField(max_length=30)
-    content = models.TextField()
-    img = models.ImageField(blank=True, null=True)
-    time = models.DateTimeField(auto_now_add=True)
-
-    class Meta():
-        verbose_name_plural = 'Blog'
-
-    def __str__(self):
-        return self.title
-
 
 
 class Team(models.Model):
@@ -204,6 +123,89 @@ class Contact_Dealer(models.Model):
 
     def __str__(self):
         return self.name
+class Cars(models.Model):
+    RENT = 'Rent'
+    SALE = 'Sale'
+    CHOOSE = ''
+    OFFER_TYPE = [
+        (RENT, 'Rent'),
+        (SALE, 'Sale'),
+        (CHOOSE, 'Choose An Offer Type'),
+    ]
+
+    USED = 'Used'
+    NEW = 'New '
+    CHOOSE = ''
+    CONDITION = [
+        (USED , 'Used'),
+        (NEW , 'New'),
+        (CHOOSE, 'What is the car status')
+    ]
+
+    AUTOMATIC = 'Automatic'
+    MANUAL = 'Manual'
+    CHOOSE = ""
+    SELECT = [
+        (AUTOMATIC, 'Automatic'),
+        (MANUAL, 'Manual'),
+        (CHOOSE, "Select Transmission")
+    ]
+
+
+
+    car_name = models.OneToOneField(User,on_delete=models.CASCADE)
+    location_id = models.ForeignKey(Location,related_name='car_location', on_delete=models.CASCADE)
+    color = models.CharField(max_length=20)
+    slug = models.SlugField(max_length=200)
+    status = models.CharField(max_length= 10 ,choices=CONDITION, default=CHOOSE )
+    prize = models.DecimalField(max_digits=9, decimal_places=2)
+    old_prize = models.DecimalField(max_digits=9, decimal_places=2 ,null=True)
+    make = models.ForeignKey(Brands,related_name='car_brand', on_delete=models.CASCADE)
+    car_image1 = models.ImageField(blank=True, null=True, upload_to='uploads/profile')
+    car_image2 = models.ImageField(blank=True, null=True, upload_to='uploads/profile')
+    car_image3 = models.ImageField(blank=True, null=True, upload_to='uploads/profile')
+    car_type = models.ForeignKey(Car_Type , related_name='car_type', on_delete=models.CASCADE)
+    car_engine = models.ForeignKey(Car_Engine, related_name='car_engine', on_delete= models.CASCADE)
+    car_description = models.TextField(blank=True, null=True)
+    manufacturing_date = models.DateField()
+    offer_type = models.CharField(max_length=10, choices=OFFER_TYPE, default=CHOOSE)
+    maintenance = models.TextField()
+    transmission = models.CharField(max_length=20, choices=SELECT, default=CHOOSE)
+    created= models.DateTimeField(auto_now_add=True)
+    sponsored= models.DateTimeField(auto_now=True)
+    featured= models.DateTimeField(auto_now=True)
+    approve = models.BooleanField(default=False)
+
+    def approve_car(self):
+        self.approve = True
+        self.save()
+    
+    def disapprove_car(self):
+        self.approve = False
+        self.save()
+
+
+    
+    class Meta():
+        verbose_name_plural = 'Car'
+
+    def __str__(self):
+        return self.car_name
+
+class Blog(models.Model):
+    title = models.TextField()
+    author = models.CharField(max_length=30)
+    content = models.TextField()
+    img = models.ImageField(blank=True, null=True)
+    time = models.DateTimeField(auto_now_add=True)
+
+    class Meta():
+        verbose_name_plural = 'Blog'
+
+    def __str__(self):
+        return self.title
+
+
 
 
 
