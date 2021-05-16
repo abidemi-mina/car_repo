@@ -22,7 +22,7 @@ class Dealer_Info(models.Model):
 
 class Brands(models.Model):
     name = models.CharField(max_length=30)
-    
+    image = models.FileField()
     
     def __str__(self):
         return self.name
@@ -152,7 +152,7 @@ class Cars(models.Model):
 
 
 
-    car_name = models.CharField(max_length=200)
+    car_name = models.OneToOneField(User,on_delete=models.CASCADE)
     location_id = models.ForeignKey(Location,related_name='car_location', on_delete=models.CASCADE)
     color = models.CharField(max_length=20)
     slug = models.SlugField(max_length=200)
@@ -206,87 +206,6 @@ class Blog(models.Model):
 
 
 
-<<<<<<< HEAD
-=======
-class Team(models.Model):
-    team_name = models.CharField(max_length=120)
-    profile = models.ImageField(blank=True, null=True, upload_to='uploads/profile')
-    title = models.CharField(max_length=100,blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
-    created = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.team_name
-    
-    class Meta():
-        verbose_name_plural = 'Team'
-
-
-    
-
-
-
-
-class Car_Type(models.Model):
-    SEDAN = 'Sedan'
-    COUPE = 'Coupe'
-    SUV = 'SUV'
-    TRUCK = 'Truck'
-    HATCHBACK = 'Hatchback'
-    WAGON = 'Wagon'
-    CROSSOVER = 'Crossover'
-    CONVERTIBLE = 'Convertible'
-    SPORTCAR = 'Sport Car'
-    MVP = 'MVP'
-    SELECT = ''
-    CAR_TYPE = [
-        (SEDAN, 'Sedan (car)'),
-        (COUPE,'Coupe'),
-        (SUV,'SUV'),
-        (TRUCK, 'Truck'),
-        (HATCHBACK, 'Hatchback'),
-        (CROSSOVER, 'Crossover'),
-        (CONVERTIBLE, 'Convertible'),
-        (SPORTCAR, 'Sport Car'),
-        (MVP, 'MVP'),
-        (SELECT, 'Select An Car Type'),
-    ]
-
-    car_type = models.CharField(max_length=30, choices=CAR_TYPE, default=SELECT)
-    def __str__(self):
-        return self.car_type
-    
-    class Meta():
-        verbose_name_plural = 'Car Type'
-
-
-class Car_Engine(models.Model):
-    
-    engine_name = models.CharField(max_length=30)
-
-    def __str__(self):
-        return self.engine_name
-    
-    class Meta():
-        verbose_name_plural = 'Car Engine'
-
-
-class Contact_Dealer(models.Model):
-    name = models.CharField(max_length=50)
-    phone = models.CharField(max_length=17)
-    location_id = models.ForeignKey(Location, on_delete=models.CASCADE)
-    dealer_id = models.ForeignKey(User, on_delete=models.CASCADE)
-
-
-    class Meta():
-        verbose_name_plural = 'Contact Dealer'
-
-
-    def __str__(self):
-        return self.name
-
->>>>>>> c6b64d082f44f18cedb593e3016659e3882795c8
 
 
 
