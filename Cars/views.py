@@ -12,7 +12,9 @@ def home(request):
     sponsored = Cars.objects.order_by('-created')[:4]
 
     return render(request, 'htmls/index.html', {'sale': sale, 'rent':rent, 'latest':latest, 'featured':featured, 'sponsored':sponsored})
+
 def about(request):
+    
     return render(request, 'htmls/about.html')
 def blog_detail(request):
     return render(request, 'htmls/blog-details.html')
@@ -35,6 +37,12 @@ def faq(request):
 def terms(request):
     return render(request, 'htmls/terms.html')
 def team(request):
-    return render(request, 'htmls/team.html')
+    team = Team.objects.order_by('-created')
+    return render(request, 'htmls/team.html', {'team_key':team})
+
+def team_details(request, team_id):
+    detail = Team.objects.get(id=team_id)
+    return render(request, 'htmls/team-details.html', {'det':detail})
+   
 def testimonial(request):
     return render(request, 'htmls/testimonials.html')
