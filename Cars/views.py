@@ -21,9 +21,8 @@ def blog_detail(request):
 def blog(request):
     return render(request, 'htmls/blog.html')
     
-def car_detail(request,car_id):
-    cardet = Cars.objects.get(id=car_id)
-    return render(request, 'htmls/car-details.html', {'det':cardet})
+def car_detail(request):
+    return render(request, 'htmls/car-details.html')
 
 
 def login(request):

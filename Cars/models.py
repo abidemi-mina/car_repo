@@ -42,6 +42,39 @@ class Location(models.Model):
         verbose_name_plural = 'Location'
 
 
+class Car_Type(models.Model):
+    SEDAN = 'Sedan'
+    COUPE = 'Coupe'
+    SUV = 'SUV'
+    TRUCK = 'Truck'
+    HATCHBACK = 'Hatchback'
+    WAGON = 'Wagon'
+    CROSSOVER = 'Crossover'
+    CONVERTIBLE = 'Convertible'
+    SPORTCAR = 'Sport Car'
+    MVP = 'MVP'
+    SELECT = ''
+    TYPE = [
+        (SEDAN, 'Sedan (car)'),
+        (COUPE,'Coupe'),
+        (SUV,'SUV'),
+        (TRUCK, 'Truck'),
+        (HATCHBACK, 'Hatchback'),
+        (CROSSOVER, 'Crossover'),
+        (CONVERTIBLE, 'Convertible'),
+        (SPORTCAR, 'Sport Car'),
+        (MVP, 'MVP'),
+        (SELECT, 'Select An Car Type'),
+    ]
+
+    name = models.CharField(max_length=30, choices=TYPE, default=SELECT)
+    def __str__(self):
+        return self.name
+    
+    class Meta():
+        verbose_name_plural = 'Car_Type'
+
+
 
  
 class Cars(models.Model):
@@ -85,7 +118,7 @@ class Cars(models.Model):
     car_image1 = models.ImageField(blank=True, null=True, upload_to='uploads/profile')
     car_image2 = models.ImageField(blank=True, null=True, upload_to='uploads/profile')
     car_image3 = models.ImageField(blank=True, null=True, upload_to='uploads/profile')
-    car_types = models.CharField(max_length=20)
+    car_types = models.ForeignKey(Car_Type, related_name='car_type', on_delete=models.CASCADE)
     car_description = models.TextField(blank=True, null=True)
     manufacturing_date = models.DateField()
     offer_type = models.CharField(max_length=10, choices=OFFER_TYPE, default=CHOOSE)
@@ -160,43 +193,7 @@ class Team(models.Model):
     class Meta():
         verbose_name_plural = 'Team'
 
-
     
-
-
-
-
-class Car_Type(models.Model):
-    SEDAN = 'Sedan'
-    COUPE = 'Coupe'
-    SUV = 'SUV'
-    TRUCK = 'Truck'
-    HATCHBACK = 'Hatchback'
-    WAGON = 'Wagon'
-    CROSSOVER = 'Crossover'
-    CONVERTIBLE = 'Convertible'
-    SPORTCAR = 'Sport Car'
-    MVP = 'MVP'
-    SELECT = ''
-    CAR_TYPE = [
-        (SEDAN, 'Sedan (car)'),
-        (COUPE,'Coupe'),
-        (SUV,'SUV'),
-        (TRUCK, 'Truck'),
-        (HATCHBACK, 'Hatchback'),
-        (CROSSOVER, 'Crossover'),
-        (CONVERTIBLE, 'Convertible'),
-        (SPORTCAR, 'Sport Car'),
-        (MVP, 'MVP'),
-        (SELECT, 'Select An Car Type'),
-    ]
-
-    car_type = models.CharField(max_length=30, choices=CAR_TYPE, default=SELECT)
-    def __str__(self):
-        return self.car_type
-    
-    class Meta():
-        verbose_name_plural = 'Car Type'
 
 
 class Car_Engine(models.Model):

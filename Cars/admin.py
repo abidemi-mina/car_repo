@@ -13,3 +13,7 @@ admin.site.register(Car_Engine)
 admin.site.register(Contact_Dealer)
 admin.site.register(Location)
 
+
+# @admin.register(Cars)
+# class PropertyAdmin(admin.ModelAdmin):
+#     prepopulated_fields = {'slug': ('car_model',)}
