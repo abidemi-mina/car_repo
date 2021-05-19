@@ -7,11 +7,11 @@ from Cars.models import *
 def home(request):
     sale = Cars.objects.filter(offer_type='Sale')[:4]
     rent = Cars.objects.filter(offer_type='Rent')[:4]
-    latest = Cars.objects.order_by('-created')[:4]
-    featured = Cars.objects.order_by('-created')[:4]
+    new = Cars.objects.order_by('-created')[:4]
+    foreign = Cars.objects.order_by('-created')[:4]
     sponsored = Cars.objects.order_by('-created')[:4]
 
-    return render(request, 'htmls/index.html', {'sale': sale, 'rent':rent, 'latest':latest, 'featured':featured, 'sponsored':sponsored})
+    return render(request, 'htmls/index.html', {'sale': sale, 'rent':rent, 'new':new, 'foreign':foreign, 'sponsored':sponsored})
 
 def about(request):
     

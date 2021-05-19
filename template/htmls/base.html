@@ -52,13 +52,11 @@
                         <ul class="nav">
                                     {% url 'home' as Home %}
                                     {% url 'Cars:about' as About %}
-                                    {% url 'Cars:agent' as Agent %}
+                                    {% url 'Cars:login' as Login %}
+                                    {% url 'Cars:register' as Register %}
                                     {% url 'Cars:cars' as Cars %}
                                     {% url 'Cars:blog' as Blog %}
                                     {% url 'Cars:team' as Team %}
-                                    {% url 'Cars:testimonial' as Testimonial %}
-                                    {% url 'Cars:faq' as Faq %}
-                                    {% url 'Cars:terms' as Terms  %}
                                     {% url 'Cars:contact' as Contact  %}
 
                                     
@@ -68,18 +66,23 @@
                             <li {% if request.path == Cars %} class="active"  {% endif %}>
                                 <a href="{% url 'Cars:cars' %}">Cars</a>
                             </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">About</a>
-                              
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="{% url 'Cars:about' %}">About Us</a>
-                                    <a class="dropdown-item" href="{% url 'Cars:blog' %}">Blog</a>
-                                    <a class="dropdown-item" href="{% url 'Cars:team' %}">Team</a>
-                                    <a class="dropdown-item" href="{% url 'Cars:testimonial' %}">Testimonials</a>
-                                    <a class="dropdown-item" href="{% url 'Cars:faq' %}">FAQ</a>
-                                    <a class="dropdown-item" href="{% url 'Cars:terms' %}">Terms</a>
-                                </div>
+
+                            <li {% if request.path == About %} class="active"  {% endif %}>
+                                <a href="{% url 'Cars:about' %}">About</a>
+
                             </li>
+
+                            <li {% if request.path == Blog %} class="active"  {% endif %}>
+                                <a href="{% url 'Cars:blog' %}">Blog</a>
+
+                            </li>
+
+
+                            <li {% if request.path == Team %} class="active"  {% endif %}>
+                                <a href="{% url 'Cars:team' %}">Team</a>
+
+                            </li>
+                            
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Login</a>
                               

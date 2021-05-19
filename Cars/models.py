@@ -16,7 +16,7 @@ class Dealer_Info(models.Model):
         return self.name
     
     class Meta():
-        verbose_name_plural = 'Dealer Info'
+        verbose_name_plural = 'DealerInfo'
 
 
 
@@ -67,12 +67,12 @@ class Car_Type(models.Model):
         (SELECT, 'Select An Car Type'),
     ]
 
-    name = models.CharField(max_length=30, choices=TYPE, default=SELECT)
+    names = models.CharField(max_length=30, choices=TYPE, default=SELECT)
     def __str__(self):
-        return self.name
+        return self.names
     
     class Meta():
-        verbose_name_plural = 'Car_Type'
+        verbose_name_plural = 'CarType'
 
 
 
@@ -106,7 +106,6 @@ class Cars(models.Model):
     ]
 
 
-
     car_model = models.CharField(max_length=200)
     location_id = models.ForeignKey(Location,related_name='car_location', on_delete=models.CASCADE)
     color = models.CharField(max_length=20)
@@ -118,15 +117,16 @@ class Cars(models.Model):
     car_image1 = models.ImageField(blank=True, null=True, upload_to='uploads/profile')
     car_image2 = models.ImageField(blank=True, null=True, upload_to='uploads/profile')
     car_image3 = models.ImageField(blank=True, null=True, upload_to='uploads/profile')
-    car_types = models.ForeignKey(Car_Type, related_name='car_type', on_delete=models.CASCADE)
+    vehicle_type = models.ForeignKey(Car_Type,related_name='vehicle_type', on_delete=models.CASCADE)
     car_description = models.TextField(blank=True, null=True)
     manufacturing_date = models.DateField()
     offer_type = models.CharField(max_length=10, choices=OFFER_TYPE, default=CHOOSE)
     maintenance = models.TextField()
     transmission = models.CharField(max_length=20, choices=SELECT, default=CHOOSE)
+    milleage = models.CharField(max_length=20)
+    first_registration = models.CharField(max_length=50)
+    fuel = models.CharField(max_length=50)
     created= models.DateTimeField(auto_now_add=True)
-    sponsored= models.DateTimeField(auto_now=True)
-    featured= models.DateTimeField(auto_now=True)
     approve = models.BooleanField(default=False)
 
 
@@ -210,6 +210,7 @@ class Car_Engine(models.Model):
 class Contact_Dealer(models.Model):
     name = models.CharField(max_length=50)
     phone = models.CharField(max_length=17)
+    email = models.EmailField(max_length=200)
     location_id = models.ForeignKey(Location, on_delete=models.CASCADE)
     dealer_id = models.ForeignKey(User, on_delete=models.CASCADE)
 
