@@ -23,6 +23,132 @@ Home
         </div>
     </div>
     <!-- ***** Main Banner Area End ***** -->
+    {% if srh %}
+    <div class="contact-form">
+        <form action="#" id="contact">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label>Offer Type</label>
+             
+                         <select>
+                              <option value="">{{ srh.offer_type }}</option>
+                              <option value="new">{{ srh.offer_type }}</option>
+                              <option value="used">{{ srh.offer_type }}</option>
+                         </select>
+                    </div>
+                </div>
+        
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label>Vehicle Type</label>
+
+                         <select>
+                              <option value="">{{ srh.vehicle_type }}</option>
+                              <option value="">{{ srh.vehicle_type }}</option>
+                              <option value="">{{ srh.vehicle_type }}</option>
+                              <option value="">{{ srh.vehicle_type }}</option>
+                              <option value="">{{ srh.vehicle_type }}</option>
+                              <option value="">{{ srh.vehicle_type }}</option>
+                              <option value="">{{ srh.vehicle_type }}</option>
+                              <option value="">{{ srh.vehicle_type }}</option>
+                              <option value="">{{ srh.vehicle_type }}</option>
+                         </select>
+                    </div>
+                </div>
+        
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label>Make</label>
+             
+                         <select>
+                              <option value="">{{ srh.make }}</option>
+                              <option value="">{{ srh.make }}</option>
+                              <option value="">{{ srh.make }}</option>
+                              <option value="">{{ srh.make }}</option>
+                              <option value="">{{ srh.make }}</option>
+                         </select>
+                    </div>
+                </div>
+        
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label>Make</label>
+             
+                         <select>
+                              <option value="">{{ srh.model }}</option>
+                              <option value="">{{ srh.model }}</option>
+                              <option value="">{{ srh.model }}</option>
+                              <option value="">{{ srh.model }}</option>
+                              
+                         </select>
+                    </div>
+                </div>
+        
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label>Price</label>
+             
+                         <select>
+                              <option value="">{{ srh.prize }}</option>
+                              <option value="">{{ srh.prize }}</option>
+                              <option value="">{{ srh.prize }}</option>
+                              <option value="">{{ srh.prize }}</option>
+                              
+                         </select>
+                    </div>
+                </div>
+        
+                
+        
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label>Milleage</label>
+             
+                         <select>
+                              <option value="">{{ srh.milleage }</option>
+                              <option value="">{{ srh.milleage }</option>
+                              <option value="">{{ srh.milleage }</option>
+                              <option value="">{{ srh.milleage }</option>
+                         </select>
+                    </div>
+                </div>
+               
+
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label>Transmission</label>
+             
+                         <select>
+                              <option value="">{{ srh.transmission }}</option>
+                              <option value="">{{ srh.transmission }}</option>
+                              
+                         </select>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label>{{ srh.manufacturing_date }}</label>
+                        <input type="number"  placeholder="Enter the car year">
+                    </div>
+                </div>
+        
+                
+                
+            <div class="col-sm-4 offset-sm-4">
+              <div class="main-button text-center">
+                  <a href="#">Search</a>
+              </div>
+            </div>
+            <br>
+            <br>
+        </form>
+    </div>
+
+    {% endif %}
+    
 
    <!-- ***** Cars Starts ***** -->
     <section class="section" id="trainers">
@@ -42,11 +168,11 @@ Home
                     <div class="col-lg-3">
                     <div class="trainer-item">
                         <div class="image-thumb">
-                            <img src="{% static 'assets/images/product-1-720x480.jpg' %}" alt="">
+                            <img src="{{ f.img_url1 }}" alt="">
                         </div>
                         <div class="down-content">
                             <span>
-                                <del><sup>$</sup>11999 </del> &nbsp; <sup>$</sup>11779
+                                <del><sup>&#8358;</sup>{{f.prize }} </del> &nbsp; <sup>&#8358;</sup>{{ f.prize }}
                             </span>
 
                             <h4>Lorem ipsum dolor sit amet, consectetur</h4>
@@ -58,7 +184,7 @@ Home
                             </p>
 
                             <ul class="social-icons">
-                                <li><a href="{% url 'Cars:car_detail' %}">+ View Car</a></li>
+                                <li><a href="{% url 'Cars:car_detail' f.id %}">+ View Car</a></li>
                             </ul>
                         </div>
                     </div>
@@ -93,11 +219,11 @@ Home
                     <div class="col-lg-3">
                         <div class="trainer-item">
                             <div class="image-thumb">
-                                <img src="{% static 'assets/images/product-3-720x480.jpg' %}" alt="">
+                                <img src="{{ n.img_url1 }}" alt="">
                             </div>
                             <div class="down-content">
                                 <span>
-                                    <del><sup>$</sup>11999 </del> &nbsp; <sup>$</sup>11779
+                                    <del><sup>&#8358;</sup>{{ n.prize }} </del> &nbsp; <sup>&#8358;</sup>{{ n.prize }}
                                 </span>
     
                                 <h4>Lorem ipsum dolor sit amet, consectetur</h4>
@@ -109,7 +235,7 @@ Home
                                 </p>
     
                                 <ul class="social-icons">
-                                    <li><a href="{% url 'Cars:car_detail' %}">+ View Car</a></li>
+                                    <li><a href="{% url 'Cars:car_detail' n.id %}">+ View Car</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -160,7 +286,7 @@ Home
                                 </p>
     
                                 <ul class="social-icons">
-                                    <li><a href="{{s.id }}">+ View Car</a></li>
+                                    <li><a href="{% url 'Cars:car_detail' s.id %}">+ View Car</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -212,7 +338,7 @@ Home
                                 </p>
     
                                 <ul class="social-icons">
-                                    <li><a href="{% url 'Cars:car_detail' %}">+ View Car</a></li>
+                                    <li><a href="{% url 'Cars:car_detail' r.id %}">+ View Car</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -230,7 +356,7 @@ Home
             </div>
         </div>
     </section>
-    <section class="section" id="trainers">
+    <!-- <section class="section" id="trainers">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 offset-lg-3">
@@ -251,7 +377,7 @@ Home
                             </div>
                             <div class="down-content">
                                 <span>
-                                    <del><sup>$</sup>11999 </del> &nbsp; <sup>$</sup>11779
+                                    <del><sup>&#8358;</sup>{{ s.prize }}</del> &nbsp; <sup>&#8358;</sup>{{ s.prize }}
                                 </span>
     
                                 <h4>Lorem ipsum dolor sit amet, consectetur</h4>
@@ -263,7 +389,7 @@ Home
                                 </p>
     
                                 <ul class="social-icons">
-                                    <li><a href="{% url 'Cars:car_detail' %}">+ View Car</a></li>
+                                    <li><a href="{{ s.id }}">+ View Car</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -280,7 +406,7 @@ Home
                 <a href="{% url 'Cars:cars' % }">View Cars</a>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- ***** Cars Ends ***** -->
 
     <section class="section section-bg" id="schedule" style="background-image: url({% static 'assets/images/about-fullscreen-1-1920x700.jpg' %})">

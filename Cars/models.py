@@ -12,11 +12,12 @@ class Dealer_Info(models.Model):
     biography = models.TextField()
     address = models.TextField()
 
+    
     def __str__(self):
-        return self.name
+        return str(self.user_id)
     
     class Meta():
-        verbose_name_plural = 'DealerInfo'
+        verbose_name_plural = 'Dealer Info'
 
 
 
@@ -72,7 +73,7 @@ class Car_Type(models.Model):
         return self.names
     
     class Meta():
-        verbose_name_plural = 'CarType'
+        verbose_name_plural = 'Car Type'
 
 
 
@@ -114,6 +115,7 @@ class Cars(models.Model):
     prize = models.DecimalField(max_digits=9, decimal_places=2)
     old_prize = models.DecimalField(max_digits=9, decimal_places=2 ,null=True)
     make = models.ForeignKey(Brands,related_name='car_brand', on_delete=models.CASCADE)
+    car_image = models.ImageField(blank=True, null=True, upload_to='uploads/profile')
     car_image1 = models.ImageField(blank=True, null=True, upload_to='uploads/profile')
     car_image2 = models.ImageField(blank=True, null=True, upload_to='uploads/profile')
     car_image3 = models.ImageField(blank=True, null=True, upload_to='uploads/profile')
@@ -128,6 +130,14 @@ class Cars(models.Model):
     fuel = models.CharField(max_length=50)
     created= models.DateTimeField(auto_now_add=True)
     approve = models.BooleanField(default=False)
+
+
+        
+    def img_url(self):
+        if self.car_image:
+            return self.car_image.url
+        else:
+            return '/static/public/images/img_1.jpg'
 
 
     def img_url1(self):

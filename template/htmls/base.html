@@ -63,9 +63,9 @@
                             <li {% if request.path == Home %} class="active"  {% endif %}>
                                 <a href="{% url 'home' %}" >Home</a>
                             </li>
-                            <li {% if request.path == Cars %} class="active"  {% endif %}>
+                            <!-- <li {% if request.path == Cars %} class="active"  {% endif %}>
                                 <a href="{% url 'Cars:cars' %}">Cars</a>
-                            </li>
+                            </li> -->
 
                             <li {% if request.path == About %} class="active"  {% endif %}>
                                 <a href="{% url 'Cars:about' %}">About</a>
