@@ -1,6 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse 
 from Cars.models import *
+
+
+from django.contrib.auth import login,logout,authenticate
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
 
 
 # Create your views here.
@@ -27,11 +33,30 @@ def car_detail(request, car_id):
     return render(request, 'htmls/car-details.html', {'det':detail, 'cont':contact})
 
 
-def login(request):
+def login_view(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            if request.user.is_superuser:
+
+                login(request,user)
+                return redirect('backend:index')
+            else:
+                login(request,user)
+                return redirect('Cars:dashboard')
+        else:
+            messages.error(request, 'Name and Password do not match')
+
     return render(request, 'htmls/login.html')
 
 def logout(request):
     return render(request, 'htmls/logout.html')
+
+def dashboard(request):
+    return render(request, 'htmls/dashboard.html')
 
 def register(request):
     return render(request, 'htmls/register.html')
