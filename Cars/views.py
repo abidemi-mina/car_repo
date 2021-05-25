@@ -1,8 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse 
 from Cars.models import *
-
-
+from Cars.forms import *
 from django.contrib.auth import login,logout,authenticate
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -40,11 +39,10 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
-            if request.user.is_superuser:
-
+            if user.is_superuser == True :  
                 login(request,user)
                 return redirect('backend:index')
-            else:
+            elif not(user.is_superuser):
                 login(request,user)
                 return redirect('Cars:dashboard')
         else:
@@ -59,7 +57,15 @@ def dashboard(request):
     return render(request, 'htmls/dashboard.html')
 
 def register(request):
-    return render(request, 'htmls/register.html')
+    register = RegisterForm()
+    if request.method == 'POST':
+        register = RegisterForm(request.POST)
+    if register.is_valid():
+       register.save()
+       messages.success(request, 'User Registered ')
+    else:
+        register = RegisterForm()
+    return render(request, 'htmls/register.html', {'reg':register})
 
 def cars(request):
     car = Cars.objects.order_by('-created')
