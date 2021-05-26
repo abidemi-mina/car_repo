@@ -4,6 +4,8 @@ app_name ='backend'
 
 urlpatterns = [
 
-    path('', views.index, name='index'),
+    # path('', views.home, name='home'),
+    path('admin-page/', views.index, name='index'),
+    path('logout-page/', views.logout, name='logout'),
     path('admin-logout/', views.admin_logout, name='admin_logout'),
 ]

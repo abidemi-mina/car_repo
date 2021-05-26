@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required(login_url='/pages/login-view/')
 def index(request):
     return render(request, 'backend/index.html')
 
@@ -13,3 +14,7 @@ def index(request):
 def admin_logout(request):
     logout(request)
     return redirect('Cars:login_view')
+
+@login_required(login_url='/pages/login-view/')
+def confirm_logout(request):
+    return render(request, 'backend/index.html')

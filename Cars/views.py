@@ -55,6 +55,7 @@ def login_view(request):
 def logout(request):
     return render(request, 'htmls/logout.html')
 
+@login_required(login_url='/pages/login-view/')
 def dashboard(request):
     return render(request, 'htmls/dashboard.html')
 
