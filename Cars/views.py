@@ -60,9 +60,9 @@ def register(request):
     register = RegisterForm()
     if request.method == 'POST':
         register = RegisterForm(request.POST)
-    if register.is_valid():
-        register.save()
-        messages.success(request, 'User Registered ')
+        if register.is_valid():
+            register.save()
+            messages.success(request, 'User Registered ')
     else:
         register = RegisterForm()
     return render(request, 'htmls/register.html', {'reg':register})
