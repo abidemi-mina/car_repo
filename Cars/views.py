@@ -13,12 +13,22 @@ from Cars.models import Blog
 def home(request):
     sale = Cars.objects.filter(offer_type='Sale')[:4]
     rent = Cars.objects.filter(offer_type='Rent')[:4]
+<<<<<<< HEAD
     new = Cars.objects.order_by('-created')[:4]
     foreign = Cars.objects.order_by('-created')[:4]
     
     detail = Blog.objects.all
 
     return render(request, 'htmls/index.html', {'sale': sale, 'rent':rent, 'new':new, 'foreign':foreign, 'det':detail})
+=======
+    foreign = Cars.objects.filter(status='Foreign Used')[:4]
+    New = Cars.objects.filter(status='New')[:4]
+    location = Location.objects.all()
+    milleage = Cars.objects.values_list('milleage')
+    args = {'sale': sale, 'rent':rent, 'New':New, 'foreign':foreign,'location':location, 'milleage': milleage}
+
+    return render(request, 'htmls/index.html', args )
+>>>>>>> 358ac0b8db5e182c5bdb5723441e7d9a260cd9e3
 
 def about(request):
     
@@ -60,7 +70,13 @@ def logout(request):
 
 @login_required(login_url='/pages/login-view/')
 def dashboard(request):
-    return render(request, 'htmls/dashboard.html')
+    sale = Cars.objects.filter(offer_type='Sale').count()
+    rent = Cars.objects.filter(offer_type='Rent').count()
+    foreign = Cars.objects.filter(status='Foreign Used').count()
+    New = Cars.objects.filter(status='New').count()
+    All = Cars.objects.all().count()
+    return render(request, 'htmls/dashboard.html',{'salec': sale, 'rentc':rent, 'Newc':New, 'foreignc':foreign , 'Allc':All})
+
 
 def register(request):
     register = RegisterForm()

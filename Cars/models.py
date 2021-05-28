@@ -88,11 +88,11 @@ class Cars(models.Model):
         (CHOOSE, 'Choose An Offer Type'),
     ]
 
-    USED = 'Used'
-    NEW = 'New '
-    CHOOSE = ''
+    USED = 'Foreign Used'
+    NEW = 'New'
+    CHOOSE = ""
     CONDITION = [
-        (USED , 'Used'),
+        (USED , 'Foreign Used'),
         (NEW , 'New'),
         (CHOOSE, 'What is the car status')
     ]
@@ -111,7 +111,7 @@ class Cars(models.Model):
     location_id = models.ForeignKey(Location,related_name='car_location', on_delete=models.CASCADE)
     color = models.CharField(max_length=20)
     slug = models.SlugField(max_length=200)
-    status = models.CharField(max_length= 10 ,choices=CONDITION, default=CHOOSE )
+    status = models.CharField(max_length=15 ,choices=CONDITION, default=CHOOSE )
     prize = models.DecimalField(max_digits=9, decimal_places=2)
     old_prize = models.DecimalField(max_digits=9, decimal_places=2 ,null=True)
     make = models.ForeignKey(Brands,related_name='car_brand', on_delete=models.CASCADE)

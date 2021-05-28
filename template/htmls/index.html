@@ -107,10 +107,12 @@ Home
                         <label>Milleage</label>
              
                          <select>
-                              <option value=""></option>
-                              <option value=""></option>
-                              <option value=""></option>
-                              <option value=""></option>
+                             {% if milleage %}
+                                {% for m in milleage %}
+                              <option value="">{{ m }}</option>
+                                {% endfor %}
+                              {% endif %}
+                              
                          </select>
                     </div>
                 </div>
@@ -203,56 +205,59 @@ Home
             </div>
         </div>
     </section>
+    
     <section class="section" id="trainers">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 offset-lg-3">
                     <div class="section-heading">
-                        <h2>New <em>Cars</em></h2>
+                        <h2> New <em>Cars</em></h2>
                         <img src="{% static 'assets/images/line-dec.png' %}" alt="">
                         <p>Nunc urna sem, laoreet ut metus id, aliquet consequat magna. Sed viverra ipsum dolor, ultricies fermentum massa consequat eu.</p>
                     </div>
                 </div>
             </div>
             <div class="row">
-                {% if new  %}
-                    {% for n in new %}
+                {% if New %}
+                    {% for n in New %}
                     <div class="col-lg-3">
-                        <div class="trainer-item">
-                            <div class="image-thumb">
-                                <img src="{{ n.img_url1 }}" alt="">
-                            </div>
-                            <div class="down-content">
-                                <span>
-                                    <del><sup>&#8358;</sup>{{ n.prize }} </del> &nbsp; <sup>&#8358;</sup>{{ n.prize }}
-                                </span>
-    
-                                <h4>Lorem ipsum dolor sit amet, consectetur</h4>
-    
-                                <p>
-                                    <i class="fa fa-dashboard"></i> 130 000km &nbsp;&nbsp;&nbsp;
-                                    <i class="fa fa-cube"></i> 1800 cc &nbsp;&nbsp;&nbsp;
-                                    <i class="fa fa-cog"></i> Manual &nbsp;&nbsp;&nbsp;
-                                </p>
-    
-                                <ul class="social-icons">
-                                    <li><a href="{% url 'Cars:car_detail' n.id %}">+ View Car</a></li>
-                                </ul>
-                            </div>
+                    <div class="trainer-item">
+                        <div class="image-thumb">
+                            <img src="{{ n.img_url1 }}" alt="">
+                        </div>
+                        <div class="down-content">
+                            <span>
+                                <del><sup>&#8358;</sup>{{n.prize }} </del> &nbsp; <sup>&#8358;</sup>{{ n.prize }}
+                            </span>
+
+                            <h4>Lorem ipsum dolor sit amet, consectetur</h4>
+
+                            <p>
+                                <i class="fa fa-dashboard"></i> 130 000km &nbsp;&nbsp;&nbsp;
+                                <i class="fa fa-cube"></i> 1800 cc &nbsp;&nbsp;&nbsp;
+                                <i class="fa fa-cog"></i> Manual &nbsp;&nbsp;&nbsp;
+                            </p>
+
+                            <ul class="social-icons">
+                                <li><a href="{% url 'Cars:car_detail' n.id %}">+ View Car</a></li>
+                            </ul>
                         </div>
                     </div>
+                </div>
+                
                     {% endfor  %}
-                {% endif %}
+                {% endif  %}
                 
             </div>
 
-            <br>
+            <br> 
 
             <div class="main-button text-center">
                 <a href="{% url 'Cars:cars' % }">View Cars</a>
             </div>
         </div>
     </section>
+    
     <section class="section" id="trainers">
         <div class="container">
             <div class="row">
