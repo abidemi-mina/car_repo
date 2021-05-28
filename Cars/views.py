@@ -12,11 +12,13 @@ from django.contrib.auth.decorators import login_required
 def home(request):
     sale = Cars.objects.filter(offer_type='Sale')[:4]
     rent = Cars.objects.filter(offer_type='Rent')[:4]
-    new = Cars.objects.order_by('-created')[:4]
-    foreign = Cars.objects.order_by('-created')[:4]
-    search = Cars.objects.all
+    foreign = Cars.objects.filter(status='Foreign Used')[:4]
+    New = Cars.objects.filter(status='New')[:4]
+    location = Location.objects.all()
+    milleage = Cars.objects.values_list('milleage')
+    args = {'sale': sale, 'rent':rent, 'New':New, 'foreign':foreign,'location':location, 'milleage': milleage}
 
-    return render(request, 'htmls/index.html', {'sale': sale, 'rent':rent, 'new':new, 'foreign':foreign, 'srh':search})
+    return render(request, 'htmls/index.html', args )
 
 def about(request):
     
@@ -54,7 +56,13 @@ def logout(request):
     return render(request, 'htmls/logout.html')
 
 def dashboard(request):
-    return render(request, 'htmls/dashboard.html')
+    sale = Cars.objects.filter(offer_type='Sale').count()
+    rent = Cars.objects.filter(offer_type='Rent').count()
+    foreign = Cars.objects.filter(status='Foreign Used').count()
+    New = Cars.objects.filter(status='New').count()
+    All = Cars.objects.all().count()
+    return render(request, 'htmls/dashboard.html',{'salec': sale, 'rentc':rent, 'Newc':New, 'foreignc':foreign , 'Allc':All})
+
 
 def register(request):
     register = RegisterForm()

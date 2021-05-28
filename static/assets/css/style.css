@@ -187,7 +187,8 @@ header
   color: #ed563b!important;
 }
 
-.background-header .nav li a.active {
+/* .background-header .nav li a */
+.active {
   color: #ed563b!important;
 }
 

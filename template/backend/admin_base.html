@@ -43,7 +43,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-                    <a class="nav-link" href="index.html">
+                    <a class="nav-link" href="{% url 'backend:index' %}">
                         <i class="fa fa-fw fa-dashboard"></i>
                         <span class="nav-link-text">Dashboard</span>
                     </a>
@@ -60,13 +60,13 @@
                     </a>
                     <ul class="sidenav-second-level collapse" id="Profile">
                         <li>
-                            <a href="user-profile.html">Add Profile</a>
+                            <a href="{% url 'backend:userprofile' %}">Add Profile</a>
                         </li>
                         <li>
-                            <a href="user-profile.html">View Profile</a>
+                            <a href="{% url 'backend:userprofile' %}">View Profile</a>
                         </li>
                         <li>
-                            <a href="user-profile.html">Update Profile</a>
+                            <a href="{% url 'backend:userprofile' %}">Update Profile</a>
                         </li>
                     </ul>
                 </li>
@@ -76,7 +76,7 @@
 
 
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Messages">
-                    <a class="nav-link" href="change-password.html">
+                    <a class="nav-link" href="{% url 'backend:changepas' %}">
                         <i class="fa fa-fw fa-envelope-open"></i>
                         <span class="nav-link-text">Change Password</span>
                     </a>
@@ -89,13 +89,13 @@
                     </a>
                     <ul class="sidenav-second-level collapse" id="collapseMylistings">
                         <li>
-                            <a href="add-listings.html">Create_new_list <span class="badge badge-pill badge-primary"></span></a>
+                            <a href="{% url 'backend:addlistings' %}">Create_new_list <span class="badge badge-pill badge-primary"></span></a>
                         </li>
                         <li>
-                            <a href="view-listings.html">View_list <span class="badge badge-pill badge-success">nothing yet!!</span></a>
+                            <a href="{% url 'backend:viewlist' %}">View_list <span class="badge badge-pill badge-success">nothing yet!!</span></a>
                         </li>
                         <li>
-                            <a href="edit-listings.html">Update_list <span class="badge badge-pill badge-danger"></span></a>
+                            <a href="{% url 'backend:editlist' %}">Update_list <span class="badge badge-pill badge-danger"></span></a>
                         </li>
                     </ul>
                 </li>
@@ -132,13 +132,13 @@
                     </a>
                     <ul class="sidenav-second-level collapse" id="Location">
                         <li>
-                            <a href="add-location.html">Create Location</a>
+                            <a href="{% url 'backend:addlocation' %}">Create Location</a>
                         </li>
                         <li>
-                            <a href="view-location.html">View Location</a>
+                            <a href="{% url 'backend:viewlocation' %}">View Location</a>
                         </li>
                         <li>
-                            <a href="edit-location.html">Update Location</a>
+                            <a href="{% url 'backend:viewlocation' %}">Update Location</a>
                         </li>
                     </ul>
                 </li>
