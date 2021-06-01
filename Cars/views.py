@@ -13,12 +13,15 @@ from Cars.models import Blog
 def home(request):
     sale = Cars.objects.filter(offer_type='Sale')[:4]
     rent = Cars.objects.filter(offer_type='Rent')[:4]
+<<<<<<< HEAD
+=======
+    detail = Blog.objects.all()
+>>>>>>> 827ed6416b66e92b93e291f461645a3655c37ea4
     foreign = Cars.objects.filter(status='Foreign Used')[:4]
     New = Cars.objects.filter(status='New')[:4]
     location = Location.objects.all()
     milleage = Cars.objects.values_list('milleage')
-    args = {'sale': sale, 'rent':rent, 'New':New, 'foreign':foreign,'location':location, 'milleage': milleage}
-
+    args = {'sale': sale, 'rent':rent, 'New':New, 'foreign':foreign,'location':location, 'milleage': milleage, 'det':detail}
     return render(request, 'htmls/index.html', args )
 
 def about(request):
