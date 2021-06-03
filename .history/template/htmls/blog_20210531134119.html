@@ -33,7 +33,7 @@ Blog
                     {% if blog %}
                     {% for b in blog %}
                          <article>
-                        <a href="{% url 'Cars:blog_detail' b.id %}"><img class="col-lg-6" src="{{ b.img_url }}" alt=""></a>
+                        <img class="col-lg-6" src="{{ b.img_url }}" alt="">
                         <h4>{{b.title }}</h4>
 
                         <p><i class="fa fa-user"></i> {{b.author }} &nbsp;|&nbsp; <i class="fa fa-calendar"></i> {{b.time }} &nbsp;|&nbsp; <i class="fa fa-comments"></i>  15 comments</p>

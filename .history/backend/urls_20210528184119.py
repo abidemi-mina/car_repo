@@ -4,15 +4,8 @@ app_name ='backend'
 
 urlpatterns = [
 
-<<<<<<< HEAD
     path('', views.index, name='index'),
-=======
-    # path('', views.home, name='home'),
-    path('admin-page/', views.index, name='index'),
-    path('logout-page/', views.logout, name='logout'),
->>>>>>> 827ed6416b66e92b93e291f461645a3655c37ea4
     path('addlisting', views.addlisting, name='addlisting'),
-    path('admin', views.admin, name='admin'),
     path('addlistings', views.addlisting, name='addlistings'),
     path('addlocation', views.addlocation, name='addlocation'),
     path('changepas', views.changepas, name='changepas'),

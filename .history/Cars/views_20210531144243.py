@@ -13,15 +13,12 @@ from Cars.models import Blog
 def home(request):
     sale = Cars.objects.filter(offer_type='Sale')[:4]
     rent = Cars.objects.filter(offer_type='Rent')[:4]
-<<<<<<< HEAD
-=======
-    detail = Blog.objects.all()
->>>>>>> 827ed6416b66e92b93e291f461645a3655c37ea4
-    foreign = Cars.objects.filter(status='Foreign Used')[:4]
+    foreign = Cars.objects.filter(offer_type='Foreign Used')[:4]
     New = Cars.objects.filter(status='New')[:4]
     location = Location.objects.all()
     milleage = Cars.objects.values_list('milleage')
-    args = {'sale': sale, 'rent':rent, 'New':New, 'foreign':foreign,'location':location, 'milleage': milleage, 'det':detail}
+    args = {'sale': sale, 'rent':rent, 'New':New, 'foreign':foreign,'location':location, 'milleage': milleage}
+
     return render(request, 'htmls/index.html', args )
 
 def about(request):
@@ -37,8 +34,8 @@ def blog(request):
     
 def car_detail(request, car_id):
     detail = Cars.objects.get(id=car_id)
-    # contact = Contact_Dealer.objects.all
-    return render(request, 'htmls/car-details.html', {'det':detail})
+    contact = Contact_Dealer.objects.all
+    return render(request, 'htmls/car-details.html', {'det':detail, 'cont':contact})
 
 
 def login_view(request):
@@ -84,9 +81,8 @@ def register(request):
     return render(request, 'htmls/register.html', {'reg':register})
 
 def cars(request):
-    moto = Cars.objects.order_by('-created')[:4]
-    coto = Cars.objects.order_by('created')[:4]
-    return render(request, 'htmls/cars.html', {'coo':moto, 'cot':coto})
+    car = Cars.objects.order_by('-created')
+    return render(request, 'htmls/cars.html', {'coo':car})
 
 def contact(request):
     return render(request, 'htmls/contact.html')

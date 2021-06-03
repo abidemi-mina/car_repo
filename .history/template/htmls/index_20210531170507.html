@@ -123,8 +123,8 @@ Home
                         <label>Transmission</label>
              
                          <select>
-                              <option value="Automatic">Automatic</option>
-                              <option value="Manual">Manual</option>
+                              <option value=""></option>
+                              <option value=""></option>
                               
                          </select>
                     </div>
@@ -171,11 +171,11 @@ Home
                     <div class="col-lg-3">
                     <div class="trainer-item">
                         <div class="image-thumb" style="height:200px" >
-                            <img height=200  src="{{ f.img_url1 }}" alt="">
+                            <img height=150  src="{{ f.img_url1 }}" alt="">
                         </div>
                         <div class="down-content">
                             <span>
-                                <del><sup>&#8358;</sup>{{f.old_prize }} </del> &nbsp; <sup>&#8358;</sup>{{ f.prize }}
+                                <del><sup>&#8358;</sup>{{f.prize }} </del> &nbsp; <sup>&#8358;</sup>{{ f.prize }}
                             </span>
 
                             {% comment %} <h4>Lorem ipsum dolor sit amet, consectetur</h4> {% endcomment %}
@@ -205,7 +205,7 @@ Home
             <br>
 
             <div class="main-button text-center">
-                <a href="{% url 'Cars:motor' %}">View Cars</a>
+                <a href="{% url 'Cars:cars' % }">View Cars</a>
             </div>
         </div>
     </section>
@@ -227,11 +227,11 @@ Home
                     <div class="col-lg-3">
                     <div class="trainer-item">
                         <div class="image-thumb">
-                            <img height=200 src="{{ n.img_url1 }}" alt="">
+                            <img src="{{ n.img_url1 }}" alt="">
                         </div>
                         <div class="down-content">
                             <span>
-                                <del><sup>&#8358;</sup>{{n.old_prize }} </del> &nbsp; <sup>&#8358;</sup>{{ n.prize }}
+                                <del><sup>&#8358;</sup>{{n.prize }} </del> &nbsp; <sup>&#8358;</sup>{{ n.prize }}
                             </span>
 
                                <h4>{{ n.car_model }}</h4>
@@ -258,7 +258,7 @@ Home
             <br> 
 
             <div class="main-button text-center">
-                <a href="{% url 'Cars:motor' %}">View Cars</a>
+                <a href="{% url 'Cars:cars' % }">View Cars</a>
             </div>
         </div>
     </section>
@@ -280,11 +280,11 @@ Home
                     <div class="col-lg-3">
                         <div class="trainer-item">
                             <div class="image-thumb">
-                                <img height=200 src="{{ s.img_url1 }}" alt="">
+                                <img src="{{ s.img_url1 }}" alt="">
                             </div>
                             <div class="down-content">
                                 <span>
-                                    <del><sup>&#8358;</sup>{{ s.old_prize }} </del> &nbsp; <sup>&#8358;</sup>{{ s.prize }}
+                                    <del><sup>&#8358;</sup>{{ s.prize }} </del> &nbsp; <sup>&#8358;</sup>{{ s.prize }}
                                 </span>
     
                                 <h4>{{ s.car_model }}</h4>
@@ -311,7 +311,7 @@ Home
             <br>
 
             <div class="main-button text-center">
-                <a href="{% url 'Cars:motor' %}">View Cars</a>
+                <a href="{% url 'Cars:cars' % }">View Cars</a>
             </div>
         </div>
     </section>
@@ -332,11 +332,11 @@ Home
                     <div class="col-lg-3">
                         <div class="trainer-item">
                             <div class="image-thumb">
-                                <img height=200 src="{{r.img_url1}}" alt="">
+                                <img src="{{r.img_url1}}" alt="">
                             </div>
                             <div class="down-content">
                                 <span>
-                                    <del><sup>&#8358;</sup>{{ r.old_prize}} </del> &nbsp; <sup>&#8358;</sup>{{r.prize}}
+                                    <del><sup>&#8358;</sup>{{ r.prize}} </del> &nbsp; <sup>&#8358;</sup>{{r.prize}}
                                 </span>
     
                                 <h4>{{ r.car_model }}</h4>
@@ -363,7 +363,7 @@ Home
             <br>
 
             <div class="main-button text-center">
-                <a href="{% url 'Cars:motor' %}">View Cars</a>
+                <a href="{% url 'Cars:cars' % }">View Cars</a>
             </div>
         </div>
     </section>

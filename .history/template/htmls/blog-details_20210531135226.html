@@ -34,9 +34,9 @@ Blog Detail
 
                 <p><i class="fa fa-user"></i> {{ post.author }} &nbsp;|&nbsp; <i class="fa fa-calendar"></i>{{ post.time }} &nbsp;|&nbsp; <i class="fa fa-comments"></i>  15 comments</p>
 
-                <div><img height="700" src="{{ post.img_url }}" alt=""  ></div>
+                <div><img height="30" src="{{ post.img_url }}" alt=""  ></div>
 
-                <p class="lead col-lg-6">
+                <p>
                     {{ post.content }}
 
                 </p>
@@ -82,7 +82,6 @@ Blog Detail
                                   </fieldset>
                                 </div>
                               </div>
-                              {% csrf_token %}
                             </form>
                         </div>
                     </div>
