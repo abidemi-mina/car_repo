@@ -54,7 +54,7 @@
                                         {% url 'Cars:about' as About %}
                                         {% url 'Cars:login' as Login %}
                                         {% url 'Cars:register' as Register %}
-                                        {% url 'Cars:cars' as Cars %}
+                                        <!-- {% url 'Cars:cars' as Cars %} -->
                                         {% url 'Cars:blog' as Blog %}
                                         {% url 'Cars:team' as Team %}
                                         {% url 'Cars:contact' as Contact  %}
@@ -63,9 +63,7 @@
                                 <li {% if request.path == Home %} class="active"  {% endif %}>
                                     <a href="{% url 'home' %}" >Home</a>
                                 </li>
-                                <!-- <li {% if request.path == Cars %} class="active"  {% endif %}>
-                                    <a href="{% url 'Cars:cars' %}">Cars</a>
-                                </li> -->
+                                
     
                                 <li {% if request.path == About %} class="active"  {% endif %}>
                                     <a href="{% url 'Cars:about' %}">About</a>

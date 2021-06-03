@@ -1,8 +1,7 @@
 from django.shortcuts import render,redirect
-
-
 from django.contrib.auth import logout
 from django.contrib import messages
+from Cars.models import Cars
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -12,6 +11,17 @@ def index(request):
 
 def addlisting(request):
     return render(request, 'backend/add-listing.html')
+
+def admin(request):
+    sale = Cars.objects.filter(offer_type='Sale').count()
+    rent = Cars.objects.filter(offer_type='Rent').count()
+    foreign = Cars.objects.filter(status='Foreign Used').count()
+    New = Cars.objects.filter(status='New').count()
+    All = Cars.objects.all().count()
+    return render(request, 'backend/admin_base.html', {'sal': sale, 'ren':rent, 'New':New, 'foreign':foreign , 'All':All})
+
+
+    
 
 def addlistings(request):
     return render(request, 'backend/add-listings.html')

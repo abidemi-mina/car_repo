@@ -123,8 +123,8 @@ Home
                         <label>Transmission</label>
              
                          <select>
-                              <option value=""></option>
-                              <option value=""></option>
+                              <option value="Automatic">Automatic</option>
+                              <option value="Manual">Manual</option>
                               
                          </select>
                     </div>
@@ -175,7 +175,7 @@ Home
                         </div>
                         <div class="down-content">
                             <span>
-                                <del><sup>&#8358;</sup>{{f.prize }} </del> &nbsp; <sup>&#8358;</sup>{{ f.prize }}
+                                <del><sup>&#8358;</sup>{{f.old_prize }} </del> &nbsp; <sup>&#8358;</sup>{{ f.prize }}
                             </span>
 
                             <h4>Lorem ipsum dolor sit amet, consectetur</h4>
@@ -201,7 +201,7 @@ Home
             <br>
 
             <div class="main-button text-center">
-                <a href="{% url 'Cars:cars' % }">View Cars</a>
+                <a href="{% url 'Cars:motor' %}">View Cars</a>
             </div>
         </div>
     </section>
@@ -227,7 +227,7 @@ Home
                         </div>
                         <div class="down-content">
                             <span>
-                                <del><sup>&#8358;</sup>{{n.prize }} </del> &nbsp; <sup>&#8358;</sup>{{ n.prize }}
+                                <del><sup>&#8358;</sup>{{n.old_prize }} </del> &nbsp; <sup>&#8358;</sup>{{ n.prize }}
                             </span>
 
                             <h4>Lorem ipsum dolor sit amet, consectetur</h4>
@@ -253,7 +253,7 @@ Home
             <br> 
 
             <div class="main-button text-center">
-                <a href="{% url 'Cars:cars' % }">View Cars</a>
+                <a href="{% url 'Cars:motor' %}">View Cars</a>
             </div>
         </div>
     </section>
@@ -279,7 +279,7 @@ Home
                             </div>
                             <div class="down-content">
                                 <span>
-                                    <del><sup>&#8358;</sup>{{ s.prize }} </del> &nbsp; <sup>&#8358;</sup>{{ s.prize }}
+                                    <del><sup>&#8358;</sup>{{ s.old_prize }} </del> &nbsp; <sup>&#8358;</sup>{{ s.prize }}
                                 </span>
     
                                 <h4>{{ s.car_model }}</h4>
@@ -306,7 +306,7 @@ Home
             <br>
 
             <div class="main-button text-center">
-                <a href="{% url 'Cars:cars' % }">View Cars</a>
+                <a href="{% url 'Cars:motor' %}">View Cars</a>
             </div>
         </div>
     </section>
@@ -331,7 +331,7 @@ Home
                             </div>
                             <div class="down-content">
                                 <span>
-                                    <del><sup>&#8358;</sup>{{ r.prize}} </del> &nbsp; <sup>&#8358;</sup>{{r.prize}}
+                                    <del><sup>&#8358;</sup>{{ r.old_prize}} </del> &nbsp; <sup>&#8358;</sup>{{r.prize}}
                                 </span>
     
                                 <h4>{{ r.car_model }}</h4>
@@ -358,7 +358,7 @@ Home
             <br>
 
             <div class="main-button text-center">
-                <a href="{% url 'Cars:cars' % }">View Cars</a>
+                <a href="{% url 'Cars:motor' %}">View Cars</a>
             </div>
         </div>
     </section>

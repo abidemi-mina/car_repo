@@ -34,8 +34,8 @@ def blog(request):
     
 def car_detail(request, car_id):
     detail = Cars.objects.get(id=car_id)
-    contact = Contact_Dealer.objects.all
-    return render(request, 'htmls/car-details.html', {'det':detail, 'cont':contact})
+    # contact = Contact_Dealer.objects.all
+    return render(request, 'htmls/car-details.html', {'det':detail})
 
 
 def login_view(request):
@@ -81,8 +81,9 @@ def register(request):
     return render(request, 'htmls/register.html', {'reg':register})
 
 def cars(request):
-    car = Cars.objects.order_by('-created')
-    return render(request, 'htmls/cars.html', {'coo':car})
+    moto = Cars.objects.order_by('-created')[:4]
+    coto = Cars.objects.order_by('created')[:4]
+    return render(request, 'htmls/cars.html', {'coo':moto, 'cot':coto})
 
 def contact(request):
     return render(request, 'htmls/contact.html')

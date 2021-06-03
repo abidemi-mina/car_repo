@@ -36,7 +36,7 @@
 <body class="fixed-nav sticky-footer" id="page-top">
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-default fixed-top" id="mainNav">
-        <a class="navbar-brand" href="index.html"><img src="{% static 'backend/img/course_2.jpg' %}" data-retina="true" alt="" width="150" height="36"></a>
+        <a class="navbar-brand" href="{% url 'backend:index' %}"><img src="{% static 'backend/img/course_2.jpg' %}" data-retina="true" alt="" width="150" height="36"></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -280,11 +280,12 @@
                             <div class="card-body-icon">
                                 <i class="fa fa-fw fa-envelope-open"></i>
                             </div>
+                            
                             <div class="mr-5">
                                 <h5>26 Cars!</h5>
                             </div>
                         </div>
-                        <a class="card-footer text-white clearfix small z-1" href="messages.html">
+                        <a class="card-footer text-white clearfix small z-1" href="{% url 'Cars:car' %}">
                             <span class="float-left">View Cars</span>
                             <span class="float-right">
                 <i class="fa fa-angle-right"></i>
