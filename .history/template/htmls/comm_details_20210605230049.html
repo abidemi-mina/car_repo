@@ -1,0 +1,26 @@
+ <div class="section">
+            {% if comments %}
+            {% for c in comments %}
+                 <div class="container">
+                    <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <form method="POST">
+                            {% csrf_token %}
+                        <div class="form-group">
+                        {{ form }}
+                        
+                        </div>
+                        <button class="btn btn-primary btn-block" type="submit">Comment</button>
+                        
+                        
+                        </form
+                    
+                    </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+            {% endif %}
+               
+            </div>
