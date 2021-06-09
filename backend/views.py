@@ -1,6 +1,10 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth import logout
 from django.contrib import messages
+from backend.forms import *
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import PasswordChangeForm 
+from django.contrib.auth import update_session_auth_hash 
 from Cars.models import Cars
 from django.contrib.auth.decorators import login_required
 
@@ -9,9 +13,25 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     return render(request, 'backend/index.html')
 
+@login_required(login_url='/pages/login-view/')
 def addlisting(request):
     return render(request, 'backend/add-listing.html')
 
+@login_required(login_url='/pages/login-view/')
+def changepas(request):
+    if request == 'POST':
+        changepas = ChangePas(data=request.POST, user=request.user) 
+        if changepas.is_valid(): 
+            changepas.save() 
+            update_session_auth_hash(request, changepas.user) 
+            messages.success(request, 'Password changed successfully.')
+        else:
+            messages.error('Correct the error below') 
+    else: 
+        changepas = ChangePas(user=request.user) 
+    return render (request, 'backend/change-password.html', {'pas':changepas})
+
+@login_required(login_url='/pages/login-view/')
 def admin(request):
     sale = Cars.objects.filter(offer_type='Sale').count()
     rent = Cars.objects.filter(offer_type='Rent').count()
@@ -22,15 +42,13 @@ def admin(request):
 
 
     
-
+@login_required(login_url='/pages/login-view/')
 def addlistings(request):
     return render(request, 'backend/add-listings.html')
 
 def addlocation(request):
     return render(request, 'backend/add-location.html')
 
-def changepas(request):
-    return render(request, 'backend/change-password.html')
 
 def createlist(request):
     return render(request, 'backend/create-listings.html')

@@ -271,10 +271,13 @@ class Contact_Dealer(models.Model):
         return self.name
 
 
-class comment(models.Model):
+class Comment(models.Model):
     name = models.CharField(max_length=50)
+    time = models.DateField(auto_now_add= True)
     comment = models.CharField(max_length=500)
     email = models.EmailField(max_length=200)
+    def __str__(self):
+        return self.name
     
 
 

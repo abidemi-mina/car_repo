@@ -1,4 +1,5 @@
 from django import forms
+from Cars.models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
@@ -25,5 +26,108 @@ class RegisterForm(UserCreationForm):
 	    if commit:
 	        user.save()
 	        return user
+
+
+	
+
+
+class BrandForm(forms.ModelForm):
+	name = forms.CharField(widget=forms.Select())
+
+	class Meta():
+		model = Brands
+		fields = '__all__'
+
+
+class CarTypeForm(forms.ModelForm):
+	SEDAN = 'Sedan'
+	COUPE = 'Coupe'
+	SUV = 'SUV'
+	TRUCK = 'Truck'
+	HATCHBACK = 'Hatchback'
+	WAGON = 'Wagon'
+	CROSSOVER = 'Crossover'
+	CONVERTIBLE = 'Convertible'
+	SPORTCAR = 'Sport Car'
+	MVP = 'MVP'
+	SELECT = ''
+	TYPES = [
+		(SEDAN, 'Sedan(car)'),
+		(COUPE,'Coupe'),
+		(SUV,'SUV'),
+		(TRUCK, 'Truck'),
+		(HATCHBACK, 'Hatchback'),
+		(CROSSOVER, 'Crossover'),
+		(CONVERTIBLE, 'Convertible'),
+		(SPORTCAR, 'Sport Car'),
+		(MVP, 'MVP'),
+		(SELECT, 'Select An Car Type'),
+	]
+
+	names = forms.CharField(widget=forms.Select(choices=TYPES),)
+	class Meta():
+		model = Car_Type
+		fields =('names',)
+
+class FilterForm(forms.ModelForm):
+	RENT = 'Rent'
+	SALE = 'Sale'
+	CHOOSE = ''
+	OFFER_TYPE = [
+		(RENT, 'Rent'),
+		(SALE, 'Sale'),
+		(CHOOSE, 'Choose An Offer Type'),
+	]
+
+	USED = 'Foreign Used'
+	NEW = 'New'
+	CHOOSE = ""
+	CONDITION = [
+		(USED , 'Foreign Used'),
+		(NEW , 'New'),
+		(CHOOSE, 'What is the car status')
+	]
+
+	AUTOMATIC = 'Automatic'
+	MANUAL = 'Manual'
+	CHOOSE = ""
+	SELECT = [
+		(AUTOMATIC, 'Automatic'),
+		(MANUAL, 'Manual'),
+		(CHOOSE, "Select Transmission")
+	]
+
+
+	
+	make = forms.ModelChoiceField(
+		queryset= Brands.objects.all(),
+		widget=forms.Select(),
+		empty_label= 'Select maker'
+	)
+	vehicle_type= forms.ModelChoiceField(
+		queryset=Car_Type.objects.all(),
+		widget=forms.Select(),
+		empty_label='Select vehicle type '
+	)
+	offer_type = forms.CharField(widget=forms.Select(choices=OFFER_TYPE),) 
+	transmission = forms.CharField(widget=forms.Select(choices=SELECT),)
+
+
+	class Meta():
+		model = Cars
+		fields = ( 'make', 'offer_type','transmission','vehicle_type')
+
+class CommentForm(forms.ModelForm):
+	name = forms.CharField(widget=forms.TextInput())
+	comment = forms.CharField(widget=forms.Textarea(attrs={
+		'class': 'form-control',
+		'placeholder': 'Type your comment',
+		'rows' : '4',
+	}))
+
+	class Meta():
+		model = Comment
+		fields = ('name', 'comment' )
+
 
 

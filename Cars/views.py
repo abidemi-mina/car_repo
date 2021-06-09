@@ -13,16 +13,14 @@ from Cars.models import Blog
 def home(request):
     sale = Cars.objects.filter(offer_type='Sale')[:4]
     rent = Cars.objects.filter(offer_type='Rent')[:4]
-<<<<<<< HEAD
-=======
     detail = Blog.objects.all()
->>>>>>> 827ed6416b66e92b93e291f461645a3655c37ea4
     foreign = Cars.objects.filter(status='Foreign Used')[:4]
     New = Cars.objects.filter(status='New')[:4]
     location = Location.objects.all()
     milleage = Cars.objects.values_list('milleage')
-    args = {'sale': sale, 'rent':rent, 'New':New, 'foreign':foreign,'location':location, 'milleage': milleage, 'det':detail}
-    return render(request, 'htmls/index.html', args )
+    filter_obj = FilterForm()
+    args = {'sale': sale, 'rent':rent, 'New':New, 'foreign':foreign,'location':location, 'milleage': milleage, 'det':detail, 'fil':filter_obj}
+    return render(request, 'htmls/index.html', args)
 
 def about(request):
     
@@ -59,6 +57,9 @@ def login_view(request):
 
     return render(request, 'htmls/login.html')
 
+
+    
+
 def logout(request):
     return render(request, 'htmls/logout.html')
 
@@ -82,6 +83,17 @@ def register(request):
     else:
         register = RegisterForm()
     return render(request, 'htmls/register.html', {'reg':register})
+    
+def resetpass(request):
+    reset = RegisterForm()
+    if request.method == 'POST':
+        reset = RegisterForm(request.POST)
+        if reset.is_valid():
+            reset.save()
+            messages.success(request, 'User Registered ')
+    else:
+        reset = RegisterForm()
+    return render(request, 'htmls/register.html', {'res':reset})
 
 def cars(request):
     moto = Cars.objects.order_by('-created')[:4]
@@ -98,5 +110,21 @@ def team(request):
 def team_details(request, team_id):
     detail = Team.objects.get(id=team_id)
     return render(request, 'htmls/team-details.html', {'det':detail})
+def commentsec (request):
+    return render(request)
    
 
+def filter_form(request):
+    if request.method == 'GET':
+        filter_form = FilterForm(request.GET)
+        if filter_form.is_valid():
+            print('correct')
+            make = filter_form.cleaned_data.get('make')
+            offer_type = filter_form.cleaned_data.get('offer_type')
+            vehicle_type = filter_form.cleaned_data.get('vehicle_type')
+            transmission = filter_form.cleaned_data.get('transmission')
+            filter_query = Cars.objects.filter(make=make)
+            return render(request, 'htmls/outcome.html', {'filter':filter_query})
+        else :
+            print('No data')
+    return render(request, 'htmls/outcome.html')

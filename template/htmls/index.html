@@ -26,123 +26,85 @@ Home
 
   <br>
     <div class="contact-form">
-        <form action="#" id="contact">
+        <form action="{% url 'Cars:form' %}"  method="GET">
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label>Offer Type</label>
-             
-                         <select>
-                              <option value=""></option>
-                              <option value="new"></option>
-                              <option value="used"></option>
-                         </select>
+                        <div class="select-wrap">
+                            <!-- <span class="icon icon-arrow_drop_down"></span> -->
+                           {{ fil.offer_type }}
+                        </div>
+                        
                     </div>
                 </div>
         
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label>Vehicle Type</label>
-
-                         <select>
-                              <option value=""></option>
-                              <option value=""></option>
-                              <option value=""></option>
-                              <option value=""></option>
-                              <option value=""></option>
-                              <option value=""></option>
-                              <option value=""></option>
-                              <option value=""></option>
-                              <option value=""></option>
-                         </select>
+                        <div class="select-wrap">
+                            {{ fil.vehicle_type }}
+                        </div>
                     </div>
                 </div>
         
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label>Make</label>
-             
-                         <select>
-                              <option value=""></option>
-                              <option value=""></option>
-                              <option value=""></option>
-                              <option value=""></option>
-                              <option value=""></option>
-                         </select>
-                    </div>
-                </div>
-        
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label>Make</label>
-             
-                         <select>
-                              <option value=""></option>
-                              <option value=""></option>
-                              <option value=""></option>
-                              <option value=""></option>
-                              
-                         </select>
-                    </div>
-                </div>
-        
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label>Price</label>
-             
-                         <select>
-                              <option value=""></option>
-                              <option value=""></option>
-                              <option value=""></option>
-                              <option value=""></option>
-                              
-                         </select>
+                        <div class="select-wrap">
+                            {{ fil.make }}
+                        </div>
                     </div>
                 </div>
         
                 
         
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label>Milleage</label>
-             
-                         <select>
-                             {% if milleage %}
-                                {% for m in milleage %}
-                              <option value="">{{ m }}</option>
-                                {% endfor %}
-                              {% endif %}
-                              
-                         </select>
+                        <label>Price</label>
+                        <div class="select-wrap">
+                            {{ fil.prize.errors }}
+                            {{ fil.prize }}
+                        </div>
                     </div>
                 </div>
+         -->
+                
+        
+                <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label>Milleage</label>
+                        <div class="select-wrap">
+                            {{ fil.milleage.errors }}
+                            {{ fil.milleage }}
+                        </div>
+                    </div>
+                </div> -->
                
 
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label>Transmission</label>
-             
-                         <select>
-                              <option value="Automatic">Automatic</option>
-                              <option value="Manual">Manual</option>
-                              
-                         </select>
+                        <div class="select-wrap">
+                            {{ fil.transmission }}
+                        </div>
+  
                     </div>
                 </div>
 
 
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label></label>
                         <input type="number"  placeholder="Enter the car year">
                     </div>
                 </div>
         
-                
+                 -->
                 
             <div class="col-sm-4 offset-sm-4">
               <div class="main-button text-center">
-                  <a href="#">Search</a>
+                  <input type="submit" value="Search">
               </div>
             </div>
             <br>
@@ -250,8 +212,8 @@ Home
                     </div>
                 </div>
                 
-                    {% endfor  %}
-                {% endif  %}
+                {% endfor  %}
+            {% endif  %}
                 
             </div>
 
@@ -303,8 +265,8 @@ Home
                         </div>
                     </div>
                     
-                    {% endfor %}
-                {%  endif %}
+                {% endfor %}
+            {%  endif %}
                 
             </div>
 
@@ -367,58 +329,7 @@ Home
             </div>
         </div>
     </section>
-    <!-- <section class="section" id="trainers">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 offset-lg-3">
-                    <div class="section-heading">
-                        <h2>Sponsored <em>Cars</em></h2>
-                        <img src="{% static 'assets/images/line-dec.png' %}" alt="">
-                        <p>Nunc urna sem, laoreet ut metus id, aliquet consequat magna. Sed viverra ipsum dolor, ultricies fermentum massa consequat eu.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                {% if sponsored %}
-                    {% for s in sponsored %}
-                    <div class="col-lg-3">
-                        <div class="trainer-item">
-                            <div class="image-thumb">
-                                <img src="{% static 'assets/images/product-1-720x480.jpg' %}" alt="">
-                            </div>
-                            <div class="down-content">
-                                <span>
-                                    <del><sup>&#8358;</sup>{{ s.prize }}</del> &nbsp; <sup>&#8358;</sup>{{ s.prize }}
-                                </span>
-    
-                                <h4>Lorem ipsum dolor sit amet, consectetur</h4>
-    
-                                <p>
-                                    <i class="fa fa-dashboard"></i> 130 000km &nbsp;&nbsp;&nbsp;
-                                    <i class="fa fa-cube"></i> 1800 cc &nbsp;&nbsp;&nbsp;
-                                    <i class="fa fa-cog"></i> Manual &nbsp;&nbsp;&nbsp;
-                                </p>
-    
-                                <ul class="social-icons">
-                                    <li><a href="{{ s.id }}">+ View Car</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                {% endif %}
-                
-                
-            </div>
-
-            <br>
-
-            <div class="main-button text-center">
-                <a href="{% url 'Cars:cars' % }">View Cars</a>
-            </div>
-        </div>
-    </section> -->
-    <!-- ***** Cars Ends ***** -->
+   
 
     <section class="section section-bg" id="schedule" style="background-image: url({% static 'assets/images/about-fullscreen-1-1920x700.jpg' %})">
         <div class="container">

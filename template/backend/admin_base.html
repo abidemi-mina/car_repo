@@ -113,7 +113,7 @@
                             <a href="charts.html">Create new Cars</a>
                         </li>
                         <li>
-                            <a href="tables.html">View Car</a>
+                            <a href="{% url 'Cars:motor' %}">View Car</a>
                         </li>
                         <li>
                             <a href="tables.html">Update</a>
@@ -285,7 +285,7 @@
                                 <h5>26 Cars!</h5>
                             </div>
                         </div>
-                        <a class="card-footer text-white clearfix small z-1" href="{% url 'Cars:car' %}">
+                        <a class="card-footer text-white clearfix small z-1" href="{% url 'Cars:motor' %}">
                             <span class="float-left">View Cars</span>
                             <span class="float-right">
                 <i class="fa fa-angle-right"></i>

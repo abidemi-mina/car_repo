@@ -12,6 +12,7 @@ urlpatterns = [
    path('dashboard/', views.dashboard, name='dashboard'),
    path('logout/', views.logout, name='logout'),
    path('register/', views.register, name='register'),
+   path('filter/', views.filter_form, name='form'),
    path('car-detail/<int:car_id>/', views.car_detail, name='car_detail'),
    path('motors/', views.cars, name='motor'),
    path('contact/', views.contact, name='contact'),
