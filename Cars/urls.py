@@ -1,6 +1,7 @@
 from django.urls import path
 from Cars import views
 
+
 app_name = 'Cars'
 
 urlpatterns = [
@@ -18,4 +19,7 @@ urlpatterns = [
    path('contact/', views.contact, name='contact'),
    path('team/', views.team, name='team'),
    path('team-details/<int:team_id>', views.team_details, name='team_details'),
+   path("password_reset", views.password_reset_request, name="password_reset")
+      
 ]
+

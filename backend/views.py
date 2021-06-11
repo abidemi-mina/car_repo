@@ -18,18 +18,34 @@ def addlisting(request):
     return render(request, 'backend/add-listing.html')
 
 @login_required(login_url='/pages/login-view/')
-def changepas(request):
-    if request == 'POST':
-        changepas = ChangePas(data=request.POST, user=request.user) 
-        if changepas.is_valid(): 
-            changepas.save() 
-            update_session_auth_hash(request, changepas.user) 
-            messages.success(request, 'Password changed successfully.')
+def change_password(request):
+    if request.method == 'POST':
+        form = ChangeWord(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
+            # return redirect('change_password')
         else:
-            messages.error('Correct the error below') 
-    else: 
-        changepas = ChangePas(user=request.user) 
-    return render (request, 'backend/change-password.html', {'pas':changepas})
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = ChangeWord(request.user)
+    return render(request, 'backend/change-password.html', {'form': form})
+
+# def change_password(request):
+    # if request.method == 'POST':
+    #     form = PasswordChangeForm(request.user, request.POST)
+    #     if form.is_valid():
+    #         user = form.save()
+    #         update_session_auth_hash(request, user)  # Important!
+    #         messages.success(request, 'Your password was successfully updated!')
+    #         return redirect('change_password')
+    #     else:
+    #         messages.error(request, 'Please correct the error below.')
+    # else:
+    #     form = PasswordChangeForm(request.user)
+    # return render(request, 'accounts/change_password.html', {'form': form})
+    
 
 @login_required(login_url='/pages/login-view/')
 def admin(request):
@@ -45,6 +61,9 @@ def admin(request):
 @login_required(login_url='/pages/login-view/')
 def addlistings(request):
     return render(request, 'backend/add-listings.html')
+@login_required(login_url='/pages/login-view/')
+def viewcars(request):
+    return render(request, 'backend/view-cars.html')
 
 def addlocation(request):
     return render(request, 'backend/add-location.html')
