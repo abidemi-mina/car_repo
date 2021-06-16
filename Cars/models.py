@@ -197,6 +197,29 @@ class Blog(models.Model):
             return self.img.url
         else:
               return '/static/public/images/img_1.jpg'
+          
+          
+
+class Comment(models.Model):
+    post = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='comment')
+    name = models.CharField(max_length=50)
+    email = models.EmailField()
+    content = models.TextField()
+    time = models.DateField(auto_now_add=True)
+    active = models.BooleanField(default=False)
+
+    
+    
+    def __str__(self):
+        return self.name
+    
+    class Meta():
+        verbose_name_plural = 'Comment'
+        
+    
+    
+    
+    
             
             
         
@@ -247,13 +270,5 @@ class Contact_Dealer(models.Model):
         return self.name
 
 
-class Comment(models.Model):
-    name = models.CharField(max_length=50)
-    time = models.DateField(auto_now_add= True)
-    comment = models.CharField(max_length=500)
-    email = models.EmailField(max_length=200)
-    def __str__(self):
-        return self.name
-    
 
 

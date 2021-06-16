@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse 
 from Cars.models import *
 from Cars.forms import *
@@ -15,6 +15,7 @@ from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 
+from .forms import CommentForm
 
 
 
@@ -53,11 +54,32 @@ def home3(request):
     return render(request, 'backend/home-page2.html', args)
 
 def about(request):
-    
     return render(request, 'htmls/about.html')
-def blog_detail(request, blog_id):
-    blogdetail = Blog.objects.get(id=blog_id)
-    return render(request, 'htmls/blog-details.html', {'post':blogdetail})
+
+
+def blog_detail(request,pk):
+    blogdetail = Blog.objects.get(pk=pk)
+    single_post = get_object_or_404(Blog, pk=pk)
+    comments = Comment.objects.filter(post=pk).order_by('-time')
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = single_post
+            comment.save()
+            return redirect('Cars:blog_detail', pk=single_post.pk)
+            # single_post = {'form': form}
+    else:
+        form = CommentForm()
+    
+    
+    return render(request, 'htmls/blog-details.html', {'post':blogdetail, 'comm':comments, 'form':form, 'sipst':single_post}) 
+                                                      
+
+   
+ 
+    
+
 
 def blog_detail2(request, blog_id):
     blogdetail = Blog.objects.get(id=blog_id)

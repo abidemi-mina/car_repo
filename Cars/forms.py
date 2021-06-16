@@ -1,5 +1,7 @@
 from django import forms
 from Cars.models import *
+from django.db.models import fields
+from .models import Blog, Comment
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
@@ -26,6 +28,29 @@ class RegisterForm(UserCreationForm):
 	    if commit:
 	        user.save()
 	        return user
+     
+
+
+class CommentForm(forms.ModelForm):
+    name = forms.CharField( widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Full Name'}))
+    content = forms.CharField(widget=forms.Textarea(attrs={
+        'class': 'form-control',
+        'placeholder': 'Type your comment',
+        'id': 'usercomment',
+        'rows': '4'
+    }))
+    class Meta:
+        model = Comment
+        # exclude = ['active','email']
+        fields = ('name', 'content' )
+	
+     
+     
+    
+    
+   
+      
+   
 
 
 class CarForm(forms.ModelForm):
