@@ -23,96 +23,28 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th>Property Location</th>
-                  <th>Property Description</th>
+                  <th>Car &nbsp; &nbsp;Location</th>
+                  <th>Car Description</th>
                  
                 </tr>
               </thead>
               <tfoot>
                  <tr>
-                  <th>Property Location</th>
-                  <th>Property Description</th>
+                  <th>Car Location</th>
+                  <th>Car Description</th>
                  
                 </tr>
               </tfoot>
               <tbody>
+                {% if view  %}
+                {%  for v in view %}
                 <tr>
-                  <td>Lagos Ikeja</td>
-                  <td>Alabian Solution</td>
+                  <td>{{v.location_id}}</td>
+                  <td>{{v.car_description}}</td>
                 
-                </tr> <tr>
-                  <td>Lagos Ikeja</td>
-                  <td>Alabian Solution</td>
-                
-                </tr> <tr>
-                  <td>Lagos Ikeja</td>
-                  <td>Alabian Solution</td>
-                
-                </tr> <tr>
-                  <td>Lagos Ikeja</td>
-                  <td>Alabian Solution</td>
-                
-                </tr> <tr>
-                  <td>Lagos Ikeja</td>
-                  <td>Alabian Solution</td>
-                
-                </tr> <tr>
-                  <td>Lagos Ikeja</td>
-                  <td>Alabian Solution</td>
-                
-                </tr> <tr>
-                  <td>Lagos Ikeja</td>
-                  <td>Alabian Solution</td>
-                
-                </tr> <tr>
-                  <td>Lagos Ikeja</td>
-                  <td>Alabian Solution</td>
-                
-                </tr> <tr>
-                  <td>Lagos Ikeja</td>
-                  <td>Alabian Solution</td>
-                
-                </tr> <tr>
-                  <td>Lagos Ikeja</td>
-                  <td>Alabian Solution</td>
-                
-                </tr> <tr>
-                  <td>Lagos Ikeja</td>
-                  <td>Alabian Solution</td>
-                
-                </tr> <tr>
-                  <td>Lagos Ikeja</td>
-                  <td>Alabian Solution</td>
-                
-                </tr> <tr>
-                  <td>Lagos Ikeja</td>
-                  <td>Alabian Solution</td>
-                
-                </tr> <tr>
-                  <td>Lagos Ikeja</td>
-                  <td>Alabian Solution</td>
-                
-                </tr> <tr>
-                  <td>Lagos Ikeja</td>
-                  <td>Alabian Solution</td>
-                
-                </tr> <tr>
-                  <td>Lagos Ikeja</td>
-                  <td>Alabian Solution</td>
-                
-                </tr> <tr>
-                  <td>Lagos Ikeja</td>
-                  <td>Alabian Solution</td>
-                
-                </tr> <tr>
-                  <td>Lagos Ikeja</td>
-                  <td>Alabian Solution</td>
-                
-                </tr> <tr>
-                  <td>Lagos Ikeja</td>
-                  <td>Alabian Solution</td>
-                
-                </tr> 
+                </tr>
+                {% endfor %}
+                {% endif %}
               </tbody>
             </table>
           </div>

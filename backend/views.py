@@ -5,7 +5,7 @@ from backend.forms import *
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm 
 from django.contrib.auth import update_session_auth_hash 
-from Cars.models import Cars
+from Cars.models import *
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -13,9 +13,12 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     return render(request, 'backend/index.html')
 
+def viewcars(request):
+    moto = Cars.objects.order_by('-created')[:4]
+    coto = Cars.objects.order_by('created')[:4]
+    return render(request, 'backend/view-cars.html', {'coo':moto, 'cot':coto})
+
 @login_required(login_url='/pages/login-view/')
-def addlisting(request):
-    return render(request, 'backend/add-listing.html')
 
 @login_required(login_url='/pages/login-view/')
 def change_password(request):
@@ -60,13 +63,40 @@ def admin(request):
     
 @login_required(login_url='/pages/login-view/')
 def addlistings(request):
-    return render(request, 'backend/add-listings.html')
+    if request.method == 'POST':
+        add_car = CarForm(request.POST, request.FILES)
+        if add_car.is_valid():
+            user = add_car.save(commit=False)
+            user.save()
+            messages.success(request, 'Car added')
+    else:
+        add_car =  CarForm()
+    return render(request, 'backend/add-listings.html' , {'add': add_car})
 @login_required(login_url='/pages/login-view/')
-def viewcars(request):
-    return render(request, 'backend/view-cars.html')
+
 
 def addlocation(request):
-    return render(request, 'backend/add-location.html')
+    location_form = LocationForm()
+    if request.method == 'POST':
+        location_form = LocationForm(request.POST)
+        if location_form.is_valid():
+            location_form.save()
+            messages.success(request, 'Location Added')
+    else:
+        location_form = LocationForm()
+    return render(request, 'backend/add-location.html', {'location' : location_form})
+
+
+def addcar(request):
+    car_type = CarTypeForm()
+    if request.method == 'POST':
+        car_type = CarTypeForm(request.POST)
+        if car_type.is_valid():
+            car_type.save()
+            messages.success(request, 'Car Type  Added')
+    else:
+        car_type = CarTypeForm()
+    return render(request, 'backend/add-cars.html', {'car' : car_type})
 
 
 def createlist(request):
@@ -76,13 +106,17 @@ def editlist(request):
     return render(request, 'backend/edit-listings.html')
 
 def userprofile(request):
-    return render(request, 'backend/user-profile.html')
+    dealer = Dealer_Info.objects.all()
+    return render(request, 'backend/user-profile.html', {'dealer' : dealer})
 
 def viewlist(request):
-    return render(request, 'backend/view-listings.html')
+    newlist = Cars.objects.order_by('created')
+
+    return render(request, 'backend/view-listings.html' , {'new': newlist})
 
 def viewlocation(request):
-    return render(request, 'backend/view-location.html')
+    viewlocations = Cars.objects.all()
+    return render(request, 'backend/view-location.html', {'view' : viewlocations})
 
 def admin_logout(request):
     logout(request)

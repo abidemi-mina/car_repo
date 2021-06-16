@@ -26,10 +26,31 @@ def home(request):
     foreign = Cars.objects.filter(status='Foreign Used')[:4]
     New = Cars.objects.filter(status='New')[:4]
     location = Location.objects.all()
-    milleage = Cars.objects.values_list('milleage')
     filter_obj = FilterForm()
-    args = {'sale': sale, 'rent':rent, 'New':New, 'foreign':foreign,'location':location, 'milleage': milleage, 'det':detail, 'fil':filter_obj}
+    args = {'sale': sale, 'rent':rent, 'New':New, 'foreign':foreign,'location':location, 'det':detail, 'fil':filter_obj}
     return render(request, 'htmls/index.html', args)
+
+def home2(request):
+    sale = Cars.objects.filter(offer_type='Sale')[:4]
+    rent = Cars.objects.filter(offer_type='Rent')[:4]
+    detail = Blog.objects.all()
+    foreign = Cars.objects.filter(status='Foreign Used')[:4]
+    New = Cars.objects.filter(status='New')[:4]
+    location = Location.objects.all()
+    filter_obj = FilterForm()
+    args = {'sale': sale, 'rent':rent, 'New':New, 'foreign':foreign,'location':location, 'det':detail, 'fil':filter_obj}
+    return render(request, 'backend/home-page.html', args)
+
+def home3(request):
+    sale = Cars.objects.filter(offer_type='Sale')[:4]
+    rent = Cars.objects.filter(offer_type='Rent')[:4]
+    detail = Blog.objects.all()
+    foreign = Cars.objects.filter(status='Foreign Used')[:4]
+    New = Cars.objects.filter(status='New')[:4]
+    location = Location.objects.all()
+    filter_obj = FilterForm()
+    args = {'sale': sale, 'rent':rent, 'New':New, 'foreign':foreign,'location':location, 'det':detail, 'fil':filter_obj}
+    return render(request, 'backend/home-page2.html', args)
 
 def about(request):
     
@@ -38,14 +59,40 @@ def blog_detail(request, blog_id):
     blogdetail = Blog.objects.get(id=blog_id)
     return render(request, 'htmls/blog-details.html', {'post':blogdetail})
 
+def blog_detail2(request, blog_id):
+    blogdetail = Blog.objects.get(id=blog_id)
+    return render(request, 'backend/blog-details2.html', {'post':blogdetail})
+
+def blog_detail3(request, blog_id):
+    blogdetail = Blog.objects.get(id=blog_id)
+    return render(request, 'backend/blog-details3.html', {'post':blogdetail})
+
 def blog(request):
     blog_post = Blog.objects.order_by('-time')
     return render(request, 'htmls/blog.html', {'blog':blog_post})
+
+def blog2(request):
+    blog_post = Blog.objects.order_by('-time')
+    return render(request, 'backend/blog2.html', {'blog':blog_post})
+    
+def blog3(request):
+    blog_post = Blog.objects.order_by('-time')
+    return render(request, 'backend/blog3.html', {'blog':blog_post})
     
 def car_detail(request, car_id):
     detail = Cars.objects.get(id=car_id)
     # contact = Contact_Dealer.objects.all
     return render(request, 'htmls/car-details.html', {'det':detail})
+
+def car_detail2(request, car_id):
+    detail = Cars.objects.get(id=car_id)
+    # contact = Contact_Dealer.objects.all
+    return render(request, 'backend/car-details2.html', {'det':detail})
+
+def car_detail3(request, car_id):
+    detail = Cars.objects.get(id=car_id)
+    # contact = Contact_Dealer.objects.all
+    return render(request, 'backend/car-details3.html', {'det':detail})
 
 
 def login_view(request):
@@ -79,6 +126,7 @@ def dashboard(request):
     foreign = Cars.objects.filter(status='Foreign Used').count()
     New = Cars.objects.filter(status='New').count()
     All = Cars.objects.all().count()
+
     return render(request, 'htmls/dashboard.html',{'salec': sale, 'rentc':rent, 'Newc':New, 'foreignc':foreign , 'Allc':All})
 
 
@@ -92,6 +140,32 @@ def register(request):
     else:
         register = RegisterForm()
     return render(request, 'htmls/register.html', {'reg':register})
+
+
+@login_required(login_url='/pages/login-view/')
+def addlistings(request):
+    if request.method == 'POST':
+        add_car = CarForm(request.POST, request.FILES)
+        if add_car.is_valid():
+            user = add_car.save(commit=False)
+            user.save()
+            messages.success(request, 'Car added')
+    else:
+        add_car =  CarForm()
+    return render(request, 'htmls/add-property.html' , {'add': add_car})
+
+@login_required(login_url='/pages/login-view/')
+def addlistings2(request):
+    if request.method == 'POST':
+        add_car = CarForm(request.POST, request.FILES)
+        if add_car.is_valid():
+            user = add_car.save(commit=False)
+            user.save()
+            messages.success(request, 'Car added')
+    else:
+        add_car =  CarForm()
+    return render(request, 'htmls/add-property.html' , {'add': add_car})
+
     
 # def resetpass(request):
 #     reset = RegisterForm()
@@ -107,7 +181,20 @@ def register(request):
 def cars(request):
     moto = Cars.objects.order_by('-created')[:4]
     coto = Cars.objects.order_by('created')[:4]
-    return render(request, 'htmls/cars.html', {'coo':moto, 'cot':coto})
+    filterb = FilterForm()
+    return render(request, 'htmls/cars.html', {'coo':moto, 'cot':coto,'filt': filterb} )
+
+def cars2(request):
+    moto = Cars.objects.order_by('-created')[:4]
+    coto = Cars.objects.order_by('created')[:4]
+    filterb = FilterForm()
+    return render(request, 'backend/cars2.html', {'coo':moto, 'cot':coto,'filt': filterb} )
+
+def cars3(request):
+    moto = Cars.objects.order_by('-created')[:4]
+    coto = Cars.objects.order_by('created')[:4]
+    filterb = FilterForm()
+    return render(request, 'backend/cars3.html', {'coo':moto, 'cot':coto,'filt': filterb} )
 
 def contact(request):
     return render(request, 'htmls/contact.html')
@@ -116,12 +203,26 @@ def team(request):
     team = Team.objects.order_by('-created')
     return render(request, 'htmls/team.html', {'team_key':team})
 
+def team2(request):
+    team = Team.objects.order_by('-created')
+    return render(request, 'backend/team2.html', {'team_key':team})
+
+def team3(request):
+    team = Team.objects.order_by('-created')
+    return render(request, 'backend/team3.html', {'team_key':team})
+
 def team_details(request, team_id):
     detail = Team.objects.get(id=team_id)
     return render(request, 'htmls/team-details.html', {'det':detail})
-def commentsec (request):
-    return render(request)
-   
+
+def team_details2(request, team_id):
+    detail = Team.objects.get(id=team_id)
+    return render(request, 'backend/team-details2.html', {'det':detail})
+
+def team_details3(request, team_id):
+    detail = Team.objects.get(id=team_id)
+    return render(request, 'backend/team-details3.html', {'det':detail})
+
 
 def filter_form(request):
     if request.method == 'GET':

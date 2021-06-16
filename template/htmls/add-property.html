@@ -1,7 +1,22 @@
-{% extends 'backend/admin_base.html' %}
+{% extends 'htmls/base-reuse.html' %}
 {% load static %}
 
 {% block content %}
+
+
+
+<div class="main-banner" id="top">
+    <video autoplay muted loop id="bg-video">
+        <source src="{% static 'assets/images/video.mp4' %}" type="video/mp4" />
+    </video>
+
+    <div class="video-overlay header-text">
+        <div class="caption">
+            <h6>Lorem ipsum dolor sit amet</h6>
+            <h2>Best <em>car dealer</em> in town!</h2>
+        </div>
+    </div>
+</div>
 
                 <div class="box_general padding_bottom ">
                     <div class="header_box version_2">

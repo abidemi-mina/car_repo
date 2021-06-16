@@ -110,7 +110,7 @@
                     </a>
                     <ul class="sidenav-second-level collapse" id="Properties">
                         <li>
-                            <a href="charts.html">Create new Cars</a>
+                            <a href="{% url 'backend:addcar' %}">Create new Cars</a>
                         </li>
                         <li>
                             <a href="{% url 'backend:view-cars' %}">View Car</a>
@@ -166,9 +166,10 @@
                 </li>
             </ul>
             <ul class="nav-item">
-                <li {% if request.path == Home %} class="active"  {% endif %}>
-                    <a href="{% url 'home' %}" >Home</a>
-                </li>
+                    <a href="{% url 'Cars:home3' %}" >Home</a>
+            </ul>
+            <ul class="nav-item">
+                    <a href="" > Welcome {{ request.user.get_username }}</a>
             </ul>
                 
             <ul class="navbar-nav ml-auto">
@@ -291,7 +292,7 @@
                                 <h5>26 Cars!</h5>
                             </div>
                         </div>
-                        <a class="card-footer text-white clearfix small z-1" href="{% url 'Cars:motor' %}">
+                        <a class="card-footer text-white clearfix small z-1" href="{% url 'Cars:motor3' %}">
                             <span class="float-left">View Cars</span>
                             <span class="float-right">
                 <i class="fa fa-angle-right"></i>
