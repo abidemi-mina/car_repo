@@ -36,7 +36,7 @@
 <body class="fixed-nav sticky-footer" id="page-top">
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-default fixed-top" id="mainNav">
-        <a class="navbar-brand" href="index.html"><img src="{% static 'backend/img/course_2.jpg' %}" data-retina="true" alt="" width="150" height="36"></a>
+        <a class="navbar-brand" href="{% url 'backend:index' %}"><img src="{% static 'backend/img/course_2.jpg' %}" data-retina="true" alt="" width="150" height="36"></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -76,7 +76,7 @@
 
 
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Messages">
-                    <a class="nav-link" href="{% url 'backend:changepas' %}">
+                    <a class="nav-link" href="{% url 'backend:change_password' %}">
                         <i class="fa fa-fw fa-envelope-open"></i>
                         <span class="nav-link-text">Change Password</span>
                     </a>
@@ -92,11 +92,9 @@
                             <a href="{% url 'backend:addlistings' %}">Create_new_list <span class="badge badge-pill badge-primary"></span></a>
                         </li>
                         <li>
-                            <a href="{% url 'backend:viewlist' %}">View_list <span class="badge badge-pill badge-success">nothing yet!!</span></a>
+                            <a href="{% url 'backend:viewlist' %}">View_list <span class="badge badge-pill badge-success">{{cnt}}</span></a>
                         </li>
-                        <li>
-                            <a href="{% url 'backend:editlist' %}">Update_list <span class="badge badge-pill badge-danger"></span></a>
-                        </li>
+                        
                     </ul>
                 </li>
 
@@ -110,13 +108,10 @@
                     </a>
                     <ul class="sidenav-second-level collapse" id="Properties">
                         <li>
-                            <a href="charts.html">Create new Cars</a>
+                            <a href="{% url 'backend:addcar' %}">Create new Cars</a>
                         </li>
                         <li>
-                            <a href="tables.html">View Car</a>
-                        </li>
-                        <li>
-                            <a href="tables.html">Update</a>
+                            <a href="{% url 'backend:view-cars' %}">View Car <span class="badge badge-pill badge-success">{{cnt}}</span></a>
                         </li>
                     </ul>
                 </li>
@@ -132,14 +127,12 @@
                     </a>
                     <ul class="sidenav-second-level collapse" id="Location">
                         <li>
-                            <a href="{% url 'backend:addlocation' %}">Create Location</a>
+                            <a href="{% url 'backend:addlocation' %}">Create Location <span class="badge badge-pill badge-success">{{count}}</a>
                         </li>
                         <li>
-                            <a href="{% url 'backend:viewlocation' %}">View Location</a>
+                            <a href="{% url 'backend:viewlocation' %}">View Location </span></a>
                         </li>
-                        <li>
-                            <a href="{% url 'backend:viewlocation' %}">Update Location</a>
-                        </li>
+                       
                     </ul>
                 </li>
 				
@@ -165,100 +158,28 @@
                     </a>
                 </li>
             </ul>
+            
+              
+                <li class="nav">
+                    <h5>  Welcome {{ request.user.get_username }} </h5>
+                </li>
+              
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-fw fa-envelope"></i>
-                        <span class="d-lg-none">Messages
-              <span class="badge badge-pill badge-primary">12 New</span>
-                        </span>
-                        <span class="indicator text-primary d-none d-lg-block">
-              <i class="fa fa-fw fa-circle"></i>
-            </span>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="messagesDropdown">
-                        <h6 class="dropdown-header">New Messages:</h6>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">
-                            <strong>David Miller</strong>
-                            <span class="small float-right text-muted">11:21 AM</span>
-                            <div class="dropdown-message small">Hey there! This new version of SB Admin is pretty awesome! These messages clip off when they reach the end of the box so they don't overflow over to the sides!</div>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">
-                            <strong>Jane Smith</strong>
-                            <span class="small float-right text-muted">11:21 AM</span>
-                            <div class="dropdown-message small">I was wondering if you could meet for an appointment at 3:00 instead of 4:00. Thanks!</div>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">
-                            <strong>John Doe</strong>
-                            <span class="small float-right text-muted">11:21 AM</span>
-                            <div class="dropdown-message small">I've sent the final files over to you for review. When you're able to sign off of them let me know and we can discuss distribution.</div>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item small" href="#">View all messages</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-fw fa-bell"></i>
-                        <span class="d-lg-none">Alerts
-              <span class="badge badge-pill badge-warning">6 New</span>
-                        </span>
-                        <span class="indicator text-warning d-none d-lg-block">
-              <i class="fa fa-fw fa-circle"></i>
-            </span>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="alertsDropdown">
-                        <h6 class="dropdown-header">New Alerts:</h6>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">
-                            <span class="text-success">
-                <strong>
-                  <i class="fa fa-long-arrow-up fa-fw"></i>Status Update</strong>
-              </span>
-                            <span class="small float-right text-muted">11:21 AM</span>
-                            <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">
-                            <span class="text-danger">
-                <strong>
-                  <i class="fa fa-long-arrow-down fa-fw"></i>Status Update</strong>
-              </span>
-                            <span class="small float-right text-muted">11:21 AM</span>
-                            <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">
-                            <span class="text-success">
-                <strong>
-                  <i class="fa fa-long-arrow-up fa-fw"></i>Status Update</strong>
-              </span>
-                            <span class="small float-right text-muted">11:21 AM</span>
-                            <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item small" href="#">View all alerts</a>
-                    </div>
-                </li>
+                <!-- <li class="nav-item">
+                    <a href="{% url 'Cars:home3' %}" >Home</a>
+                </li> -->
+                
                 <li class="nav-item">
-                    <form class="form-inline my-2 my-lg-0 mr-lg-2">
-                        <div class="input-group">
-                            <input class="form-control search-top" type="text" placeholder="Search for...">
-                            <span class="input-group-btn">
-                <button class="btn btn-primary" type="button">
-                  <i class="fa fa-search"></i>
-                </button>
-              </span>
-                        </div>
-                    </form>
+                    <a  class="nav-link" href="{% url 'Cars:home3' %}" >Home</a>
                 </li>
-                <li class="nav-item">
+                
+                
+                    <li class="nav-item">
                     <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
                         <i class="fa fa-fw fa-sign-out"></i>Logout</a>
                 </li>
+               
+                
             </ul>
         </div>
     </nav>
@@ -280,11 +201,12 @@
                             <div class="card-body-icon">
                                 <i class="fa fa-fw fa-envelope-open"></i>
                             </div>
+                            
                             <div class="mr-5">
                                 <h5>26 Cars!</h5>
                             </div>
                         </div>
-                        <a class="card-footer text-white clearfix small z-1" href="messages.html">
+                        <a class="card-footer text-white clearfix small z-1" href="{% url 'Cars:motor3' %}">
                             <span class="float-left">View Cars</span>
                             <span class="float-right">
                 <i class="fa fa-angle-right"></i>
@@ -320,7 +242,7 @@
                                 <h5>10  Location!</h5>
                             </div>
                         </div>
-                        <a class="card-footer text-white clearfix small z-1" href="bookings.html">
+                        <a class="card-footer text-white clearfix small z-1" href="{% url 'backend:viewlocation' %}">
                             <span class="float-left">View locations</span>
                             <span class="float-right">
                 <i class="fa fa-angle-right"></i>

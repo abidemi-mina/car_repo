@@ -1,11 +1,11 @@
 {% extends 'htmls/base.html' %}
-    {% load static %}
-    {% block title%}
-    Cars   
-    {% endblock%}
-    
+{% load static %}
+{% block title%}
+Cars   
+{% endblock%}
+
         
-        {% block content %}
+{% block content %}
 <!-- ***** Call to Action Start ***** -->
     <section class="section section-bg" id="call-to-action" style="background-image: url({% static 'assets/images/banner-image-1-1920x500.jpg' %})">
         <div class="container">
@@ -25,9 +25,7 @@
 
     <!-- ***** Fleet Starts ***** -->
     <section class="section" id="trainers">
-        {% if coo %}
-            {% for c in coo %}
-            <a href="{% url 'Cars:cars' c.id %}"></a>
+            <a href="{% url 'Cars:motor' %}"></a>
             <div class="container">
                 <br>
                 <br>
@@ -36,125 +34,68 @@
                         <div class="row">
                             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                                 <div class="form-group">
-                                    <label>{{ c.offer_type }}</label>
+                                    <label>offer_type</label>
                          
-                                     <select>
-                                          <option value="">All</option>
-                                          <option value="new">Rent</option>
-                                          <option value="used">Sale</option>
-                                     </select>
+                                    {{ filt.offer_type }}
+
                                 </div>
                             </div>
                     
                             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                                 <div class="form-group">
-                                    <label>{{ c.vehicle_type }}</label>
+                                    <label>vehicle type</label>
     
-                                     <select>
-                                          <option value="">Sedan</option>
-                                          <option value="">Coupe</option>
-                                          <option value="">Truck</option>
-                                          <option value="">Hatchback</option>
-                                          <option value="">Wagon</option>
-                                          <option value="">Crossover</option>
-                                          <option value="">Convertible</option>
-                                          <option value="">Sport Car</option>
-                                          <option value="">MVP</option>
-                                     </select>
+                                    {{ filt.vehicle_type }}
+
                                 </div>
                             </div>
                     
                             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                                 <div class="form-group">
-                                    <label>{{ c.make }}</label>
+                                    <label>make </label>
                          
-                                     <select>
-                                          <option value="">All</option>
-                                          <option value="">All</option>
-                                          <option value="">All</option>
-                                          <option value="">All</option>
-                                          <option value="">All</option>
-                                     </select>
-                                </div>
-                            </div>
-                    
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>{{ c.model }}</label>
-                         
-                                     <select>
-                                          <option value="">All</option>
-                                          <option value="">All</option>
-                                          <option value="">All</option>
-                                          <option value="">All</option>
-                                          
-                                     </select>
-                                </div>
-                            </div>
-                    
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>{{ c.prize }}</label>
-                         
-                                     <select>
-                                          <option value="">All</option>
-                                          <option value="">All</option>
-                                          <option value="">All</option>
-                                          <option value="">All</option>
-                                          
-                                     </select>
+                                    {{ filt.make }}
+
                                 </div>
                             </div>
                     
                             
                     
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>{{ c.milleage }}</label>
-                         
-                                     <select>
-                                          <option value="">-- All --</option>
-                                          <option value="">-- All --</option>
-                                          <option value="">-- All --</option>
-                                          <option value="">-- All --</option>
-                                     </select>
-                                </div>
-                            </div>
+
+                    
+                            
+                    
+                            
                            
     
                             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                                 <div class="form-group">
-                                    <label>{{ c.transmission }}</label>
-                         
-                                     <select>
-                                          <option value="">Automatic</option>
-                                          <option value="">Manual</option>
-                                          
-                                     </select>
+                                    <label>transmission</label>
+                                    {{ filt.transmission }}
+
                                 </div>
                             </div>
     
     
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>{{ c.manufacturing_date }}</label>
-                                    <input type="number"  placeholder="Enter the car year">
-                                </div>
-                            </div>
+
+      
                     
                             
                             
                         <div class="col-sm-4 offset-sm-4">
                           <div class="main-button text-center">
-                              <a href="#">Search</a>
-                          </div>
+                            <input type="submit" value="Search">
+                        </div>
                         </div>
                         <br>
                         <br>
                     </form>
                 </div>
+                <br>
     
                 <div class="row">
+                    {% if coo %}
+                        {% for c in coo %}
                     <div class="col-lg-3">
                         <div class="trainer-item">
                             <div class="image-thumb">
@@ -162,34 +103,10 @@
                             </div>
                             <div class="down-content">
                                 <span>
-                                    <del><sup>$</sup>11999 </del> &nbsp; <sup>$</sup>11779
+                                    <del><sup>$</sup>{{c.old_prize }} </del> &nbsp; <sup>$</sup>{{c.prize}}
                                 </span>
     
-                                <h4>Lorem ipsum dolor sit amet, consectetur</h4>
-    
-                                <p>
-                                    <i class="fa fa-dashboard"></i> 130 000km &nbsp;&nbsp;&nbsp;
-                                    <i class="fa fa-cube"></i> 1800 cc &nbsp;&nbsp;&nbsp;
-                                    <i class="fa fa-cog"></i> Manual &nbsp;&nbsp;&nbsp;
-                                </p>
-    
-                                <ul class="social-icons">
-                                    <li><a href="{% url 'Cars:cars' c.id %}">+ View Car</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="trainer-item">
-                            <div class="image-thumb">
-                                <img src="{% static 'assets/images/product-2-720x480.jpg' %}" alt="">
-                            </div>
-                            <div class="down-content">
-                                <span>
-                                    <del><sup>$</sup>11999 </del> &nbsp; <sup>$</sup>11779
-                                </span>
-    
-                                <h4>Lorem ipsum dolor sit amet, consectetur</h4>
+                                <h4>{{ c.description}}</h4>
     
                                 <p>
                                     <i class="fa fa-dashboard"></i> 130 000km &nbsp;&nbsp;&nbsp;
@@ -203,17 +120,23 @@
                             </div>
                         </div>
                     </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="row">
+                    {% if cot %}
+                        {% for t in cot %}
                     <div class="col-lg-3">
                         <div class="trainer-item">
                             <div class="image-thumb">
-                                <img src="{% static 'assets/images/product-3-720x480.jpg' %}" alt="">
+                                <img src="{% static 'assets/images/product-1-720x480.jpg' %}" alt="">
                             </div>
                             <div class="down-content">
                                 <span>
-                                    <del><sup>$</sup>11999 </del> &nbsp; <sup>$</sup>11779
+                                    <del><sup>$</sup>{{t.old_prize }} </del> &nbsp; <sup>$</sup>{{t.prize}}
                                 </span>
     
-                                <h4>Lorem ipsum dolor sit amet, consectetur</h4>
+                                <h4>{{ t.description}}</h4>
     
                                 <p>
                                     <i class="fa fa-dashboard"></i> 130 000km &nbsp;&nbsp;&nbsp;
@@ -222,84 +145,13 @@
                                 </p>
     
                                 <ul class="social-icons">
-                                    <li><a href="{% url 'Cars:car_detail' %}">+ View Car</a></li>
+                                    <li><a href="{% url 'Cars:car_detail' t.id %}">+ View Car</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-    
-                    <div class="col-lg-3">
-                        <div class="trainer-item">
-                            <div class="image-thumb">
-                                <img src="{% static 'assets/images/product-4-720x480.jpg' %}" alt="">
-                            </div>
-                            <div class="down-content">
-                                <span>
-                                    <del><sup>$</sup>11999 </del> &nbsp; <sup>$</sup>11779
-                                </span>
-    
-                                <h4>Lorem ipsum dolor sit amet, consectetur</h4>
-    
-                                <p>
-                                    <i class="fa fa-dashboard"></i> 130 000km &nbsp;&nbsp;&nbsp;
-                                    <i class="fa fa-cube"></i> 1800 cc &nbsp;&nbsp;&nbsp;
-                                    <i class="fa fa-cog"></i> Manual &nbsp;&nbsp;&nbsp;
-                                </p>
-    
-                                <ul class="social-icons">
-                                    <li><a href="{% url 'Cars:car_detail' %}">+ View Car</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="trainer-item">
-                            <div class="image-thumb">
-                                <img src="{% static 'assets/images/product-5-720x480.jpg' %}" alt="">
-                            </div>
-                            <div class="down-content">
-                                <span>
-                                    <del><sup>$</sup>11999 </del> &nbsp; <sup>$</sup>11779
-                                </span>
-    
-                                <h4>Lorem ipsum dolor sit amet, consectetur</h4>
-    
-                                <p>
-                                    <i class="fa fa-dashboard"></i> 130 000km &nbsp;&nbsp;&nbsp;
-                                    <i class="fa fa-cube"></i> 1800 cc &nbsp;&nbsp;&nbsp;
-                                    <i class="fa fa-cog"></i> Manual &nbsp;&nbsp;&nbsp;
-                                </p>
-    
-                                <ul class="social-icons">
-                                    <li><a href="{% url 'Cars:car_detail' %}">+ View Car</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="trainer-item">
-                            <div class="image-thumb">
-                                <img src="{% static 'assets/images/product-6-720x480.jpg' %}" alt="">
-                            </div>
-                            <div class="down-content">
-                                <span>
-                                    <del><sup>$</sup>11999 </del> &nbsp; <sup>$</sup>11779
-                                </span>
-    
-                                <h4>Lorem ipsum dolor sit amet, consectetur</h4>
-    
-                                <p>
-                                    <i class="fa fa-dashboard"></i> 130 000km &nbsp;&nbsp;&nbsp;
-                                    <i class="fa fa-cube"></i> 1800 cc &nbsp;&nbsp;&nbsp;
-                                    <i class="fa fa-cog"></i> Manual &nbsp;&nbsp;&nbsp;
-                                </p>
-    
-                                <ul class="social-icons">
-                                    <li><a href="{% url 'Cars:car_detail' %}">+ View Car</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                        {% endfor %}
+                    {% endif %}
                 </div>
     
                 <br>
@@ -325,9 +177,7 @@
                 </nav>
     
             </div>
-            {% endfor %}
-        {% endif %}
-      
+            
     </section>
     <!-- ***** Fleet Ends ***** -->
 

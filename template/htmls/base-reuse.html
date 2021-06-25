@@ -8,6 +8,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+      <!-- Favicons-->
+      <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+      <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
+      <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
+      <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
+      <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">
+  
+      <!-- GOOGLE WEB FONT -->
+      <link href="{% static 'backend/https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800' %}" rel="stylesheet">
+  
+      <!-- Bootstrap core CSS-->
+      <link href="{% static 'backend/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+      <!-- Main styles -->
+      <link href="{% static 'backend/css/admin.css' %}" rel="stylesheet">
+      <!-- Icon fonts-->
+      <link href="{% static 'backend/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+      <!-- Plugin styles -->
+      <link href="{% static 'backend/vendor/datatables/dataTables.bootstrap4.css' %}" rel="stylesheet">
+      <!-- Your custom styles -->
+      <link href="{% static 'backend/css/custom.css' %}" rel="stylesheet">
+  
+  
+  
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
 
     <title>
@@ -50,47 +73,37 @@
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                                    {% url 'home' as Home %}
-                                    {% url 'Cars:about' as About %}
-                                    {% url 'Cars:login' as Login %}
-                                    {% url 'Cars:register' as Register %}
-                                    {% url 'Cars:cars' as Cars %}
-                                    {% url 'Cars:blog' as Blog %}
-                                    {% url 'Cars:team' as Team %}
-                                    {% url 'Cars:contact' as Contact  %}
-
                                     
-                            <li {% if request.path == Home %} class="active"  {% endif %}>
-                                <a href="{% url 'home' %}" >Home</a>
+                                    
+                            <li>
+                                <a href="{% url 'Cars:home2' %}" >Home</a>
                             </li>
-                            <!-- <li {% if request.path == Cars %} class="active"  {% endif %}>
-                                <a href="{% url 'Cars:cars' %}">Cars</a>
-                            </li> -->
+                            
 
-                            <li {% if request.path == About %} class="active"  {% endif %}>
-                                <a href="{% url 'Cars:about' %}">About</a>
-
-                            </li>
-
-                            <li {% if request.path == Blog %} class="active"  {% endif %}>
-                                <a href="{% url 'Cars:blog' %}">Blog</a>
+                            <li>
+                                <a href="{% url 'Cars:addlistings2' %}">Add Property</a>
 
                             </li>
 
+                            <li>
+                                <a href="{% url 'Cars:blog2' %}">Blog</a>
 
-                            <li {% if request.path == Team %} class="active"  {% endif %}>
-                                <a href="{% url 'Cars:team' %}">Team</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'Cars:dashboard' %}">Dashboard</a>
+
+                            </li>
+
+
+                            <li>
+                                <a href="{% url 'Cars:team2' %}">Team</a>
 
                             </li>
                             
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+                                <a class="nav-link" data-toggle="modal" data-target="#exampleModal" style="cursor:pointer;">
                                     <i class="fa fa-fw fa-sign-out"></i>Logout</a>
                             </li>
-
-                            <!-- <li {% if request.path == Home %} class="active"  {% endif %}>
-                                <a href="{% url 'Cars:contact' %}">Contact</a>
-                            </li>  -->
                             
                         </ul>        
                         <a class='menu-trigger'>
@@ -125,12 +138,12 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <h5 class="modal-title" id="exampleModalLabel"> {{request.user.get_username }} Are You Ready to Leave?</h5>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">×</span>
                 </button>
                     </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-body">{{request.user.get_username }} "Logout" below if you are ready to end your current session.</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                         <a class="btn btn-primary" href="{% url 'backend:admin_logout' %}">Logout</a>
@@ -139,6 +152,22 @@
             </div>
         </div>
     </footer>
+    <!-- Bootstrap core JavaScript-->
+    <script src="{% static 'backend/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'backend/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="{% static 'backend/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+    <!-- Page level plugin JavaScript-->
+    <script src="{% static 'backend/vendor/chart.js/Chart.js' %}"></script>
+    <script src="{% static 'backend/vendor/datatables/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'backend/vendor/datatables/dataTables.bootstrap4.js' %}"></script>
+    <script src="{% static 'backend/vendor/jquery.selectbox-0.2.js' %}"></script>
+    <script src="{% static 'backend/vendor/retina-replace.min.js' %}"></script>
+    <script src="{% static 'backend/vendor/jquery.magnific-popup.min.js' %}"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="{% static 'backend/js/admin.js' %}"></script>
+    <!-- Custom scripts for this page-->
+    <script src="{% static 'backend/js/admin-charts.js' %}"></script>
 
     <!-- jQuery -->
     <script src="{% static 'assets/js/jquery-2.1.0.min.js' %}"></script>

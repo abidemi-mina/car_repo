@@ -15,7 +15,7 @@ class Dealer_Info(models.Model):
     
     def __str__(self):
         return str(self.user_id)
-    
+
     class Meta():
         verbose_name_plural = 'Dealer Info'
 
@@ -44,31 +44,7 @@ class Location(models.Model):
 
 
 class Car_Type(models.Model):
-    SEDAN = 'Sedan'
-    COUPE = 'Coupe'
-    SUV = 'SUV'
-    TRUCK = 'Truck'
-    HATCHBACK = 'Hatchback'
-    WAGON = 'Wagon'
-    CROSSOVER = 'Crossover'
-    CONVERTIBLE = 'Convertible'
-    SPORTCAR = 'Sport Car'
-    MVP = 'MVP'
-    SELECT = ''
-    TYPE = [
-        (SEDAN, 'Sedan (car)'),
-        (COUPE,'Coupe'),
-        (SUV,'SUV'),
-        (TRUCK, 'Truck'),
-        (HATCHBACK, 'Hatchback'),
-        (CROSSOVER, 'Crossover'),
-        (CONVERTIBLE, 'Convertible'),
-        (SPORTCAR, 'Sport Car'),
-        (MVP, 'MVP'),
-        (SELECT, 'Select An Car Type'),
-    ]
-
-    names = models.CharField(max_length=30, choices=TYPE, default=SELECT)
+    names = models.CharField(max_length=30)
     def __str__(self):
         return self.names
     
@@ -292,7 +268,6 @@ class Contact_Dealer(models.Model):
 
     def __str__(self):
         return self.name
-
 
 
 

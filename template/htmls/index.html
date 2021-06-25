@@ -26,123 +26,85 @@ Home
 
   <br>
     <div class="contact-form">
-        <form action="#" id="contact">
+        <form action="{% url 'Cars:form' %}"  method="GET">
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label>Offer Type</label>
-             
-                         <select>
-                              <option value=""></option>
-                              <option value="new"></option>
-                              <option value="used"></option>
-                         </select>
+                        <div class="select-wrap">
+                            <!-- <span class="icon icon-arrow_drop_down"></span> -->
+                           {{ fil.offer_type }}
+                        </div>
+                        
                     </div>
                 </div>
         
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label>Vehicle Type</label>
-
-                         <select>
-                              <option value=""></option>
-                              <option value=""></option>
-                              <option value=""></option>
-                              <option value=""></option>
-                              <option value=""></option>
-                              <option value=""></option>
-                              <option value=""></option>
-                              <option value=""></option>
-                              <option value=""></option>
-                         </select>
+                        <div class="select-wrap">
+                            {{ fil.vehicle_type }}
+                        </div>
                     </div>
                 </div>
         
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label>Make</label>
-             
-                         <select>
-                              <option value=""></option>
-                              <option value=""></option>
-                              <option value=""></option>
-                              <option value=""></option>
-                              <option value=""></option>
-                         </select>
-                    </div>
-                </div>
-        
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label>Make</label>
-             
-                         <select>
-                              <option value=""></option>
-                              <option value=""></option>
-                              <option value=""></option>
-                              <option value=""></option>
-                              
-                         </select>
-                    </div>
-                </div>
-        
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label>Price</label>
-             
-                         <select>
-                              <option value=""></option>
-                              <option value=""></option>
-                              <option value=""></option>
-                              <option value=""></option>
-                              
-                         </select>
+                        <div class="select-wrap">
+                            {{ fil.make }}
+                        </div>
                     </div>
                 </div>
         
                 
         
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label>Milleage</label>
-             
-                         <select>
-                             {% if milleage %}
-                                {% for m in milleage %}
-                              <option value="">{{ m }}</option>
-                                {% endfor %}
-                              {% endif %}
-                              
-                         </select>
+                        <label>Price</label>
+                        <div class="select-wrap">
+                            {{ fil.prize.errors }}
+                            {{ fil.prize }}
+                        </div>
                     </div>
                 </div>
+         -->
+                
+        
+                <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label>Milleage</label>
+                        <div class="select-wrap">
+                            {{ fil.milleage.errors }}
+                            {{ fil.milleage }}
+                        </div>
+                    </div>
+                </div> -->
                
 
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label>Transmission</label>
-             
-                         <select>
-                              <option value=""></option>
-                              <option value=""></option>
-                              
-                         </select>
+                        <div class="select-wrap">
+                            {{ fil.transmission }}
+                        </div>
+  
                     </div>
                 </div>
 
 
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label></label>
                         <input type="number"  placeholder="Enter the car year">
                     </div>
                 </div>
         
-                
+                 -->
                 
             <div class="col-sm-4 offset-sm-4">
               <div class="main-button text-center">
-                  <a href="#">Search</a>
+                  <input type="submit" value="Search">
               </div>
             </div>
             <br>
@@ -175,7 +137,7 @@ Home
                         </div>
                         <div class="down-content">
                             <span>
-                                <del><sup>&#8358;</sup>{{f.prize }} </del> &nbsp; <sup>&#8358;</sup>{{ f.prize }}
+                                <del><sup>&#8358;</sup>{{f.old_prize }} </del> &nbsp; <sup>&#8358;</sup>{{ f.prize }}
                             </span>
 
                             {% comment %} <h4>Lorem ipsum dolor sit amet, consectetur</h4> {% endcomment %}
@@ -205,7 +167,7 @@ Home
             <br>
 
             <div class="main-button text-center">
-                <a href="{% url 'Cars:cars' % }">View Cars</a>
+                <a href="{% url 'Cars:motor' %}">View Cars</a>
             </div>
         </div>
     </section>
@@ -231,7 +193,7 @@ Home
                         </div>
                         <div class="down-content">
                             <span>
-                                <del><sup>&#8358;</sup>{{n.prize }} </del> &nbsp; <sup>&#8358;</sup>{{ n.prize }}
+                                <del><sup>&#8358;</sup>{{n.old_prize }} </del> &nbsp; <sup>&#8358;</sup>{{ n.prize }}
                             </span>
 
                                <h4>{{ n.car_model }}</h4>
@@ -250,15 +212,15 @@ Home
                     </div>
                 </div>
                 
-                    {% endfor  %}
-                {% endif  %}
+                {% endfor  %}
+            {% endif  %}
                 
             </div>
 
             <br> 
 
             <div class="main-button text-center">
-                <a href="{% url 'Cars:cars' % }">View Cars</a>
+                <a href="{% url 'Cars:motor' %}">View Cars</a>
             </div>
         </div>
     </section>
@@ -284,7 +246,7 @@ Home
                             </div>
                             <div class="down-content">
                                 <span>
-                                    <del><sup>&#8358;</sup>{{ s.prize }} </del> &nbsp; <sup>&#8358;</sup>{{ s.prize }}
+                                    <del><sup>&#8358;</sup>{{ s.old_prize }} </del> &nbsp; <sup>&#8358;</sup>{{ s.prize }}
                                 </span>
     
                                 <h4>{{ s.car_model }}</h4>
@@ -303,15 +265,15 @@ Home
                         </div>
                     </div>
                     
-                    {% endfor %}
-                {%  endif %}
+                {% endfor %}
+            {%  endif %}
                 
             </div>
 
             <br>
 
             <div class="main-button text-center">
-                <a href="{% url 'Cars:cars' % }">View Cars</a>
+                <a href="{% url 'Cars:motor' %}">View Cars</a>
             </div>
         </div>
     </section>
@@ -336,7 +298,7 @@ Home
                             </div>
                             <div class="down-content">
                                 <span>
-                                    <del><sup>&#8358;</sup>{{ r.prize}} </del> &nbsp; <sup>&#8358;</sup>{{r.prize}}
+                                    <del><sup>&#8358;</sup>{{ r.old_prize}} </del> &nbsp; <sup>&#8358;</sup>{{r.prize}}
                                 </span>
     
                                 <h4>{{ r.car_model }}</h4>
@@ -363,10 +325,11 @@ Home
             <br>
 
             <div class="main-button text-center">
-                <a href="{% url 'Cars:cars' % }">View Cars</a>
+                <a href="{% url 'Cars:motor' %}">View Cars</a>
             </div>
         </div>
     </section>
+<<<<<<< HEAD
     <!-- <section class="section" id="trainers">
         <div class="container">
             <div class="row">
@@ -419,6 +382,9 @@ Home
         </div>
     </section> -->
     <!-- ***** Cars Ends ***** -->
+=======
+   
+>>>>>>> 155a90e28e74825edc1848b362944fd4a7834b41
 
     <section class="section section-bg" id="schedule" style="background-image: url({% static 'assets/images/about-fullscreen-1-1920x700.jpg' %})">
         <div class="container">

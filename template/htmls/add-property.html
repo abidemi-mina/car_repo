@@ -1,0 +1,42 @@
+{% extends 'htmls/base-reuse.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+<div class="main-banner" id="top">
+    <video autoplay muted loop id="bg-video">
+        <source src="{% static 'assets/images/video.mp4' %}" type="video/mp4" />
+    </video>
+
+    <div class="video-overlay header-text">
+        <div class="caption">
+            <h6>Lorem ipsum dolor sit amet</h6>
+            <h2>Best <em>car dealer</em> in town!</h2>
+        </div>
+    </div>
+</div>
+
+                <div class="box_general padding_bottom ">
+                    <!-- <div class="header_box version_2">
+                        <h2><i class="fa fa-pencil"></i>Add new list</h2>
+                    </div> -->
+                    <div class="row">
+
+                        <div class="col-md-8 add_top_30">
+                            <div class="row">   
+                                <form method="POST">
+                                    {% include 'htmls/reuse-form.html' with form=add %}
+                                <input type="submit" value="Add Car" class="btn btn-success py-2 px-4 rounded-12"> 
+                                </form>
+                            </div>
+                        <!-- </row> -->
+                        </div>
+                    </div>
+					<br>
+					<br>
+					<br>
+                </div>
+                
+{% endblock  %}
