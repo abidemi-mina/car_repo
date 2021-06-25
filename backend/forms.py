@@ -110,21 +110,19 @@ class CarForm(forms.ModelForm):
 		widget=forms.Select(attrs={'class':'form-control'}),
 		empty_label='Select vehicle type '
 	)
-	car_model = forms.CharField(widget=forms.TextInput())
+	car_model = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
 	location_id = forms.ModelChoiceField(
 		queryset=Location.objects.all(),
 		widget= forms.Select(attrs={'class':'form-control'}),
 		empty_label= 'Select your location'
 	)
-	offer_type = forms.ChoiceField(widget=forms.Select(choices=OFFER_TYPE), )
 	milleage = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
-	status = forms.ChoiceField(widget=forms.Select(choices=CONDITION, attrs={'class':'form-control'}))
-	transmission = forms.ChoiceField(widget=forms.Select(choices=SELECT, attrs={'class':'form-control'}),)
+	status = forms.CharField(widget=forms.Select(choices=CONDITION, attrs={'class':'form-control'}))
 	color = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
 	car_description =forms.ChoiceField(widget= forms.Textarea(attrs={'class':'form-control'}))
 	fuel = forms.ChoiceField(widget=forms.TextInput(attrs={'class':'form-control'}))
-	offer_type = forms.ChoiceField(widget=forms.Select(choices=OFFER_TYPE, attrs={'class':'form-control'}))
-	transmission = forms.ChoiceField(widget=forms.Select(choices=SELECT,attrs={'class':'form-control'}))
+	offer_type = forms.CharField(widget=forms.Select(choices=OFFER_TYPE, attrs={'class':'form-control'}))
+	transmission = forms.CharField(widget=forms.Select(choices=SELECT,attrs={'class':'form-control'}))
 	car_image = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class':'form-control'}))
 	car_image1 = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class':'form-control'}))
 	car_image2 = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class':'form-control'}))

@@ -41,15 +41,33 @@ class CommentForm(forms.ModelForm):
     }))
     class Meta:
         model = Comment
-        # exclude = ['active','email']
         fields = ('name', 'content' )
 	
      
      
     
     
-   
-      
+class BrandForm(forms.ModelForm):
+	name = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control'}))
+
+	class Meta():
+		model = Brands
+		fields = '__all__'
+
+ 
+class CarTypeForm(forms.ModelForm):
+	names = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}),)
+	class Meta():
+		model = Car_Type
+		fields =('names',)
+
+class LocationForm(forms.ModelForm):
+	name =forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+
+	class Meta():
+		model = Location
+		fields = ('name',)
+  
    
 
 
@@ -85,38 +103,36 @@ class CarForm(forms.ModelForm):
 	
 	make = forms.ModelChoiceField(
 		queryset= Brands.objects.all(),
-		widget=forms.Select(attrs={'class':'form-control'}),
+		widget=forms.Select(attrs={'class':'form-control col-md-9'}),
 		empty_label= 'Select maker'
 	)
 	vehicle_type= forms.ModelChoiceField(
 		queryset=Car_Type.objects.all(),
-		widget=forms.Select(attrs={'class':'form-control'}),
+		widget=forms.Select(attrs={'class':' form-control btn-outline-primary  col-md-7 rounded-0',}),
 		empty_label='Select vehicle type '
-	)
-	car_model = forms.CharField(widget=forms.TextInput())
+	) 
+	car_model = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control col-md-9'} ))
 	location_id = forms.ModelChoiceField(
 		queryset=Location.objects.all(),
-		widget= forms.Select(attrs={'class':'form-control'}),
+		widget= forms.Select(attrs={'class':'form-control col-md-9'}),
 		empty_label= 'Select your location'
 	)
-	offer_type = forms.ChoiceField(widget=forms.Select(choices=OFFER_TYPE), )
-	milleage = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
-	status = forms.ChoiceField(widget=forms.Select(choices=CONDITION, attrs={'class':'form-control'}))
-	transmission = forms.ChoiceField(widget=forms.Select(choices=SELECT, attrs={'class':'form-control'}),)
-	color = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
-	car_description =forms.ChoiceField(widget= forms.Textarea(attrs={'class':'form-control'}))
-	fuel = forms.ChoiceField(widget=forms.TextInput(attrs={'class':'form-control'}))
-	offer_type = forms.ChoiceField(widget=forms.Select(choices=OFFER_TYPE, attrs={'class':'form-control'}))
-	transmission = forms.ChoiceField(widget=forms.Select(choices=SELECT,attrs={'class':'form-control'}))
-	car_image = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class':'form-control'}))
-	car_image1 = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class':'form-control'}))
-	car_image2 = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class':'form-control'}))
-	car_image3 = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class':'form-control'}))
-	maintenance = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control'}))
-	prize = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'form-control'}))
-	old_prize = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'form-control'}))
-	first_registration = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'form-control'}))
-	manufacturing_date = forms.DateField(widget=forms.DateInput(attrs={'class':'form-control'}))
+	milleage = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control font-weight-bold '}))
+	status = forms.CharField(widget=forms.Select(choices=CONDITION, attrs={'class':'form-control col-md-9'}))
+	color = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control col-md-7'}))
+	car_description =forms.ChoiceField(widget= forms.Textarea(attrs={'class':'form-control col-md-12'}))
+	fuel = forms.ChoiceField(widget=forms.TextInput(attrs={'class':'form-control col-md-7'}))
+	offer_type = forms.CharField(widget=forms.Select(choices=OFFER_TYPE, attrs={'class':'form-control col-md-7'}))
+	transmission = forms.CharField(widget=forms.Select(choices=SELECT,attrs={'class':'form-control col-md-7'}))
+	car_image = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class':'form-control col-md-9'}))
+	car_image1 = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class':'form-control col-md-9'}))
+	car_image2 = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class':'form-control col-md-9'}))
+	car_image3 = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class':'form-control col-md-9'}))
+	maintenance = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control col-md-12'}))
+	prize = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'form-control col-md-7'}))
+	old_prize = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'form-control col-md-7'}))
+	first_registration = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'form-control col-md-7'}))
+	manufacturing_date = forms.DateField(widget=forms.DateInput(attrs={'class':'form-control col-md-7'}))
 
 	class Meta():
 		model = Cars
@@ -129,43 +145,25 @@ class CarForm(forms.ModelForm):
 	
 
 
-class BrandForm(forms.ModelForm):
-	name = forms.CharField(widget=forms.Select())
-
-	class Meta():
-		model = Brands
-		fields = '__all__'
 
 
-class CarTypeForm(forms.ModelForm):
-	SEDAN = 'Sedan'
-	COUPE = 'Coupe'
-	SUV = 'SUV'
-	TRUCK = 'Truck'
-	HATCHBACK = 'Hatchback'
-	WAGON = 'Wagon'
-	CROSSOVER = 'Crossover'
-	CONVERTIBLE = 'Convertible'
-	SPORTCAR = 'Sport Car'
-	MVP = 'MVP'
-	SELECT = ''
-	TYPES = [
-		(SEDAN, 'Sedan(car)'),
-		(COUPE,'Coupe'),
-		(SUV,'SUV'),
-		(TRUCK, 'Truck'),
-		(HATCHBACK, 'Hatchback'),
-		(CROSSOVER, 'Crossover'),
-		(CONVERTIBLE, 'Convertible'),
-		(SPORTCAR, 'Sport Car'),
-		(MVP, 'MVP'),
-		(SELECT, 'Select An Car Type'),
-	]
 
-	names = forms.CharField(widget=forms.Select(choices=TYPES),)
-	class Meta():
-		model = Car_Type
-		fields =('names',)
+
+class DealerForm(forms.ModelForm):
+    user_id = forms.ModelChoiceField(
+		queryset=User.objects.all(), 
+		widget=forms.Select(attrs={'class':'form-control'}), 
+		empty_label='Select a User'
+		)
+    phone = forms.CharField(widget=forms.NumberInput(attrs={'class':'form-control'}))
+    website = forms.URLField(widget=forms.URLInput(attrs={'class':'form-control'}))
+    profile = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class':'form-control'}))
+    biography = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control'}))
+    address = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control'}))
+
+
+
+
 
 class FilterForm(forms.ModelForm):
 	RENT = 'Rent'
@@ -226,6 +224,99 @@ class CommentForm(forms.ModelForm):
 	class Meta():
 		model = Comment
 		fields = ('name', 'comment' )
+
+
+class BlogForm(forms.ModelForm):
+	POLITICS = 'Politics'
+	SPORTS = 'Sports'
+	AUTOMOBILE = 'Automobile'
+	TECHNOLOGY = 'Technology'
+	ENTERTAINMENT = 'Entertainment'
+	BUSINESS = "Business"
+	HEALTH = 'Health'
+	CHOOSE = ""
+	SELECT = [
+		(POLITICS, 'Politics'),
+		(SPORTS, 'Sports'),
+		(AUTOMOBILE, 'Automobile' ),
+		(TECHNOLOGY, 'Technology'),
+		(ENTERTAINMENT, 'Entertainment'),
+		(BUSINESS, 'Business'),
+		(HEALTH, 'Health'),
+		(CHOOSE, 'Select category')
+
+	]
+   
+	title = forms.CharField(widget= forms.Textarea(attrs={'class':'form-control'}))
+	author = forms.ModelChoiceField(
+	queryset= User.objects.all(), 
+	widget= forms.Select(attrs={'class':'form-control'}), 
+	empty_label='Select Author'
+	)
+	category = forms.ChoiceField(widget=forms.Select(choices=SELECT,attrs={'class':'form-control'}))
+	content = forms.CharField(widget= forms.Textarea(attrs={'class':'form-control'}))
+	img = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class':'form-control'}))
+	time = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'class':'form-control'}))
+
+	class Meta():
+		model = Blog
+		fields = '__all__'
+
+     
+            
+        
+
+
+
+class TeamForm(forms.ModelForm):
+	team_name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+	profile = forms.ImageField(widget= forms.ClearableFileInput(attrs={'class':'form-control'}))
+	title = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+	description = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control'}))
+
+	class Meta():
+		model = Team
+		exclude = ('created', 'modified')
+    
+
+    
+
+
+class EngineForm(forms.ModelForm):
+	engine_name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+
+	class Meta():
+		model = Car_Engine
+		fields = ('engine_name',)
+
+    
+
+
+class ContactDealerForm(forms.ModelForm):
+	name = forms.CharField(widget= forms.TextInput(attrs={'class':'form-control'}))
+	phone = forms.CharField(widget=forms.NumberInput(attrs={'class':'form-control'}))
+	email = forms.EmailField(widget= forms.EmailInput(attrs={'class':'form-control'}))
+	location_id = forms.ModelChoiceField(queryset= Location.objects.all(), 
+	widget= forms.Select(attrs={'class':'form-control'}), 
+	empty_label= 'Select location'
+	)
+	dealer_id = forms.ModelChoiceField(queryset= User.objects.all(), 
+	widget=forms.Select(attrs={'class':'form-control'}), 
+	empty_label= 'Select a user'
+	)
+
+	class Meta():
+		model = Contact_Dealer
+		fields = ('__all__')
+       
+
+
+
+
+
+
+
+
 
 
 

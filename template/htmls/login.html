@@ -49,13 +49,15 @@ Login
               <div class="col-md-12">
                 <input type="submit" value="Login" class="btn btn-primary  py-2 px-4 rounded-0">
               </div>
-            </div>
+            </div>  
+                  <a href="{% url 'Cars:password_reset' %}">Forgot password?</a>
+
+
   
              {% csrf_token %} 
           </form>
         </div>
   
-        <a href="{% url 'Cars:password_reset' %}">Forgot password?</a>
         </div>
       </div>
     </div>

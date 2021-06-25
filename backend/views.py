@@ -16,7 +16,8 @@ def index(request):
 def viewcars(request):
     moto = Cars.objects.order_by('-created')[:4]
     coto = Cars.objects.order_by('created')[:4]
-    return render(request, 'backend/view-cars.html', {'coo':moto, 'cot':coto})
+    cnt = Cars.objects.order_by('created').count()
+    return render(request, 'backend/view-cars.html', {'coo':moto, 'cot':coto, 'cnt':cnt})
 
 @login_required(login_url='/pages/login-view/')
 
@@ -52,9 +53,9 @@ def change_password(request):
 
 @login_required(login_url='/pages/login-view/')
 def admin(request):
-    sale = Cars.objects.filter(offer_type='Sale').count()
-    rent = Cars.objects.filter(offer_type='Rent').count()
-    foreign = Cars.objects.filter(status='Foreign Used').count()
+    sal = Cars.objects.filter(offer_type='Sale').count()
+    ren = Cars.objects.filter(offer_type='Rent').count()
+    fore = Cars.objects.filter(status='Foreign Used').count()
     New = Cars.objects.filter(status='New').count()
     All = Cars.objects.all().count()
     return render(request, 'backend/admin_base.html', {'sal': sale, 'ren':rent, 'New':New, 'foreign':foreign , 'All':All})
@@ -106,17 +107,19 @@ def editlist(request):
     return render(request, 'backend/edit-listings.html')
 
 def userprofile(request):
-    dealer = Dealer_Info.objects.all()
+    dealer = Dealer_Idnfo.objects.all()
     return render(request, 'backend/user-profile.html', {'dealer' : dealer})
 
 def viewlist(request):
     newlist = Cars.objects.order_by('created')
+    countlist = Cars.objects.order_by('created').count()
 
-    return render(request, 'backend/view-listings.html' , {'new': newlist})
+    return render(request, 'backend/view-listings.html' , {'new': newlist, 'cnt': countlist})
 
 def viewlocation(request):
     viewlocations = Cars.objects.all()
-    return render(request, 'backend/view-location.html', {'view' : viewlocations})
+    viewcount = Cars.objects.all().count()
+    return render(request, 'backend/view-location.html', {'view' : viewlocations, 'count':viewcount})
 
 def admin_logout(request):
     logout(request)
@@ -125,3 +128,25 @@ def admin_logout(request):
 @login_required(login_url='/pages/login-view/')
 def confirm_logout(request):
     return render(request, 'backend/index.html')
+
+@login_required(login_url='/pages/login-view/')
+def approve_property(request, approve):
+    post = get_object_or_404(Car, pk=approve)
+    post.approve_car()
+    messages.success(request, 'Property approved successfully')
+    return redirect('backend:viewlist')
+
+@login_required(login_url='/pages/login-view/')
+def disapprove_property(request, disapprove):
+    post = get_object_or_404(Car, pk=disapprove)
+    post.disapprove_car()
+    messages.error(request, 'Property disapproved ')
+    return redirect('backend:viewlist')
+
+@login_required(login_url='/pages/login-view/')
+def delete_property(request, prop_id):
+    single_prop = get_object_or_404(Car, pk=prop_id)
+    single_prop.delete()
+    messages.success(request, 'Property Deleted ')
+    return redirect('backend:viewlist')
+
