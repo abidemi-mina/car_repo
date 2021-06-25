@@ -1,0 +1,96 @@
+{% extends 'htmls/base.html' %}
+{% load static %}
+{% block title%}
+Contact  
+{% endblock%}
+
+    
+  {% block content %}
+    <section class="section section-bg" id="call-to-action" style="background-image: url({% static 'assets/images/banner-image-1-1920x500.jpg' %})">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="cta-content">
+                        <br>
+                        <br>
+                        <h2>Feel free to <em>Contact Us</em></h2>
+                        <p>Ut consectetur, metus sit amet aliquet placerat, enim est ultricies ligula</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ***** Features Item Start ***** -->
+    <section class="section" id="features">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-6 offset-lg-3">
+                    <div class="section-heading">
+                        <h2>contact <em> info</em></h2>
+                        <img src="{% static 'assets/images/line-dec.png' %}" alt="waves">
+                        
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="icon">
+                        <i class="fa fa-phone"></i>
+                    </div>
+
+                    <h5><a href="#">+23409020838765</a></h5>
+
+                    <br>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="icon">
+                        <i class="fa fa-envelope"></i>
+                    </div>
+
+                    <h5><a href="#">CarWebsite@company.com</a></h5>
+
+                    <br>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="icon">
+                        <i class="fa fa-map-marker"></i>
+                    </div>
+
+                    <h5>Alabian</h5>
+
+                    <br>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Features Item End ***** -->
+ 
+    
+    	<!--Contact form-->
+
+
+  {% if messages %}
+    {% for mes in messages %}
+      <div class="alert" alert-success>{{ mes }}</div>
+    {% endfor %}
+  {% endif %}
+	<div style="margin:80px">
+		<h1>Contact</h1>
+		<h4>Contact us directly if you have any questions</h4>
+		<p>
+			Please write your name, email address and a message below if you have any questions.
+			One of our staff members will be happy to contact you directly and answer your questions as soon as possible. 
+		</p>
+		<form method="post">
+        {% csrf_token %}
+            {% comment %} {{form.as_p}} {% endcomment %}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    
+
+
+
+    {% endblock %}
