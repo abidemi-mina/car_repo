@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin-logout/', views.admin_logout, name='admin_logout'),
     path('approve/<int:approve>/', views.approve_property, name='approve'),
     path('diapprove/<int:disapprove>/', views.disapprove_property, name='disapprove'),
-    path('delete/<int:prop_id>/', views.delete_property, name='Gelete'),
+    path('delete/<int:prop_id>/', views.delete_property, name='delete'),
+    path('delete/<int:car>/', views.delete_cartype, name='delcar'),
 ]

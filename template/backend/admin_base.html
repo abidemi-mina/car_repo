@@ -108,10 +108,10 @@
                     </a>
                     <ul class="sidenav-second-level collapse" id="Properties">
                         <li>
-                            <a href="{% url 'backend:addcar' %}">Create new Cars</a>
+                            <a href="{% url 'backend:addcar' %}">Create new Car Type</a>
                         </li>
                         <li>
-                            <a href="{% url 'backend:view-cars' %}">View Car <span class="badge badge-pill badge-success">{{cnt}}</span></a>
+                            <a href="{% url 'backend:view-cars' %}">View Car Types <span class="badge badge-pill badge-success">{{cnt}}</span></a>
                         </li>
                     </ul>
                 </li>
@@ -171,6 +171,9 @@
                 
                 <li class="nav-item">
                     <a  class="nav-link" href="{% url 'Cars:home3' %}" >Home</a>
+                </li>
+                <li class="nav-item">
+                    <a  class="nav-link" href="{% url 'Cars:motor3' %}">Cars</a>
                 </li>
                 
                 
