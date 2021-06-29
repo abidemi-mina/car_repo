@@ -14,10 +14,9 @@ def index(request):
     return render(request, 'backend/index.html')
 
 def viewcars(request):
-    moto = Cars.objects.order_by('-created')[:4]
-    coto = Cars.objects.order_by('created')[:4]
+    coto = Car_Type.objects.all()
     cnt = Cars.objects.order_by('created').count()
-    return render(request, 'backend/view-cars.html', {'coo':moto, 'cot':coto, 'cnt':cnt})
+    return render(request, 'backend/view-cars.html', { 'cot':coto, 'cnt':cnt})
 
 @login_required(login_url='/pages/login-view/')
 
@@ -73,9 +72,8 @@ def addlistings(request):
     else:
         add_car =  CarForm()
     return render(request, 'backend/add-listings.html' , {'add': add_car})
+    
 @login_required(login_url='/pages/login-view/')
-
-
 def addlocation(request):
     location_form = LocationForm()
     if request.method == 'POST':
@@ -107,7 +105,7 @@ def editlist(request):
     return render(request, 'backend/edit-listings.html')
 
 def userprofile(request):
-    dealer = Dealer_Idnfo.objects.all()
+    dealer = Dealer_Info.objects.all()
     return render(request, 'backend/user-profile.html', {'dealer' : dealer})
 
 def viewlist(request):
@@ -131,22 +129,29 @@ def confirm_logout(request):
 
 @login_required(login_url='/pages/login-view/')
 def approve_property(request, approve):
-    post = get_object_or_404(Car, pk=approve)
+    post = get_object_or_404(Cars, pk=approve)
     post.approve_car()
-    messages.success(request, 'Property approved successfully')
+    messages.success(request, 'Car approved successfully')
     return redirect('backend:viewlist')
 
 @login_required(login_url='/pages/login-view/')
 def disapprove_property(request, disapprove):
-    post = get_object_or_404(Car, pk=disapprove)
+    post = get_object_or_404(Cars, pk=disapprove)
     post.disapprove_car()
-    messages.error(request, 'Property disapproved ')
+    messages.error(request, 'Car disapproved successfully')
     return redirect('backend:viewlist')
 
 @login_required(login_url='/pages/login-view/')
 def delete_property(request, prop_id):
-    single_prop = get_object_or_404(Car, pk=prop_id)
+    single_prop = get_object_or_404(Cars, pk=prop_id)
     single_prop.delete()
-    messages.success(request, 'Property Deleted ')
+    messages.success(request, 'Car Deleted successfully')
     return redirect('backend:viewlist')
+
+@login_required(login_url='/pages/login-view/')
+def delete_cartype(request, car):
+    single = get_object_or_404(Cars, id=car)
+    single.delete()
+    messages.success(request, 'Car type Deleted successfully')
+    return redirect('backend:view-cars')
 

@@ -45,6 +45,7 @@ class Location(models.Model):
 
 class Car_Type(models.Model):
     names = models.CharField(max_length=30)
+
     def __str__(self):
         return self.names
     

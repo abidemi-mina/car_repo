@@ -38,6 +38,16 @@ class BrandForm(forms.ModelForm):
 
 class CarTypeForm(forms.ModelForm):
 	names = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}),)
+	botcatcher = forms.CharField(required=False, widget=forms.HiddenInput(), validators=[validators.MaxLengthValidator(0), ])
+
+
+	def clean_name(self):
+		car_name = self.cleaned_data['names'].capitalize()
+		value_name = Car_Type.objects.filter(names=car_name).exists()
+		if value_name == True:
+			raise forms.ValidationError('Car type already exist')
+		return car_name
+
 	class Meta():
 		model = Car_Type
 		fields =('names',)
