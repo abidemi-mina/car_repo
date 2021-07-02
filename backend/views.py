@@ -127,6 +127,15 @@ def admin_logout(request):
 def confirm_logout(request):
     return render(request, 'backend/index.html')
 
+
+
+@login_required(login_url='/pages/login-view/')
+def delete(request, prop_id):
+    single = get_object_or_404(Cars, pk=prop_id)
+    single.delete()
+    messages.success(request, 'Car Deleted successfully')
+    return redirect('backend:viewlist')
+
 @login_required(login_url='/pages/login-view/')
 def approve_property(request, approve):
     post = get_object_or_404(Cars, pk=approve)
@@ -134,24 +143,34 @@ def approve_property(request, approve):
     messages.success(request, 'Car approved successfully')
     return redirect('backend:viewlist')
 
-@login_required(login_url='/pages/login-view/')
-def disapprove_property(request, disapprove):
-    post = get_object_or_404(Cars, pk=disapprove)
-    post.disapprove_car()
-    messages.error(request, 'Car disapproved successfully')
-    return redirect('backend:viewlist')
+# @login_required(login_url='/pages/login-view/')
+# def disapprove_property(request, disapprove):
+#     post = get_object_or_404(Cars, pk=disapprove)
+#     post.disapprove_car()
+#     messages.error(request, 'Car disapproved successfully')
+#     return redirect('backend:viewlist')
 
-@login_required(login_url='/pages/login-view/')
-def delete_property(request, prop_id):
-    single_prop = get_object_or_404(Cars, pk=prop_id)
-    single_prop.delete()
-    messages.success(request, 'Car Deleted successfully')
-    return redirect('backend:viewlist')
+
 
 @login_required(login_url='/pages/login-view/')
 def delete_cartype(request, car):
-    single = get_object_or_404(Cars, id=car)
+    single = get_object_or_404(Car_Type, pk=car)
     single.delete()
     messages.success(request, 'Car type Deleted successfully')
     return redirect('backend:view-cars')
+
+@login_required(login_url='/pages/login-page/')
+def edit_list(request, prop_id):
+    get_prop_record = get_object_or_404(Cars, id=prop_id)
+    if request.method == 'POST':
+        edit_property = CarForm(request.POST, request.FILES, instance=get_prop_record)
+        if edit_property.is_valid():
+            user = edit_property.save(commit=False)
+            user.agent_id = request.user
+            user.save()
+            messages.success(request, 'Property edited')
+    else:
+        edit_property = CarForm(instance=get_prop_record)
+    return render(request, 'backend/edit-listings.html', {'edit':edit_property})
+
 

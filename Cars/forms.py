@@ -57,6 +57,14 @@ class BrandForm(forms.ModelForm):
  
 class CarTypeForm(forms.ModelForm):
 	names = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}),)
+
+	def clean_name(self):
+		form_name = self.cleaned_data['names'].capitalize()
+		value_name = Car_Type.objects.filter(name=form_name).exists()
+		if value_name == True:
+			raise forms.ValidationError('Car type already exist')
+		return form_name
+
 	class Meta():
 		model = Car_Type
 		fields =('names',)
@@ -120,7 +128,7 @@ class CarForm(forms.ModelForm):
 	milleage = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control font-weight-bold '}))
 	status = forms.CharField(widget=forms.Select(choices=CONDITION, attrs={'class':'form-control col-md-9'}))
 	color = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control col-md-7'}))
-	car_description =forms.ChoiceField(widget= forms.Textarea(attrs={'class':'form-control col-md-12'}))
+	car_description =forms.CharField(widget= forms.Textarea(attrs={'class':'form-control col-md-12'}))
 	fuel = forms.ChoiceField(widget=forms.TextInput(attrs={'class':'form-control col-md-7'}))
 	offer_type = forms.CharField(widget=forms.Select(choices=OFFER_TYPE, attrs={'class':'form-control col-md-7'}))
 	transmission = forms.CharField(widget=forms.Select(choices=SELECT,attrs={'class':'form-control col-md-7'}))

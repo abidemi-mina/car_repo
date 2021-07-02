@@ -47,7 +47,8 @@
                     <td>{{n.status}}</td>
                     <td>{{n.first_registration}}</td> 
                     <td>
-                    <a href="#0">Edit</a>
+                      <a href="{% url 'backend:edit-list' n.pk  %}" >Edit</a>
+                    </td>
                     <td>
                       <a href="{% url 'backend:delete' n.pk  %}" >Delete</a>
                     </td>
