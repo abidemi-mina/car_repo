@@ -14,6 +14,7 @@ from django.db.models.query_utils import Q
 from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
+from django.conf import settings
 
 from .forms import CommentForm
 
@@ -57,10 +58,10 @@ def about(request):
     return render(request, 'htmls/about.html')
 
 
-def blog_detail(request,pk):
-    blogdetail = Blog.objects.get(pk=pk)
-    single_post = get_object_or_404(Blog, pk=pk)
-    comments = Comment.objects.filter(post=pk).order_by('-time')
+def blog_detail(request,blog_id):
+    blogdetail = Blog.objects.get(pk=blog_id)
+    single_post = get_object_or_404(Blog, pk=blog_id)
+    comments = Comment.objects.filter(post=blog_id).order_by('-time')
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -82,10 +83,12 @@ def blog_detail(request,pk):
 
 
 def blog_detail2(request, blog_id):
+    print(blog_id)
     blogdetail = Blog.objects.get(id=blog_id)
     return render(request, 'backend/blog-details2.html', {'post':blogdetail})
 
 def blog_detail3(request, blog_id):
+    
     blogdetail = Blog.objects.get(id=blog_id)
     return render(request, 'backend/blog-details3.html', {'post':blogdetail})
 
@@ -282,7 +285,7 @@ def password_reset_request(request):
 					}
 					email = render_to_string(email_template_name, c)
 					try:
-						send_mail(subject, email, 'admin@example.com' , [user.email], fail_silently=False)
+						send_mail(subject, email, 'aminatabidemi212@gmail.com' , [user.email], fail_silently=True)
 					except BadHeaderError:
 						return HttpResponse('Invalid header found.')
 					return redirect ("/password_reset/done/")

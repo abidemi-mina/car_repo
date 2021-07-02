@@ -45,10 +45,10 @@ Cars
                         {% for t in cot %}
 
                         <tr>
-                            <th> {{ t.id }}</th>
+                            <th> {{ t.pk }}</th>
                             <td>  {{t}} </td>
                             <td>
-                              <a href="{% url 'backend:delcar' t.id  %}" >Delete</a>
+                              <a href="{% url 'backend:delcar' t.pk %}" >Delete</a>
                             </td>
                         </tr>
                         
