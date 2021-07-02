@@ -115,7 +115,7 @@ def contact(request):
         plain_message = strip_tags(html_message)
         from_email = settings.EMAIL_FROM
         send = mail.send_mail(subject, plain_message, from_email,
-                        ['jigih77129@seek4wap.com', 'jigih77129@seek4wap.com'], html_message=html_message)
+                            ['jigih77129@seek4wap.com', 'jigih77129@seek4wap.com'], html_message=html_message)
         if send:
             print(send)
             messages.success(request, 'Email sent')
