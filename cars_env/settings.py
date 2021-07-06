@@ -69,6 +69,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_SSL = True
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'aminatabidemi212@gmail.com'
+EMAIL_HOST_PASSWORD = 'oluwatobiloba'
 
 
 MESSAGES_TAGS = {
@@ -81,15 +87,15 @@ MESSAGES_TAGS = {
 
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_HOST = 'smtp.hushmail.com'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'alayandesteven@gmail.com'
-EMAIL_FROM = 'alayandesteven@gmail.com'
-EMAIL_HOST_PASSWORD = secret.password
-EMAIL_USE_SSL = False
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_HOST = 'smtp.hushmail.com'
+# EMAIL_USE_TLS = True
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'alayandesteven@gmail.com'
+# EMAIL_FROM = 'alayandesteven@gmail.com'
+# EMAIL_HOST_PASSWORD = secret.password
+# EMAIL_USE_SSL = False
 
 
 

@@ -129,7 +129,7 @@ class CarForm(forms.ModelForm):
 	status = forms.CharField(widget=forms.Select(choices=CONDITION, attrs={'class':'form-control col-md-9'}))
 	color = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control col-md-7'}))
 	car_description =forms.CharField(widget= forms.Textarea(attrs={'class':'form-control col-md-12'}))
-	fuel = forms.ChoiceField(widget=forms.TextInput(attrs={'class':'form-control col-md-7'}))
+	fuel = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control col-md-7'}))
 	offer_type = forms.CharField(widget=forms.Select(choices=OFFER_TYPE, attrs={'class':'form-control col-md-7'}))
 	transmission = forms.CharField(widget=forms.Select(choices=SELECT,attrs={'class':'form-control col-md-7'}))
 	car_image = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class':'form-control col-md-9'}))
@@ -140,7 +140,7 @@ class CarForm(forms.ModelForm):
 	prize = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'form-control col-md-7'}))
 	old_prize = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'form-control col-md-7'}))
 	first_registration = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'form-control col-md-7'}))
-	manufacturing_date = forms.DateField(widget=forms.DateInput(attrs={'class':'form-control col-md-7'}))
+	manufacturing_date = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'form-control col-md-7'}))
 
 	class Meta():
 		model = Cars

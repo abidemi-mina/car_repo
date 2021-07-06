@@ -226,17 +226,6 @@ def register(request):
     return render(request, 'htmls/register.html', {'reg':register})
 
 
-@login_required(login_url='/pages/login-view/')
-def addlistings(request):
-    if request.method == 'POST':
-        add_car = CarForm(request.POST, request.FILES)
-        if add_car.is_valid():
-            user = add_car.save(commit=False)
-            user.save()
-            messages.success(request, 'Car added')
-    else:
-        add_car =  CarForm()
-    return render(request, 'htmls/add-property.html' , {'add': add_car})
 
 @login_required(login_url='/pages/login-view/')
 def addlistings2(request):
@@ -244,11 +233,24 @@ def addlistings2(request):
         add_car = CarForm(request.POST, request.FILES)
         if add_car.is_valid():
             user = add_car.save(commit=False)
+            # user.agent_id = request.user
+            # user.agent_id = request.user
+            user.approve = False
             user.save()
             messages.success(request, 'Car added')
     else:
         add_car =  CarForm()
-    return render(request, 'htmls/add-property.html' , {'add': add_car})
+    return render(request, 'htmls/add-property.html', {'add':add_car})
+# def addlistings2(request):
+#     if request.method == 'POST':
+#         add_car = CarForm(request.POST, request.FILES)
+#         if add_car.is_valid():
+#             user = add_car.save(commit=False)
+#             user.save()
+#             messages.success(request, 'Car added')
+#     else:
+#         add_car =  CarForm()
+#     return render(request, 'htmls/add-property.html' , {'add': add_car})
 
     
 
