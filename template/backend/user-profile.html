@@ -8,85 +8,56 @@
 <div class="content-wrapper">
     <div class="container-fluid">
       <!-- Breadcrumbs-->
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="#">Dashboard</a>
-        </li>
-        <li class="breadcrumb-item active">Add listing</li>
-      </ol>
+        <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                <a href="#">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item active">Add listing</li>
+        </ol>
 		<div class="box_general padding_bottom">
 			<div class="header_box version_2">
 				<h2><i class="fa fa-user"></i>Profile details</h2>
 			</div>
-			<div class="row">
-				{% if dealer %}
-					<!-- <section class="section section-bg" id="call-to-action" style="background-image: url({{ det.img_url }})">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 offset-lg-1">
-                    <div class="cta-content">
-                        <br>
-                        <br>
-                        <h2>Meet our <em>Team</em></h2>
-                        <p>Ut consectetur, metus sit amet aliquet placerat, enim est ultricies ligula</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
+				
+		
 
     <section class="section" id="trainers">
         <div class="container">
             <br>
             <br>
             <div class="row">
-               
+                
                 <div class="col-md-8 col-sm-8">
+                {% if dealer %}
+                
                     <div class="trainer-item">
                         <div class="image-thumb">
-                            <img src="{{ dealer.profile.url }}" alt="">
+                            <img src="{{ dealer.profile }}" alt="">
                         </div>
                         <div class="down-content">
-                            <h4><span> Username:{{  request.user.get_username}}</span></h4>
-                            <h4>{{ request.user.get_email }}</h4> hiii
-                            <p>{{ dealer.description }}</p>
+                            <h4>{{ dealer.user_id}}</h4>
+                            <p>{{ dealer.address }}</p>
+                            <p>{{ dealer.phone }}</p>
+                            <p>{{ dealer.biography }}</p>
                             <ul class="social-icons">
-                                <li><a href="https://facebook/damilola aminaah.com"><i class="fa fa-facebook"></i></a></li>
+                                <!-- <li><a href="https://facebook/damilola aminaah.com"><i class="fa fa-facebook"></i></a></li>
                                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                 <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                                <li><a href="#"><i class="fa fa-behance"></i></a></li> -->
                             </ul>
                         </div>
                     </div>
-                </div>
+                    
+                {% endif %}
 
-				<!-- <div class="col-md-4"> -->
-					<!-- <div class="trainer-item"> -->
-						<!-- <div class="image-thumb">
-							<img src=" {{dealer.profile}} " alt="">
-						</div>
-						<div class="down-content">
-							<span>{{dealer.user_id}} hiii</span>
-							<h4>{{dealer.website}}</h4>
-							<p>	{{dealer.biography}}</p>
-							<ul class="social-icons">
-								<li><a href="#"><i class="fa fa-facebook"></i></a>hiii</li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-								<li><a href="#"><i class="fa fa-behance"></i></a></li>
-							</ul>
-						</div> -->
-					<!-- </div> -->
-				<!-- </div> -->
-				{% endif %}
+                </div>
 
 			</div>
 			<!-- /row-->
 		</div>
+    </section>   
 	</div>
 </div>
-</div>
-<!-- /.container-fluid-->
-</div>
+
 <!-- /.container-wrapper-->
 {% endblock %}

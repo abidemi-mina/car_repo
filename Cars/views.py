@@ -3,6 +3,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse 
 from Cars.models import *
 from Cars.forms import *
+from django.contrib.auth.forms import User
 from django.contrib.auth import login,logout,authenticate
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -233,11 +234,9 @@ def addlistings2(request):
         add_car = CarForm(request.POST, request.FILES)
         if add_car.is_valid():
             user = add_car.save(commit=False)
-            # user.agent_id = request.user
-            # user.agent_id = request.user
             user.approve = False
             user.save()
-            messages.success(request, 'Car added')
+            messages.success(request, 'Car saved')
     else:
         add_car =  CarForm()
     return render(request, 'htmls/add-property.html', {'add':add_car})

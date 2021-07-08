@@ -12,6 +12,14 @@ class Dealer_Info(models.Model):
     biography = models.TextField()
     address = models.TextField()
 
+
+    def img_url(self):
+        if self.profile:
+            return self.profile.url
+        else:
+            return '/static/public/images/img_1.jpg'
+
+
     
     def __str__(self):
         return str(self.user_id)
@@ -98,7 +106,7 @@ class Cars(models.Model):
     car_image3 = models.ImageField(blank=True, null=True, upload_to='uploads/profile')
     vehicle_type = models.ForeignKey(Car_Type,related_name='vehicle_type', on_delete=models.CASCADE)
     car_description = models.TextField(blank=True, null=True)
-    manufacturing_date = models.DateField()
+    manufacturing_date = models.DateField(null=True, blank=True)
     offer_type = models.CharField(max_length=10, choices=OFFER_TYPE, default=CHOOSE)
     maintenance = models.TextField()
     transmission = models.CharField(max_length=20, choices=SELECT, default=CHOOSE)

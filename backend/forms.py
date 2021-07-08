@@ -57,17 +57,21 @@ class CarTypeForm(forms.ModelForm):
 
 
 class DealerForm(forms.ModelForm):
-    user_id = forms.ModelChoiceField(
-		queryset=User.objects.all(), 
-		widget=forms.Select(attrs={'class':'form-control'}), 
-		empty_label='Select a User'
-		)
-    phone = forms.CharField(widget=forms.NumberInput(attrs={'class':'form-control'}))
-    website = forms.URLField(widget=forms.URLInput(attrs={'class':'form-control'}))
-    profile = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class':'form-control'}))
-    biography = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control'}))
-    address = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control'}))
+	user_id = forms.ModelChoiceField(
+	queryset=User.objects.all(), 
+	widget=forms.Select(attrs={'class':'form-control'}), 
+	empty_label='Select a User'
+	)
+	phone = forms.CharField(widget=forms.NumberInput(attrs={'class':'form-control'}))
+	# website = forms.URLField(widget=forms.URLInput(attrs={'class':'form-control'}))
+	profile = forms.ImageField(widget=forms.ClearableFileInput())
+	biography = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control'}))
+	address = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control'}))
 
+	class Meta():
+	
+		model = Dealer_Info
+		exclude = ('website',)
 
 
 
@@ -144,11 +148,11 @@ class CarForm(forms.ModelForm):
 	old_prize = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'form-control'}))
 	first_registration = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'form-control'}))
 	approve = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class':'form-control'}))
-	manufacturing_date = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'form-control'}))
+	# manufacturing_date = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'form-control'}))
 
 	class Meta():
 		model = Cars
-		exclude = ('created','slug' )
+		exclude = ('created','slug', 'manufacturing_date', )
 
 
 

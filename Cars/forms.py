@@ -139,12 +139,14 @@ class CarForm(forms.ModelForm):
 	maintenance = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control col-md-12'}))
 	prize = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'form-control col-md-7'}))
 	old_prize = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'form-control col-md-7'}))
+	approve = forms.BooleanField(widget=forms.CheckboxInput())
 	first_registration = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'form-control col-md-7'}))
-	manufacturing_date = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'form-control col-md-7'}))
+
+	# manufacturing_date = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'form-control col-md-7'}))
 
 	class Meta():
 		model = Cars
-		exclude = ('created', 'slug', 'approve',)
+		exclude = ('created', 'slug', 'approve','manufacturing_date',)
 
 
 
@@ -158,17 +160,16 @@ class CarForm(forms.ModelForm):
 
 
 class DealerForm(forms.ModelForm):
-    user_id = forms.ModelChoiceField(
-		queryset=User.objects.all(), 
-		widget=forms.Select(attrs={'class':'form-control'}), 
-		empty_label='Select a User'
-		)
-    phone = forms.CharField(widget=forms.NumberInput(attrs={'class':'form-control'}))
-    website = forms.URLField(widget=forms.URLInput(attrs={'class':'form-control'}))
-    profile = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class':'form-control'}))
-    biography = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control'}))
-    address = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control'}))
+	user_id = forms.ModelChoiceField(queryset=User.objects.all(), widget=forms.Select(attrs={'class':'form-control'}), empty_label='Select a User')
+	phone = forms.CharField(widget=forms.NumberInput(attrs={'class':'form-control'}))
+	website = forms.URLField(widget=forms.URLInput(attrs={'class':'form-control'}))
+	profile = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class':'form-control'}))
+	biography = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control'}))
+	address = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control'}))
 
+	class Meta():
+		model = Dealer_Info
+		fields = '__all__'
 
 
 

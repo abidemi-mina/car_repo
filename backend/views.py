@@ -104,14 +104,38 @@ def createlist(request):
 def editlist(request):
     return render(request, 'backend/edit-listings.html')
 
-def userprofile(request):
-    dealer = Dealer_Info.objects.all()
+def userprofile(request, prop_id):
+    dealer = Dealer_Info.objects.get(id=prop_id)
     return render(request, 'backend/user-profile.html', {'dealer' : dealer})
+
+def updateprofile(request, prop_id):
+    dealer = get_object_or_404( id=prop_id)
+    if request.method == 'POST':
+        edit_property = DealerForm(request.POST, request.FILES, instance=dealer)
+        if edit_property.is_valid():
+            user = edit_property.save(commit=False)
+            # user.agent_id = request.user
+            user.save()
+            messages.success(request, 'Property edited')
+    else:
+        edit_property = DealerForm(instance=dealer)
+    return render(request, 'backend/update-profile.html', {'dealer' : edit_property})
+
+def createprofile(request , prop_id):
+    user = DealerForm()
+    if request.method == 'POST':
+        user = DealerForm(request.POST, request.FILES )
+        if user.is_valid():
+            vp = user.save(commit=False)
+            vp.save()
+            messages.success(request, 'profile created')
+    else:
+        user = DealerForm()
+    return render(request, 'backend/create-profile.html', {'dealer' : user})
 
 def viewlist(request):
     newlist = Cars.objects.order_by('created')
     countlist = Cars.objects.order_by('created').count()
-
     return render(request, 'backend/view-listings.html' , {'new': newlist, 'cnt': countlist})
 
 def viewlocation(request):
@@ -137,18 +161,18 @@ def delete(request, prop_id):
     return redirect('backend:viewlist')
 
 @login_required(login_url='/pages/login-view/')
-def approve_property(request, approve):
+def approve_car(request, approve):
     post = get_object_or_404(Cars, pk=approve)
     post.approve_car()
     messages.success(request, 'Car approved successfully')
     return redirect('backend:viewlist')
 
-# @login_required(login_url='/pages/login-view/')
-# def disapprove_property(request, disapprove):
-#     post = get_object_or_404(Cars, pk=disapprove)
-#     post.disapprove_car()
-#     messages.error(request, 'Car disapproved successfully')
-#     return redirect('backend:viewlist')
+@login_required(login_url='/pages/login-view/')
+def disapprove_car(request, disapprove):
+    post = get_object_or_404(Cars, pk=disapprove)
+    post.disapprove_car()
+    messages.error(request, 'Car disapproved successfully')
+    return redirect('backend:viewlist')
 
 
 

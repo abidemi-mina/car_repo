@@ -59,14 +59,14 @@
 
                     </a>
                     <ul class="sidenav-second-level collapse" id="Profile">
-                        <!-- <li>
-                            <a href="{% url 'backend:userprofile' %}">Add Profile</a>
-                        </li> -->
                         <li>
-                            <a href="{% url 'backend:userprofile' %}">View Profile</a>
+                            <a href="{% url 'backend:userprofile' user.id %}">View Profile</a>
                         </li>
                         <li>
-                            <a href="{% url 'backend:userprofile' %}">Update Profile</a>
+                            <a href="{% url 'backend:updateprofile' user.id %}">Update Profile</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'backend:createprofile' user.id %}">create Profile</a>
                         </li>
                     </ul>
                 </li>
