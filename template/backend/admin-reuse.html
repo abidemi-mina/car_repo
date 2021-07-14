@@ -86,6 +86,24 @@
                             <li {% if request.path == Home %} class="active"  {% endif %}>
                                 <a href="{% url 'Cars:home3' %}" >Home</a>
                             </li>
+
+                            <li>
+                                <a href="{% url 'backend:rent' %}">Rent</a>
+
+                            </li>
+                            <li>
+                                <a href="{% url 'backend:sale' %}">Sale</a>
+
+                            </li>
+                            <li>
+                                <a href="{% url 'backend:new' %}">New Cars</a>
+
+                            </li>
+                            <li>
+                                <a href="{% url 'backend:foreign' %}">Foreign Used</a>
+
+                            </li>
+
                             
 
 

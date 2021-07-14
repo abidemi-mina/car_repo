@@ -8,10 +8,52 @@ from django.contrib.auth import update_session_auth_hash
 from Cars.models import *
 from django.contrib.auth.decorators import login_required
 
+from .tokens import account_activation_token
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.encoding import force_text
+from django.db import IntegrityError
+from django.utils.http import urlsafe_base64_decode
+
+
 # Create your views here.
 @login_required(login_url='/pages/login-view/')
 def index(request):
     return render(request, 'backend/index.html')
+
+def foreign(request):
+    foreign = Cars.objects.filter(status='Foreign Used')
+    return render(request, 'backend/foreign-used.html',{'for':foreign})
+
+def new(request):
+    New = Cars.objects.filter(status='New')
+    return render(request, 'backend/new.html', {'new':New})
+
+def sale(request):
+    sale = Cars.objects.filter(offer_type='Sale')
+    return render(request, 'backend/sale.html',{'sale':sale})
+    
+def rent(request):
+    rent = Cars.objects.filter(offer_type='Rent')
+    return render(request, 'backend/rent.html', {'rent':rent})
+
+
+def foreign2(request):
+    foreign = Cars.objects.filter(status='Foreign Used')
+    return render(request, 'backend/foreign2-used.html',{'for':foreign})
+
+def new2(request):
+    New = Cars.objects.filter(status='New')
+    return render(request, 'backend/new2.html', {'new':New})
+
+def sale2(request):
+    sale = Cars.objects.filter(offer_type='Sale')
+    return render(request, 'backend/sale2.html',{'sale':sale})
+    
+def rent2(request):
+    rent = Cars.objects.filter(offer_type='Rent')
+    return render(request, 'backend/rent2.html', {'rent':rent})
+
+
 
 def viewcars(request):
     coto = Car_Type.objects.all()
@@ -60,7 +102,9 @@ def admin(request):
     return render(request, 'backend/admin_base.html', {'sal': sale, 'ren':rent, 'New':New, 'foreign':foreign , 'All':All})
 
 
-    
+def activation_sent_view(request):
+    return render(request, 'backend/activation_sent.html')
+
 @login_required(login_url='/pages/login-view/')
 def addlistings(request):
     if request.method == 'POST':
@@ -196,5 +240,24 @@ def edit_list(request, prop_id):
     else:
         edit_property = CarForm(instance=get_prop_record)
     return render(request, 'backend/edit-listings.html', {'edit':edit_property})
+
+
+def activate(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    # checking if the user exists, if the token is valid.
+    if user is not None and account_activation_token.check_token(user, token):
+        # if valid set active true
+        user.is_active = True
+        # set signup_confirmation true
+        user.profile.signup_confirmation = True
+        user.save()
+        login(request, user)
+        return redirect('Car:login_view')
+    else:
+        return render(request, 'backend/activation_invalid.html')
 
 

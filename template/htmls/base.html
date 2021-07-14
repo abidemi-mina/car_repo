@@ -65,10 +65,27 @@
                                 </li>
                                 
     
-                                <li {% if request.path == About %} class="active"  {% endif %}>
+                                <!-- <li {% if request.path == About %} class="active"  {% endif %}>
                                     <a href="{% url 'Cars:about' %}">About</a>
     
+                                </li> -->
+                                <li>
+                                    <a href="{% url 'Cars:rent' %}">Rent</a>
+    
                                 </li>
+                                <li>
+                                    <a href="{% url 'Cars:sale' %}">Sale</a>
+    
+                                </li>
+                                <li>
+                                    <a href="{% url 'Cars:new' %}">New Cars</a>
+    
+                                </li>
+                                <li>
+                                    <a href="{% url 'Cars:foreign' %}">Foreign Used</a>
+    
+                                </li>
+    
     
                                 
     

@@ -3,6 +3,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse 
 from Cars.models import *
 from Cars.forms import *
+from backend.views import activate, activation_sent_view
 from django.contrib.auth.forms import User
 from django.contrib.auth import login,logout,authenticate
 from django.contrib import messages
@@ -78,6 +79,22 @@ def home3(request):
 
 def about(request):
     return render(request, 'htmls/about.html')
+
+def foreign(request):
+    foreign = Cars.objects.filter(status='Foreign Used')
+    return render(request, 'htmls/foreign-used.html',{'for':foreign})
+
+def new(request):
+    New = Cars.objects.filter(status='New')
+    return render(request, 'htmls/new.html', {'new':New})
+
+def sale(request):
+    sale = Cars.objects.filter(offer_type='Sale')
+    return render(request, 'htmls/sale.html',{'sale':sale})
+    
+def rent(request):
+    rent = Cars.objects.filter(offer_type='Rent')
+    return render(request, 'htmls/rent.html', {'rent':rent})
 
 
 def blog_detail(request,pk):
@@ -220,7 +237,28 @@ def register(request):
     if request.method == 'POST':
         register = RegisterForm(request.POST)
         if register.is_valid():
-            register.save()
+            user = register.save()
+            user.refresh_from_db()
+            user.first_name = register.cleaned_data.get('first_name')
+            user.last_name = register.cleaned_data.get('last_name')
+            user.email = register.cleaned_data.get('email')
+            # user can't login until link confirmed
+            user.is_active = False
+            user.save()
+            current_site = get_current_site(request)
+            subject = 'Dealer Please Activate Your Account'
+            # load a template like get_template()
+            # and calls its render() method immediately.
+            message = render_to_string('htmls/activation_request.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                # method will generate a hash value with user related data
+                'token': account_activation_token.make_token(user),
+            })
+            user.email_user(subject, message)
+            return redirect('backend:activation_sent')
+            
             messages.success(request, 'User Registered ')
     else:
         register = RegisterForm()

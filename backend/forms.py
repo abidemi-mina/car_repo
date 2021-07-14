@@ -41,9 +41,9 @@ class CarTypeForm(forms.ModelForm):
 	botcatcher = forms.CharField(required=False, widget=forms.HiddenInput(), validators=[validators.MaxLengthValidator(0), ])
 
 
-	def clean_name(self):
+	def clean_names(self):
 		car_name = self.cleaned_data['names'].capitalize()
-		value_name = Car_Type.objects.filter(name=car_name).exists()
+		value_name = Car_Type.objects.filter(names=car_name).exists()
 		if value_name == True:
 			print ('corrrect')
 			raise forms.ValidationError('Car type already exist')

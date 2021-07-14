@@ -18,13 +18,19 @@ class RegisterForm(UserCreationForm):
 		model = User
 		fields = ('username', 'email', 'first_name', 'last_name', 'password1', 'password2')
 
+
+	def clean_email(self):
+		email_field = self.cleaned_data.get('email')
+		if User.objects.filter(email=email_field).exists():
+			raise forms.ValidationError('Email already exist')
+		return email_field
+
 	def save(self, commit=True):
 	    user = super().save(commit=False)
 	    user.username = self.cleaned_data['username']
 	    user.first_name = self.cleaned_data['first_name']
 	    user.last_name = self.cleaned_data['last_name']
 	    user.email = self.cleaned_data['email']
-
 	    if commit:
 	        user.save()
 	        return user
@@ -50,6 +56,14 @@ class CommentForm(forms.ModelForm):
 class BrandForm(forms.ModelForm):
 	name = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control'}))
 
+
+	def clean_names(self):
+		name = self.cleaned_data['name'].capitalize().lowercase()
+		value_name = Car_Type.objects.filter(name=name).exists()
+		if value_name == True:
+			raise forms.ValidationError('Brand already exist')
+		return name
+
 	class Meta():
 		model = Brands
 		fields = '__all__'
@@ -58,9 +72,9 @@ class BrandForm(forms.ModelForm):
 class CarTypeForm(forms.ModelForm):
 	names = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}),)
 
-	def clean_name(self):
-		form_name = self.cleaned_data['names'].capitalize()
-		value_name = Car_Type.objects.filter(name=form_name).exists()
+	def clean_names(self):
+		form_name = self.cleaned_data['names'].capitalize().lowercase()
+		value_name = Car_Type.objects.filter(names=form_name).exists()
 		if value_name == True:
 			raise forms.ValidationError('Car type already exist')
 		return form_name
@@ -71,6 +85,16 @@ class CarTypeForm(forms.ModelForm):
 
 class LocationForm(forms.ModelForm):
 	name =forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+
+
+
+
+	def clean_name(self):
+		name = self.cleaned_data['name'].capitalize().lowercase()
+		value_name = Car_Type.objects.filter(name=name).exists()
+		if value_name == True:
+			raise forms.ValidationError('Location  already exist')
+		return name
 
 	class Meta():
 		model = Location
