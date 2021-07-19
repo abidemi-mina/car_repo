@@ -2,12 +2,15 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth import logout
 from django.contrib import messages
 from backend.forms import *
+from Cars.forms import *
 from django.contrib.auth.models import User
+from django.contrib.auth import login,logout,authenticate
+
+
 from django.contrib.auth.forms import PasswordChangeForm 
 from django.contrib.auth import update_session_auth_hash 
 from Cars.models import *
 from django.contrib.auth.decorators import login_required
-
 from .tokens import account_activation_token
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_text
@@ -22,36 +25,52 @@ def index(request):
 
 def foreign(request):
     foreign = Cars.objects.filter(status='Foreign Used')
-    return render(request, 'backend/foreign-used.html',{'for':foreign})
+    filter_obj = FilterForm()
+    args = {'fil':filter_obj}
+    return render(request, 'backend/foreign-used.html',{'for':foreign}, args)
 
 def new(request):
     New = Cars.objects.filter(status='New')
-    return render(request, 'backend/new.html', {'new':New})
+    filter_obj = FilterForm()
+    args = {'fil':filter_obj}
+    return render(request, 'backend/new.html', {'new':New}, args)
 
 def sale(request):
     sale = Cars.objects.filter(offer_type='Sale')
-    return render(request, 'backend/sale.html',{'sale':sale})
+    filter_obj = FilterForm()
+    args = {'fil':filter_obj}
+    return render(request, 'backend/sale.html',{'sale':sale}, args)
     
 def rent(request):
     rent = Cars.objects.filter(offer_type='Rent')
-    return render(request, 'backend/rent.html', {'rent':rent})
+    filter_obj = FilterForm()
+    args = {'fil':filter_obj}
+    return render(request, 'backend/rent.html', {'rent':rent}, args)
 
 
 def foreign2(request):
     foreign = Cars.objects.filter(status='Foreign Used')
-    return render(request, 'backend/foreign2-used.html',{'for':foreign})
+    filter_obj = FilterForm()
+    args = {'fil':filter_obj}
+    return render(request, 'htmls/foreign2-used.html',{'for':foreign}, args)
 
 def new2(request):
     New = Cars.objects.filter(status='New')
-    return render(request, 'backend/new2.html', {'new':New})
+    filter_obj = FilterForm()
+    args = {'fil':filter_obj, 'new':New}
+    return render(request, 'htmls/new2.html', args)
 
 def sale2(request):
     sale = Cars.objects.filter(offer_type='Sale')
-    return render(request, 'backend/sale2.html',{'sale':sale})
+    filter_obj = FilterForm()
+    args = {'fil':filter_obj, 'sale':sale}
+    return render(request, 'htmls/sale2.html', args)
     
 def rent2(request):
     rent = Cars.objects.filter(offer_type='Rent')
-    return render(request, 'backend/rent2.html', {'rent':rent})
+    filter_obj = FilterForm()
+    args = {'fil':filter_obj, 'rent':rent}
+    return render(request, 'htmls/rent2.html', args)
 
 
 
@@ -149,29 +168,31 @@ def editlist(request):
     return render(request, 'backend/edit-listings.html')
 
 def userprofile(request, prop_id):
-    dealer = Dealer_Info.objects.get(id=prop_id)
+    dealer = Dealer_Info.objects.get(user_id=prop_id)
     return render(request, 'backend/user-profile.html', {'dealer' : dealer})
 
 def updateprofile(request, prop_id):
-    dealer = get_object_or_404( id=prop_id)
+    dealer = get_object_or_404(Dealer_Info, user_id=prop_id)
     if request.method == 'POST':
-        edit_property = DealerForm(request.POST, request.FILES, instance=dealer)
-        if edit_property.is_valid():
-            user = edit_property.save(commit=False)
-            # user.agent_id = request.user
+        dealer = DealerForm(request.POST, request.FILES, instance=dealer)
+        if dealer.is_valid():
+            user = dealer.save(commit=False)
+            # user.user_id = request.user
             user.save()
             messages.success(request, 'Property edited')
     else:
-        edit_property = DealerForm(instance=dealer)
-    return render(request, 'backend/update-profile.html', {'dealer' : edit_property})
+        dealer = DealerForm(instance=dealer)
+    return render(request, 'backend/update-profile.html', {'dealer' : dealer})
 
-def createprofile(request , prop_id):
+    
+
+def createprofile(request):
     user = DealerForm()
     if request.method == 'POST':
         user = DealerForm(request.POST, request.FILES )
         if user.is_valid():
-            vp = user.save(commit=False)
-            vp.save()
+            user = user.save(commit=False)
+            user.save()
             messages.success(request, 'profile created')
     else:
         user = DealerForm()
@@ -256,7 +277,7 @@ def activate(request, uidb64, token):
         user.profile.signup_confirmation = True
         user.save()
         login(request, user)
-        return redirect('Car:login_view')
+        return redirect('Cars:login_view')
     else:
         return render(request, 'backend/activation_invalid.html')
 

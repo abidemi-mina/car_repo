@@ -41,15 +41,16 @@
     
     <!-- ***** Header Area Start ***** -->
     <header class="header-area header-sticky">
-        <div class="container">
-            <div class="row">
+        <div class="container-fluid">
+            <div class="row ">
                 <div class="col-12">
                         <nav class="main-nav">
                             <!-- ***** Logo Start ***** -->
-                            <a href="{% url 'home' %}" class="logo">Car Dealer<em> Website</em></a>
+                            <a href="{% url 'home' %}" class="logo col-5"> &nbsp;Car Dealer<em> Website</em></a>
                             <!-- ***** Logo End ***** -->
                             <!-- ***** Menu Start ***** -->
-                            <ul class="nav">
+                            
+                            <ul class="nav col-7">
                                         {% url 'home' as Home %}
                                         {% url 'Cars:about' as About %}
                                         {% url 'Cars:login' as Login %}
@@ -60,7 +61,7 @@
                                         {% url 'Cars:contact' as Contact  %}
     
                                         
-                                <li {% if request.path == Home %} class="active"  {% endif %}>
+                                <li class="nav-link">
                                     <a href="{% url 'home' %}" >Home</a>
                                 </li>
                                 
@@ -69,19 +70,19 @@
                                     <a href="{% url 'Cars:about' %}">About</a>
     
                                 </li> -->
-                                <li>
+                                <li class="nav-link">
                                     <a href="{% url 'Cars:rent' %}">Rent</a>
     
                                 </li>
-                                <li>
+                                <li class="nav-link">
                                     <a href="{% url 'Cars:sale' %}">Sale</a>
     
                                 </li>
-                                <li>
+                                <li class="nav-link">
                                     <a href="{% url 'Cars:new' %}">New Cars</a>
     
                                 </li>
-                                <li>
+                                <li class="nav-link">
                                     <a href="{% url 'Cars:foreign' %}">Foreign Used</a>
     
                                 </li>
@@ -89,12 +90,12 @@
     
                                 
     
-                                <li {% if request.path == Team %} class="active"  {% endif %}>
+                                <li class="nav-link">
                                     <a href="{% url 'Cars:team' %}">Team</a>
     
                                 </li>
                                 
-                                <li class="dropdown">
+                                <li class="dropdown nav-link">
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Login</a>
                                   
                                     <div class="dropdown-menu">
@@ -102,7 +103,7 @@
                                         <a class="dropdown-item" href="{% url 'Cars:register' %}">Register</a>
                                     </div>
                                 </li>
-                                <li {% if request.path == Home %} class="active"  {% endif %}>
+                                <li class="nav-link">
                                     <a href="{% url 'Cars:contact' %}">Contact</a>
                                 </li> 
                                 

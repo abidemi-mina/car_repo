@@ -3,6 +3,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse 
 from Cars.models import *
 from Cars.forms import *
+from backend.forms import *
 from backend.views import activate, activation_sent_view
 from django.contrib.auth.forms import User
 from django.contrib.auth import login,logout,authenticate
@@ -16,9 +17,15 @@ from django.contrib.auth.models import User
 from django.template.loader import render_to_string
 from django.db.models.query_utils import Q
 from django.utils.http import urlsafe_base64_encode
+from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
+from .tokens import account_activation_token
 from django.conf import settings
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.encoding import force_text
+from django.db import IntegrityError
+from django.utils.http import urlsafe_base64_decode
 
 
 
@@ -82,19 +89,88 @@ def about(request):
 
 def foreign(request):
     foreign = Cars.objects.filter(status='Foreign Used')
-    return render(request, 'htmls/foreign-used.html',{'for':foreign})
+    filter_obj = FilterForm()
+    args = {'fil':filter_obj,'for':foreign}
+    return render(request, 'htmls/foreign-used.html', args)
 
 def new(request):
     New = Cars.objects.filter(status='New')
-    return render(request, 'htmls/new.html', {'new':New})
+    filter_obj = FilterForm()
+    args = {'fil':filter_obj, 'new':New}
+    return render(request, 'htmls/new.html', args)
 
 def sale(request):
     sale = Cars.objects.filter(offer_type='Sale')
-    return render(request, 'htmls/sale.html',{'sale':sale})
+    filter_obj = FilterForm()
+    args = {'fil':filter_obj,'sale':sale}
+    return render(request, 'htmls/sale.html', args)
     
 def rent(request):
     rent = Cars.objects.filter(offer_type='Rent')
-    return render(request, 'htmls/rent.html', {'rent':rent})
+    filter_obj = FilterForm()
+    args = {'fil':filter_obj, 'rent':rent}
+    return render(request, 'htmls/rent.html', args)
+
+
+def edit_list(request, prop_id):
+    get_prop_record = get_object_or_404(Cars, id=prop_id)
+    if request.method == 'POST':
+        edit_property = CarForm(request.POST, request.FILES, instance=get_prop_record)
+        if edit_property.is_valid():
+            user = edit_property.save(commit=False)
+            user.agent_id = request.user
+            user.save()
+            messages.success(request, 'Property edited')
+    else:
+        edit_property = CarForm(instance=get_prop_record)
+    return render(request, 'htmls/edit-listings.html', {'edit':edit_property})
+
+
+def userprofile(request, prop_id):
+    dealer = Dealer_Info.objects.get(user_id=prop_id)
+    return render(request, 'htmls/user-profile.html', {'dealer' : dealer})
+
+def updateprofile(request, prop_id):
+    dealer = get_object_or_404(Dealer_Info, user_id=prop_id)
+    if request.method == 'POST':
+        dealer = DealerForm(request.POST, request.FILES, instance=dealer)
+        if dealer.is_valid():
+            user = dealer.save(commit=False)
+            # user.user_id = request.user
+            user.save()
+            messages.success(request, 'Property edited')
+    else:
+        dealer = DealerForm(instance=dealer)
+    return render(request, 'htmls/update-profile.html', {'dealer' : dealer})
+
+@login_required(login_url='/pages/login-view/')
+def change_password(request):
+    if request.method == 'POST':
+        form = ChangeWord(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
+            # return redirect('change_password')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = ChangeWord(request.user)
+    return render(request, 'htmls/change-password.html', {'form': form})
+
+
+def createprofile(request):
+    user = DealerForm()
+    if request.method == 'POST':
+        user = DealerForm(request.POST, request.FILES )
+        if user.is_valid():
+            user = user.save(commit=False)
+            user.save()
+            messages.success(request, 'profile created')
+    else:
+        user = DealerForm()
+    return render(request, 'htmls/create-profile.html', {'dealer' : user})
+
 
 
 def blog_detail(request,pk):
@@ -228,8 +304,15 @@ def dashboard(request):
     foreign = Cars.objects.filter(status='Foreign Used').count()
     New = Cars.objects.filter(status='New').count()
     All = Cars.objects.all().count()
-
-    return render(request, 'htmls/dashboard.html',{'salec': sale, 'rentc':rent, 'Newc':New, 'foreignc':foreign , 'Allc':All})
+    sale2 = Cars.objects.filter(offer_type='Sale')[:4]
+    rent2 = Cars.objects.filter(offer_type='Rent')[:4]
+    detail2 = Blog.objects.all()
+    foreign2 = Cars.objects.filter(status='Foreign Used')[:4]
+    New2 = Cars.objects.filter(status='New')[:4]
+    location2 = Location.objects.all()
+    filter_obj = FilterForm()
+    args = {'sale': sale2, 'rent':rent2, 'New':New2, 'foreign':foreign2,'location':location2, 'det':detail2, 'fil':filter_obj,'salec': sale, 'rentc':rent, 'Newc':New, 'foreignc':foreign , 'Allc':All}
+    return render(request, 'htmls/dashboard.html',args)
 
 
 def register(request):
@@ -239,9 +322,9 @@ def register(request):
         if register.is_valid():
             user = register.save()
             user.refresh_from_db()
-            user.first_name = register.cleaned_data.get('first_name')
-            user.last_name = register.cleaned_data.get('last_name')
-            user.email = register.cleaned_data.get('email')
+            user.profile.first_name = register.cleaned_data.get('first_name')
+            user.profile.last_name = register.cleaned_data.get('last_name')
+            user.profile. email = register.cleaned_data.get('email')
             # user can't login until link confirmed
             user.is_active = False
             user.save()
@@ -249,7 +332,7 @@ def register(request):
             subject = 'Dealer Please Activate Your Account'
             # load a template like get_template()
             # and calls its render() method immediately.
-            message = render_to_string('htmls/activation_request.html', {
+            message = render_to_string('backend/activation-request.html', {
                 'user': user,
                 'domain': current_site.domain,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
@@ -257,7 +340,7 @@ def register(request):
                 'token': account_activation_token.make_token(user),
             })
             user.email_user(subject, message)
-            return redirect('backend:activation_sent')
+            return redirect('activation_sent')
             
             messages.success(request, 'User Registered ')
     else:
@@ -278,6 +361,14 @@ def addlistings2(request):
     else:
         add_car =  CarForm()
     return render(request, 'htmls/add-property.html', {'add':add_car})
+
+
+
+def viewlist(request):
+    newlist = Cars.objects.order_by('created')
+    countlist = Cars.objects.order_by('created').count()
+    return render(request, 'htmls/view-listings.html' , {'new': newlist, 'cnt': countlist})
+
 # def addlistings2(request):
 #     if request.method == 'POST':
 #         add_car = CarForm(request.POST, request.FILES)

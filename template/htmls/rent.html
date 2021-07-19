@@ -25,92 +25,96 @@ Home
     <!-- ***** Main Banner Area End ***** -->
 
   <br>
-    <div class="contact-form">
-        <form action="{% url 'Cars:form' %}"  method="GET">
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label>Offer Type</label>
-                        <div class="select-wrap">
-                            <!-- <span class="icon icon-arrow_drop_down"></span> -->
-                           {{ fil.offer_type }}
-                        </div>
-                        
+  <div class="contact-form">
+    <form action="{% url 'Cars:form' %}"  method="GET">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 5col-sm-5 col-xs-12">
+                <div class="form-group">
+                    <label>Offer Type</label>
+                    <div class="select-wrap">
+                        <!-- <span class="icon icon-arrow_drop_down"></span> -->
+                       {{ fil.offer_type }}
                     </div>
+                    
                 </div>
-        
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label>Vehicle Type</label>
-                        <div class="select-wrap">
-                            {{ fil.vehicle_type }}
-                        </div>
-                    </div>
-                </div>
-        
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label>Make</label>
-                        <div class="select-wrap">
-                            {{ fil.make }}
-                        </div>
-                    </div>
-                </div>
-        
-                
-        
-                <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label>Price</label>
-                        <div class="select-wrap">
-                            {{ fil.prize.errors }}
-                            {{ fil.prize }}
-                        </div>
-                    </div>
-                </div>
-         -->
-                
-        
-                <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label>Milleage</label>
-                        <div class="select-wrap">
-                            {{ fil.milleage.errors }}
-                            {{ fil.milleage }}
-                        </div>
-                    </div>
-                </div> -->
-               
-
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label>Transmission</label>
-                        <div class="select-wrap">
-                            {{ fil.transmission }}
-                        </div>
-  
-                    </div>
-                </div>
-
-
-                <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label></label>
-                        <input type="number"  placeholder="Enter the car year">
-                    </div>
-                </div>
-        
-                 -->
-                
-            <div class="col-sm-4 offset-sm-4">
-              <div class="main-button text-center">
-                  <input type="submit" value="Search">
-              </div>
             </div>
-            <br>
-            <br>
-        </form>
-    </div>
+    
+            <div class="col-lg-3 col-md-3 col-sm-5 col-xs-12">
+                <div class="form-group">
+                    <label>Vehicle Type</label>
+                    <div class="select-wrap">
+                        {{ fil.vehicle_type }}
+                    </div>
+                </div>
+            </div>
+
+           
+    
+            <div class="col-lg-3 col-md-3 col-sm-5 col-xs-12">
+                <div class="form-group">
+                    <label>Make</label>
+                    <div class="select-wrap">
+                        {{ fil.make }}
+                    </div>
+                </div>
+            </div>
+    
+            
+    
+            <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label>Price</label>
+                    <div class="select-wrap">
+                        {{ fil.prize.errors }}
+                        {{ fil.prize }}
+                    </div>
+                </div>
+            </div>
+     -->
+            
+    
+            <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label>Milleage</label>
+                    <div class="select-wrap">
+                        {{ fil.milleage.errors }}
+                        {{ fil.milleage }}
+                    </div>
+                </div>
+            </div> -->
+           
+
+            <div class="col-lg-3 col-md-3 col-sm-5 col-xs-12">
+                <div class="form-group">
+                    <label>Transmission</label>
+                    <div class="select-wrap">
+                        {{ fil.transmission }}
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label></label>
+                    <input type="number"  placeholder="Enter the car year">
+                </div>
+            </div>
+    
+             -->
+             <div class="col-sm-5 offset-sm-3">
+                <div class="main-button text-center">
+                    <button type="submit" value="Search" > Search</button>
+                  
+                </div>
+            
+        
+        </div>
+        <br>
+        <br>
+    </form>
+</div>
 
  
     
