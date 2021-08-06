@@ -94,7 +94,7 @@
                         <li>
                             <a href="{% url 'backend:viewlist' %}">View_list <span class="badge badge-pill badge-success">{{cnt}}</span></a>
                         </li>
-                        
+
                     </ul>
                 </li>
 
@@ -111,15 +111,18 @@
                             <a href="{% url 'backend:addcar' %}">Create new Car Type</a>
                         </li>
                         <li>
+                            <a href="{% url 'backend:addbrand' %}">Create new Brand Type</a>
+                        </li>
+                        <li>
                             <a href="{% url 'backend:view-cars' %}">View Car Types <span class="badge badge-pill badge-success">{{cnt}}</span></a>
                         </li>
                     </ul>
                 </li>
 
 
-				
-				
-				
+
+
+
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Properties">
                     <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#Location" data-parent="#Location">
                         <i class="fa fa-fw fa-gear"></i>
@@ -132,10 +135,10 @@
                         <li>
                             <a href="{% url 'backend:viewlocation' %}">View Location </span></a>
                         </li>
-                       
+
                     </ul>
                 </li>
-				
+
                 <!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
                     <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#Components">
                         <i class="fa fa-fw fa-gear"></i>
@@ -158,17 +161,17 @@
                     </a>
                 </li>
             </ul>
-            
-              
+
+
                 <li class="nav">
                     <h5>  Welcome {{ request.user.get_username }} </h5>
                 </li>
-              
+
             <ul class="navbar-nav ml-auto">
                 <!-- <li class="nav-item">
                     <a href="{% url 'Cars:home3' %}" >Home</a>
                 </li> -->
-                
+
                 <li class="nav-item">
                     <a  class="nav-link" href="{% url 'Cars:home3' %}" >Home</a>
                 </li>
@@ -192,14 +195,14 @@
 
                 </li>
 
-                
-                
+
+
                     <li class="nav-item">
                     <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
                         <i class="fa fa-fw fa-sign-out"></i>Logout</a>
                 </li>
-               
-                
+
+
             </ul>
         </div>
     </nav>
@@ -221,7 +224,7 @@
                             <div class="card-body-icon">
                                 <i class="fa fa-fw fa-envelope-open"></i>
                             </div>
-                            
+
                             <div class="mr-5">
                                 <h5>26 Cars!</h5>
                             </div>
@@ -295,15 +298,15 @@
                 {% comment %} <div class="header_box version_2">
                     <h2><i class="fa fa-bar-chart"></i>Statistic</h2>
                 </div> {% endcomment %}
-    
+
                 {% block content %}
-    
-    
+
+
                 {% endblock %}
-            
+
             {% comment %} </div> {% endcomment %}
           </div>
-            
+
 
 
 

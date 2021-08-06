@@ -23,7 +23,7 @@ class Dealer_Info(models.Model):
             return '/static/public/images/img_1.jpg'
 
 
-    
+
     def __str__(self):
         return str(self.user_id)
 
@@ -53,13 +53,13 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 class Brands(models.Model):
     name = models.CharField(max_length=30)
-    
-    
+
+
     def __str__(self):
         return self.name
-    
+
     class Meta():
-        verbose_name_plural = 'Brand'
+        verbose_name_plural = 'Brands'
 
 
 
@@ -68,7 +68,7 @@ class Location(models.Model):
 
     def __str__(self):
         return self.name
-    
+
     class Meta():
         verbose_name_plural = 'Location'
 
@@ -78,13 +78,13 @@ class Car_Type(models.Model):
 
     def __str__(self):
         return self.names
-    
+
     class Meta():
         verbose_name_plural = 'Car Type'
 
 
 
- 
+
 class Cars(models.Model):
     RENT = 'Rent'
     SALE = 'Sale'
@@ -139,7 +139,7 @@ class Cars(models.Model):
     approve = models.BooleanField(default=False)
 
 
-        
+
     def img_url(self):
         if self.car_image:
             return self.car_image.url
@@ -152,7 +152,7 @@ class Cars(models.Model):
             return self.car_image1.url
         else:
             return '/static/public/images/img_1.jpg'
-    
+
     def img_url2(self):
         if self.car_image2.url:
             return self.car_image2.url
@@ -168,13 +168,13 @@ class Cars(models.Model):
     def approve_car(self):
         self.approve = True
         self.save()
-    
+
     def disapprove_car(self):
         self.approve = False
         self.save()
 
 
-    
+
     class Meta():
         verbose_name_plural = 'Car'
 
@@ -185,7 +185,7 @@ class Cars(models.Model):
 
 
 class Blog(models.Model):
-    
+
     POLITICS = 'Politics'
     SPORTS = 'Sports'
     AUTOMOBILE = 'Automobile'
@@ -203,12 +203,12 @@ class Blog(models.Model):
         (BUSINESS, 'Business'),
         (HEALTH, 'Health'),
         (CHOOSE, 'Select category')
-        
+
     ]
-   
-    
-    
-    
+
+
+
+
     title = models.TextField()
     author = models.ForeignKey(User, related_name="author", on_delete=models.CASCADE)
     category = models.CharField(max_length=100, choices=SELECT, default=CHOOSE)
@@ -221,15 +221,15 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title
-    
+
     @property
     def img_url(self):
         if self.img.url:
             return self.img.url
         else:
               return '/static/public/images/img_1.jpg'
-          
-          
+
+
 
 class Comment(models.Model):
     post = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='comment')
@@ -239,21 +239,21 @@ class Comment(models.Model):
     time = models.DateField(auto_now_add=True)
     active = models.BooleanField(default=False)
 
-    
-    
+
+
     def __str__(self):
         return self.name
-    
+
     class Meta():
         verbose_name_plural = 'Comment'
-        
-    
-    
-    
-    
-            
-            
-        
+
+
+
+
+
+
+
+
 
 
 
@@ -267,20 +267,20 @@ class Team(models.Model):
 
     def __str__(self):
         return self.team_name
-    
+
     class Meta():
         verbose_name_plural = 'Team'
 
-    
+
 
 
 class Car_Engine(models.Model):
-    
+
     engine_name = models.CharField(max_length=30)
 
     def __str__(self):
         return self.engine_name
-    
+
     class Meta():
         verbose_name_plural = 'Car Engine'
 

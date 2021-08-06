@@ -2,10 +2,10 @@
     {% extends 'htmls/base.html' %}
     {% load static %}
     {% block title%}
-    Cars Detail  
+    Cars Detail
     {% endblock%}
-    
-        
+
+
         {% block content %}
 
     <!-- ***** Call to Action Start ***** -->
@@ -17,8 +17,8 @@
                     <div class="cta-content">
                         <br>
                         <br>
-                        <h2><small><del>{{ det.prize }}</del></small> <em>{{det.prize }}</em></h2>
-                        <p>{{ det.title }}</p>
+                        <h2>{{ det.title }}</h2>
+
                     </div>
                 </div>
             </div>
@@ -28,12 +28,12 @@
 
     <!-- ***** Fleet Starts ***** -->
     <section class="section" id="trainers">
-     
+
       <div class="container">
         <br>
         <br>
 
-       
+
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
               <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -63,7 +63,7 @@
                 <span class="sr-only">Next</span>
               </a>
             </div>
-        
+
         <br>
         <br>
 
@@ -72,11 +72,10 @@
             <ul>
               <li><a href='#tabs-1'><i class="fa fa-cog"></i> Vehicle Specs</a></li>
               <li><a href='#tabs-2'><i class="fa fa-info-circle"></i> Vehicle Description</a></li>
-              <!-- <li><a href='#tabs-3'><i class="fa fa-plus-circle"></i> Vehicle Extras</a></li> -->
-              <li><a href='#tabs-4'><i class="fa fa-phone"></i> Contact Details</a></li>
+              <li><a href='#tabs-4 '><i class="fa fa-phone"></i> Contact Details</a></li>
             </ul>
           </div>
-        
+
           <div class="col-lg-8">
             <section class='tabs-content' style="width: 100%;">
               <article id='tabs-1'>
@@ -85,78 +84,79 @@
                 <div class="row">
                    <div class="col-sm-6">
                         <label>Type</label>
-                   
+
                         <p>{{ det.status }}</p>
                    </div>
 
                    <div class="col-sm-6">
                         <label>Make</label>
-                   
+
                         <p>{{ det.make }}</p>
                    </div>
 
                    <div class="col-sm-6">
-                        <label>Model</label>                       
+                        <label>Model</label>
                         <p>{{ det.car_model }}</p>
                    </div>
 
                    <div class="col-sm-6">
                         <label>First registration</label>
-                   
+
                         <p>{{ det.first_registration }}</p>
                    </div>
 
                    <div class="col-sm-6">
                         <label>Mileage</label>
-                   
+
                         <p>{{ det.milleage }}</p>
                    </div>
 
                    <div class="col-sm-6">
                         <label>Fuel</label>
-                   
+
                         <p>{{ det.fuel }}</p>
                    </div>
 
-                  
+
                    <div class="col-sm-6">
                         <label>Transmission</label>
-                   
+
                         <p>{{ det.transmission }}</p>
                    </div>
 
 
-                   
+
 
                    <div class="col-sm-6">
                         <label>Color</label>
-                   
+
                         <p>{{ det.color }}</p>
                    </div>
                 </div>
               </article>
               <article id='tabs-2'>
                 <h4>Vehicle Description</h4>
-                
-                <p>{{ det.car_description }}</p> 
+
+                <p>{{ det.car_description }}</p>
                </article>
                {% endif %}
 
-              {% if cont %}
-              {% for c in cont %}
+
+            {% if user %}
+                {% for c in user %}
               <article id='tabs-4'>
                 <h4>Contact details</h4>
 
-                <div class="row">   
+                <div class="row">
                     <div class="col-sm-6">
                         <label>Name</label>
 
-                        <p>{{ c.name }}</p>
+                        <p>{{ c.user }}</p>
                     </div>
-                    
+
                     <div class="col-sm-6">
                         <label>Phone</label>
-                        <p>{{ c.phone }}</p>
+                        <p>{{c.phone }}</p>
                     </div>
                     <div class="col-sm-6">
                         <label>Email</label>
@@ -166,17 +166,17 @@
               </article>
               {% endfor %}
               {% endif %}
+
             </section>
           </div>
-        
-          
+
+
         </div>
     </div>
-      
-      
+
+
     </section>
     <!-- ***** Fleet Ends ***** -->
     {% endblock %}
-    
+
     <!-- ***** Footer Start ***** -->
-    

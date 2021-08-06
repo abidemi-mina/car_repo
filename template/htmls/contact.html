@@ -1,10 +1,10 @@
 {% extends 'htmls/base.html' %}
 {% load static %}
 {% block title%}
-Contact  
+Contact
 {% endblock%}
 
-    
+
   {% block content %}
     <section class="section section-bg" id="call-to-action" style="background-image: url({% static 'assets/images/banner-image-1-1920x500.jpg' %})">
         <div class="container">
@@ -29,7 +29,7 @@ Contact
                     <div class="section-heading">
                         <h2>contact <em> info</em></h2>
                         <img src="{% static 'assets/images/line-dec.png' %}" alt="waves">
-                        
+
                     </div>
                 </div>
 
@@ -38,7 +38,7 @@ Contact
                         <i class="fa fa-phone"></i>
                     </div>
 
-                    <h5><a href="tel://+133340405566">+1 333 4040 5566</a></h5>
+                    <h5><a href="tel://+2349085491791">+2349085491791</a></h5>
 
                     <br>
                 </div>
@@ -48,7 +48,7 @@ Contact
                         <i class="fa fa-envelope"></i>
                     </div>
 
-                    <h5><a href="mailto:contact@company.com">contact@company.com</a></h5>
+                    <h5><a href="mailto:aminatabidemi212@gmail.com">aminatabidemi@company.com</a></h5>
 
                     <br>
                 </div>
@@ -66,12 +66,12 @@ Contact
         </div>
     </section>
     <!-- ***** Features Item End ***** -->
- 
-    
+
+
     	<!--Contact form-->
 
 
-  
+
 
   <section class="section" id="contact-us" style="margin-top: 0">
         <div class="container-fluid">
@@ -82,7 +82,7 @@ Contact
       <div class="alert alert-success">{{ mes }}</div>
     {% endfor %}
   {% endif %}
-             
+
                 <div class="col-lg-12 col-md-12 col-xs-12">
                     <div class="contact-form section-bg" style="background-image: url(assets/images/contact-1-720x480.jpg)">
                         <form id="contact" action="" method="post">
@@ -90,7 +90,7 @@ Contact
                           <div class="row">
                             <div class="col-md-6 col-sm-12">
                               <fieldset>
-                                <input name="name" type="text" id="name" placeholder="Full name" required="">
+                                <input name="FullName" type="text" id="name" placeholder="Full name" required=True>
                               </fieldset>
                             </div>
                             <div class="col-md-6 col-sm-12">
@@ -130,7 +130,7 @@ Contact
 		<h4>Contact us directly if you have any questions</h4>
 		<p>
 			Please write your name, email address and a message below if you have any questions.
-			One of our staff members will be happy to contact you directly and answer your questions as soon as possible. 
+			One of our staff members will be happy to contact you directly and answer your questions as soon as possible.
 		</p>
 		<form method="post">
         {% csrf_token %}
@@ -138,7 +138,7 @@ Contact
             <button type="submit">Submit</button>
         </form>
     </div> {% endcomment %}
-    
+
 
 
 

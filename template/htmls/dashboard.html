@@ -19,26 +19,25 @@ Dashboard
   </div>
 </div> -->
 
-<div class="container-fluid">
-  <!-- ***** Main Banner Area Start ***** -->
-  <div class="main-banner" id="top">
-    <video autoplay muted loop id="bg-video">
-        <source src="{% static 'assets/images/video.mp4' %}" type="video/mp4" />
-    </video>
+<!-- ***** Main Banner Area Start ***** -->
+    <div class="main-banner" id="top">
+        <!--<video autoplay muted loop id="bg-video">-->
+        <!--    <source src="{% static 'assets/images/video.mp4' %}" type="video/mp4" />-->
+        <!--</video>-->
+                                <img src="{% static 'assets/images/used-cars.png' %}" alt="">
 
-    <div class="video-overlay header-text">
-        <div class="caption">
-            <h6>Lorem ipsum dolor sit amet</h6>
-            <h2>Best <em>car dealer</em> in town!</h2>
-            <div class="main-button">
-                <a href="{% url 'Cars:contact' %}">Contact Us</a>
+
+        <div class="video-overlay header-text">
+            <div class="caption">
+                <h6>Welcome to our car listings website</h6>
+                <h2>Best <em>Car Listings</em> in Nigeria!</h2>
+                <div class="main-button">
+                    <a href="{% url 'Cars:contact' %}">Contact Us</a>
+                </div>
             </div>
         </div>
     </div>
-  </div>
-<!-- ***** Main Banner Area End ***** -->
-
-
+    <!-- ***** Main Banner Area End ***** -->
   <div class="row">
 
 
@@ -77,46 +76,47 @@ Dashboard
 </div>
 
 
-    
+
 
   <br>
+    <div class="container">
+      &nbsp;
+    &nbsp;
   <div class="contact-form">
-    <form action="{% url 'Cars:form' %}"  method="GET">
+    <form action="{% url 'Cars:form' %}"  method="GET" class="form-inline">
         <div class="row">
-            <div class="col-lg-3 col-md-3 5col-sm-5 col-xs-12">
-                <div class="form-group">
+
+            <div class="col-lg-3 col-md-3 col-sm-5 col-xs-12">
+
                     <label>Offer Type</label>
                     <div class="select-wrap">
                         <!-- <span class="icon icon-arrow_drop_down"></span> -->
                        {{ fil.offer_type }}
-                    </div>
-                    
-                </div>
-            </div>
-    
-            <div class="col-lg-3 col-md-3 col-sm-5 col-xs-12">
-                <div class="form-group">
-                    <label>Vehicle Type</label>
-                    <div class="select-wrap">
-                        {{ fil.vehicle_type }}
-                    </div>
+
+
                 </div>
             </div>
 
-           
-    
             <div class="col-lg-3 col-md-3 col-sm-5 col-xs-12">
-                <div class="form-group">
+
+                    <label>Vehicle Type</label>
+                    <div class="select-wrap">
+                        {{ fil.vehicle_type }}
+                </div>
+            </div>
+
+
+
+            <div class="col-lg-3 col-md-3 col-sm-5 col-xs-12">
                     <label>Make</label>
                     <div class="select-wrap">
                         {{ fil.make }}
-                    </div>
                 </div>
             </div>
-    
-            
-    
-            <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+
+
+
+            <!-- <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
                 <div class="form-group">
                     <label>Price</label>
                     <div class="select-wrap">
@@ -126,9 +126,9 @@ Dashboard
                 </div>
             </div>
      -->
-            
-    
-            <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+
+
+            <!-- <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
                 <div class="form-group">
                     <label>Milleage</label>
                     <div class="select-wrap">
@@ -137,42 +137,43 @@ Dashboard
                     </div>
                 </div>
             </div> -->
-           
+
 
             <div class="col-lg-3 col-md-3 col-sm-5 col-xs-12">
-                <div class="form-group">
                     <label>Transmission</label>
                     <div class="select-wrap">
                         {{ fil.transmission }}
-                    </div>
 
                 </div>
             </div>
 
 
-            <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <!-- <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
                 <div class="form-group">
                     <label></label>
                     <input type="number"  placeholder="Enter the car year">
                 </div>
             </div>
-    
+
              -->
-             <div class="col-sm-5 offset-sm-3">
+             <br>
+             <br>
+             <div class="col-sm-5 offset-sm-4">
                 <div class="main-button text-center">
                     <button type="submit" value="Search" > Search</button>
-                  
+
                 </div>
-            
-        
+
+
         </div>
         <br>
         <br>
     </form>
 </div>
+</div>
 
 
-    
+
 
    <!-- ***** Cars Starts ***** -->
     <section class="section" id="trainers">
@@ -200,10 +201,10 @@ Dashboard
                             </span>
 
                             {% comment %} <h4>Lorem ipsum dolor sit amet, consectetur</h4> {% endcomment %}
-                            
+
                                 <h4>{{ f.car_model }}</h4>
                                 <h4>{{ f.location_id.name }}</h4>
-    
+
 
                             <p>
                                 <i class="fa fa-dashboard"></i>{{ f.milleage }} &nbsp;&nbsp;&nbsp;
@@ -217,10 +218,10 @@ Dashboard
                         </div>
                     </div>
                 </div>
-                
+
                     {% endfor  %}
                 {% endif  %}
-                
+
             </div>
 
             <br>
@@ -230,7 +231,7 @@ Dashboard
             </div>
         </div>
     </section>
-    
+
     <section class="section" id="trainers">
         <div class="container">
             <div class="row">
@@ -270,20 +271,20 @@ Dashboard
                         </div>
                     </div>
                 </div>
-                
+
                 {% endfor  %}
             {% endif  %}
-                
+
             </div>
 
-            <br> 
+            <br>
 
             <div class="main-button text-center">
                 <a href="{% url 'Cars:motor' %}">View Cars</a>
             </div>
         </div>
     </section>
-    
+
     <section class="section" id="trainers">
         <div class="container">
             <div class="row">
@@ -307,26 +308,26 @@ Dashboard
                                 <span>
                                     <del><sup>&#8358;</sup>{{ s.old_prize }} </del> &nbsp; <sup>&#8358;</sup>{{ s.prize }}
                                 </span>
-    
+
                                 <h4>{{ s.car_model }}</h4>
                                 <h4>{{ s.location_id.name }}</h4>
-    
+
                                 <p>
                                     <i class="fa fa-dashboard"></i> {{ s.milleage }} &nbsp;&nbsp;&nbsp;
                                     {% comment %} <i class="fa fa-cube"></i> 1800 cc &nbsp;&nbsp;&nbsp; {% endcomment %}
                                     <i class="fa fa-cog"></i> {{ s.transmission }} &nbsp;&nbsp;&nbsp;
                                 </p>
-    
+
                                 <ul class="social-icons">
                                     <li><a href="{% url 'Cars:car_detail' s.id %}">+ View Car</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    
+
                 {% endfor %}
             {%  endif %}
-                
+
             </div>
 
             <br>
@@ -359,16 +360,16 @@ Dashboard
                                 <span>
                                     <del><sup>&#8358;</sup>{{ r.old_prize}} </del> &nbsp; <sup>&#8358;</sup>{{r.prize}}
                                 </span>
-    
+
                                 <h4>{{ r.car_model }}</h4>
                                 <h4>{{ r.location_id.name }}</h4>
-    
+
                                 <p>
                                     <i class="fa fa-dashboard"></i> {{ r.milleage }} &nbsp;&nbsp;&nbsp;
                                     {% comment %} <i class="fa fa-cube"></i> 1800 cc &nbsp;&nbsp;&nbsp; {% endcomment %}
                                     <i class="fa fa-cog"></i> {{ r.transmission }} &nbsp;&nbsp;&nbsp;
                                 </p>
-    
+
                                 <ul class="social-icons">
                                     <li><a href="{% url 'Cars:car_detail' r.id %}">+ View Car</a></li>
                                 </ul>
@@ -377,8 +378,8 @@ Dashboard
                     </div>
                     {%  endfor %}
                 {% endif %}
-                
-                
+
+
             </div>
 
             <br>
@@ -388,7 +389,7 @@ Dashboard
             </div>
         </div>
     </section>
-   
+
 
     <section class="section section-bg" id="schedule" style="background-image: url({% static 'assets/images/about-fullscreen-1-1920x700.jpg' %})">
         <div class="container">
@@ -451,8 +452,8 @@ Dashboard
                   </article>
                    {% endfor %}
                 {% endif %}
-                 
-                 
+
+
                 </section>
               </div>
             </div>
@@ -479,9 +480,9 @@ Dashboard
     <!-- ***** Call to Action End ***** -->
 
     <!-- ***** Testimonials Item Start ***** -->
-   
+
     <!-- ***** Testimonials Item End ***** -->
-    
+
     <!-- ***** Footer Start ***** -->
-    
+
 {% endblock %}

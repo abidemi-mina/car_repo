@@ -14,10 +14,10 @@
       <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
       <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
       <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">
-  
+
       <!-- GOOGLE WEB FONT -->
       <link href="{% static 'backend/https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800' %}" rel="stylesheet">
-  
+
       <!-- Bootstrap core CSS-->
       <link href="{% static 'backend/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
       <!-- Main styles -->
@@ -28,9 +28,9 @@
       <link href="{% static 'backend/vendor/datatables/dataTables.bootstrap4.css' %}" rel="stylesheet">
       <!-- Your custom styles -->
       <link href="{% static 'backend/css/custom.css' %}" rel="stylesheet">
-  
-  
-  
+
+
+
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
 
     <title>
@@ -45,9 +45,9 @@
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
 
     </head>
-    
+
     <body>
-    
+
     <!-- ***** Preloader Start ***** -->
     <div id="js-preloader" class="js-preloader">
       <div class="preloader-inner">
@@ -59,8 +59,8 @@
         </div>
       </div>
     </div>
-    
-    
+
+
     <!-- ***** Header Area Start ***** -->
     <header class="header-area header-sticky">
         <div class="container-fluid">
@@ -72,19 +72,19 @@
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav   col-8">
-                                    
-                                    
+
+
                             <li class="nav-link">
                                 <a href="{% url 'Cars:home2' %}" >Home</a>
                             </li>
-                            
+
 
                             <li class="nav-link">
                                 <a href="{% url 'Cars:addlistings2' %}">Add Car</a>
 
                             </li>
 
-                            
+
                             <li class="nav-link">
                                 <a href="{% url 'Cars:dashboard' %}">Dashboard</a>
 
@@ -111,13 +111,13 @@
                                 <a href="{% url 'Cars:team2' %}">Team</a>
 
                             </li>
-                            
+
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="modal" data-target="#exampleModal" style="cursor:pointer;">
                                     <i class="fa fa-fw fa-sign-out"></i>Logout</a>
                             </li>
-                            
-                        </ul>        
+
+                        </ul>
                         <a class='menu-trigger'>
                             <span>Menu</span>
                         </a>
@@ -128,12 +128,12 @@
         </div>
     </header>
     <!-- ***** Header Area End ***** -->
-    
+
 
     {% block content %}
     {% endblock %}
-     
-    
+
+
     <!-- ***** Footer Start ***** -->
     <footer>
         <div class="container">
@@ -192,10 +192,10 @@
     <script src="{% static 'assets/js/scrollreveal.min.js' %}"></script>
     <script src="{% static 'assets/js/waypoints.min.js' %}"></script>
     <script src="{% static 'assets/js/jquery.counterup.min.js' %}"></script>
-    <script src="{% static 'assets/js/imgfix.min.js' %}"></script> 
-    <script src="{% static 'assets/js/mixitup.js' %}"></script> 
+    <script src="{% static 'assets/js/imgfix.min.js' %}"></script>
+    <script src="{% static 'assets/js/mixitup.js' %}"></script>
     <script src="{% static 'assets/js/accordions.js' %}"></script>
-    
+
     <!-- Global Init -->
     <script src="{% static 'assets/js/custom.js' %}"></script>
 

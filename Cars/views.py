@@ -1,9 +1,8 @@
 from django.db.models import query
 from django.shortcuts import render,redirect,get_object_or_404
-from django.http import HttpResponse 
+from django.http import HttpResponse
 from Cars.models import *
 from Cars.forms import *
-from backend.forms import *
 from backend.views import activate, activation_sent_view
 from django.contrib.auth.forms import User
 from django.contrib.auth import login,logout,authenticate
@@ -104,7 +103,19 @@ def sale(request):
     filter_obj = FilterForm()
     args = {'fil':filter_obj,'sale':sale}
     return render(request, 'htmls/sale.html', args)
-    
+
+@login_required(login_url='/pages/login-view/')
+def addbrand(request):
+    car_brand = BrandForm()
+    if request.method == 'POST':
+        car_brand = BrandForm(request.POST)
+        if car_brand.is_valid():
+            car_brand.save()
+            messages.success(request, 'Brand Added')
+    else:
+        car_brand = BrandForm()
+    return render(request, 'htmls/add-brand.html', {'brand' : car_brand})
+
 def rent(request):
     rent = Cars.objects.filter(offer_type='Rent')
     filter_obj = FilterForm()
@@ -181,40 +192,39 @@ def blog_detail(request,pk):
         form = CommentForm(request.POST or None)
         if form.is_valid():
             # form.instance.Blog = request.Blog
-            comment = form.save(commit=False) 
+            comment = form.save(commit=False)
             comment.post = single_post
-            
-           
+
+
             form.save()
             return redirect('Cars:blog_detail', pk=single_post.pk)
-        
+
             # single_post = {'form': form}
     else:
         form = CommentForm()
-    return render(request, 'htmls/blog-details.html', {'post':blogdetail, 'comm':comments, 'form':form, 'sipst':single_post}) 
-                                                      
+    return render(request, 'htmls/blog-details.html', {'post':blogdetail, 'comm':comments, 'form':form, 'sipst':single_post})
+
 
 def contact(request):
     if request.method =="POST":
-        full_name = request.POST.get('full_name')
-        email_address = request.POST.get('email_address')
+        full_name = request.POST.get('FullName')
+        email_address = request.POST.get('email')
         message = request.POST.get('message')
 
-        
+
         subject = 'Contact Form'
 
         args ={
-            'full_name':full_name,
-            'email_address':email_address,
+            'FullName':full_name,
+            'email':email_address,
             'message':message
-            
+
         }
-        
+
         html_message = render_to_string('htmls/mail-template.html', args)
         plain_message = strip_tags(html_message)
-        from_email = settings.EMAIL_FROM
-        send = mail.send_mail(subject, plain_message, from_email,
-                        ['jigih77129@seek4wap.com', 'jigih77129@seek4wap.com'], html_message=html_message)
+        from_email = email_address
+        send = mail.send_mail(subject, plain_message, from_email,['aminatabidemi212@gmail.com'], html_message=html_message)
         if send:
             print(send)
             messages.success(request, 'Email sent')
@@ -223,13 +233,13 @@ def contact(request):
 
     return render(request, 'htmls/contact.html')
 
-        
-       
 
 
-   
- 
-    
+
+
+
+
+
 
 
 def blog_detail2(request, blog_id):
@@ -238,7 +248,7 @@ def blog_detail2(request, blog_id):
     return render(request, 'backend/blog-details2.html', {'post':blogdetail})
 
 def blog_detail3(request, blog_id):
-    
+
     blogdetail = Blog.objects.get(id=blog_id)
     return render(request, 'backend/blog-details3.html', {'post':blogdetail})
 
@@ -249,7 +259,7 @@ def blog(request):
 def blog2(request):
     blog_post = Blog.objects.order_by('-time')
     return render(request, 'backend/blog2.html', {'blog':blog_post})
-    
+
 def blog3(request):
     blog_post = Blog.objects.order_by('-time')
     return render(request, 'backend/blog3.html', {'blog':blog_post})
@@ -259,8 +269,8 @@ def blog3(request):
 
 def car_detail(request, car_id):
     detail = Cars.objects.get(id=car_id)
-    # contact = Contact_Dealer.objects.all
-    return render(request, 'htmls/car-details.html', {'det':detail})
+    contact = Profile.objects.all()
+    return render(request, 'htmls/car-details.html', {'det':detail,'user':contact})
 
 def car_detail2(request, car_id):
     detail = Cars.objects.get(id=car_id)
@@ -280,7 +290,7 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
-            if user.is_superuser == True :  
+            if user.is_superuser == True :
                 login(request,user)
                 return redirect('backend:index')
             elif not(user.is_superuser):
@@ -292,7 +302,7 @@ def login_view(request):
     return render(request, 'htmls/login.html')
 
 
-    
+
 
 def logout(request):
     return render(request, 'htmls/logout.html')
@@ -341,7 +351,7 @@ def register(request):
             })
             user.email_user(subject, message)
             return redirect('activation_sent')
-            
+
             messages.success(request, 'User Registered ')
     else:
         register = RegisterForm()
@@ -355,7 +365,6 @@ def addlistings2(request):
         add_car = CarForm(request.POST, request.FILES)
         if add_car.is_valid():
             user = add_car.save(commit=False)
-            user.approve = False
             user.save()
             messages.success(request, 'Car saved')
     else:
@@ -380,7 +389,7 @@ def viewlist(request):
 #         add_car =  CarForm()
 #     return render(request, 'htmls/add-property.html' , {'add': add_car})
 
-    
+
 
 
 def cars(request):
@@ -461,7 +470,7 @@ def password_reset_request(request):
 					"uid": urlsafe_base64_encode(force_bytes(user.pk)),
 					"user": user,
 					'token': default_token_generator.make_token(user),
-					'protocol': 'http',
+					'protocol': 'https',
 					}
 					email = render_to_string(email_template_name, c)
 					try:
