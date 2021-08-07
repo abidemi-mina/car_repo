@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import PasswordChangeForm 
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
@@ -23,17 +23,29 @@ class ChangeWord(PasswordChangeForm):
 	    user.old_password = self.cleaned_data['old_password']
 	    user.new_password1 = self.cleaned_data['new_password1']
 	    user.new_password2 = self.cleaned_data['new_password2']
-	    
+
 
 	    if commit:
 	        user.save()
 	        return user
 class BrandForm(forms.ModelForm):
-	name = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control'}))
+	name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
 
+	def clean_name(self):
+		brand_name = self.cleaned_data['name'].capitalize()
+		value_name = Brands.objects.filter(name=brand_name).exists()
+		if value_name == True:
+			print ('corrrect')
+			raise forms.ValidationError('Brand already exist')
+		else:
+			print('false')
+		return  brand_name
 	class Meta():
 		model = Brands
-		fields = '__all__'
+		fields =('name',)
+
+
+
 
 
 class CarTypeForm(forms.ModelForm):
@@ -58,8 +70,8 @@ class CarTypeForm(forms.ModelForm):
 
 class DealerForm(forms.ModelForm):
 	user_id = forms.ModelChoiceField(
-	queryset=User.objects.all(), 
-	widget=forms.Select(attrs={'class':'form-control'}), 
+	queryset=User.objects.all(),
+	widget=forms.Select(attrs={'class':'form-control'}),
 	empty_label='Select a User'
 	)
 	phone = forms.CharField(widget=forms.NumberInput(attrs={'class':'form-control'}))
@@ -69,7 +81,7 @@ class DealerForm(forms.ModelForm):
 	address = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control'}))
 
 	class Meta():
-	
+
 		model = Dealer_Info
 		exclude = ('website',)
 
@@ -85,7 +97,7 @@ class LocationForm(forms.ModelForm):
 
 
 
-	
+
 class CarForm(forms.ModelForm):
 	RENT = 'Rent'
 	SALE = 'Sale'
@@ -115,7 +127,7 @@ class CarForm(forms.ModelForm):
 	]
 
 
-	
+
 	make = forms.ModelChoiceField(
 		queryset= Brands.objects.all(),
 		widget=forms.Select(attrs={'class':'form-control'}),
@@ -146,7 +158,7 @@ class CarForm(forms.ModelForm):
 	maintenance = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control'}))
 	prize = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'form-control'}))
 	old_prize = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'form-control'}))
-	first_registration = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'form-control'}))
+	first_registration = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
 	approve = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class':'form-control'}))
 	# manufacturing_date = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'form-control'}))
 
@@ -177,11 +189,11 @@ class BlogForm(forms.ModelForm):
 		(CHOOSE, 'Select category')
 
 	]
-   
+
 	title = forms.CharField(widget= forms.Textarea(attrs={'class':'form-control'}))
 	author = forms.ModelChoiceField(
-	queryset= User.objects.all(), 
-	widget= forms.Select(attrs={'class':'form-control'}), 
+	queryset= User.objects.all(),
+	widget= forms.Select(attrs={'class':'form-control'}),
 	empty_label='Select Author'
 	)
 	category = forms.ChoiceField(widget=forms.Select(choices=SELECT,attrs={'class':'form-control'}))
@@ -193,9 +205,9 @@ class BlogForm(forms.ModelForm):
 		model = Blog
 		fields = '__all__'
 
-    
-            
-        
+
+
+
 
 
 
@@ -208,9 +220,9 @@ class TeamForm(forms.ModelForm):
 	class Meta():
 		model = Team
 		exclude = ('created', 'modified')
-    
 
-    
+
+
 
 
 class EngineForm(forms.ModelForm):
@@ -220,26 +232,26 @@ class EngineForm(forms.ModelForm):
 		model = Car_Engine
 		fields = ('engine_name',)
 
-    
+
 
 
 class ContactDealerForm(forms.ModelForm):
 	name = forms.CharField(widget= forms.TextInput(attrs={'class':'form-control'}))
 	phone = forms.CharField(widget=forms.NumberInput(attrs={'class':'form-control'}))
 	email = forms.EmailField(widget= forms.EmailInput(attrs={'class':'form-control'}))
-	location_id = forms.ModelChoiceField(queryset= Location.objects.all(), 
-	widget= forms.Select(attrs={'class':'form-control'}), 
+	location_id = forms.ModelChoiceField(queryset= Location.objects.all(),
+	widget= forms.Select(attrs={'class':'form-control'}),
 	empty_label= 'Select location'
 	)
-	dealer_id = forms.ModelChoiceField(queryset= User.objects.all(), 
-	widget=forms.Select(attrs={'class':'form-control'}), 
+	dealer_id = forms.ModelChoiceField(queryset= User.objects.all(),
+	widget=forms.Select(attrs={'class':'form-control'}),
 	empty_label= 'Select a user'
 	)
 
 	class Meta():
 		model = Contact_Dealer
 		fields = ('__all__')
-       
+
 
 
 

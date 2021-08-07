@@ -34,7 +34,7 @@ class RegisterForm(UserCreationForm):
 	    if commit:
 	        user.save()
 	        return user
-     
+
 
 
 class CommentForm(forms.ModelForm):
@@ -48,18 +48,18 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('name', 'content' )
-	
-     
-     
-    
-    
+
+
+
+
+
 class BrandForm(forms.ModelForm):
-	name = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control'}))
+	name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
 
 
-	def clean_names(self):
-		name = self.cleaned_data['name'].capitalize().lowercase()
-		value_name = Car_Type.objects.filter(name=name).exists()
+	def clean_name(self):
+		name = self.cleaned_data['name'].capitalize()
+		value_name = Brands.objects.filter(name=name).exists()
 		if value_name == True:
 			raise forms.ValidationError('Brand already exist')
 		return name
@@ -68,12 +68,12 @@ class BrandForm(forms.ModelForm):
 		model = Brands
 		fields = '__all__'
 
- 
+
 class CarTypeForm(forms.ModelForm):
 	names = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}),)
 
 	def clean_names(self):
-		form_name = self.cleaned_data['names'].capitalize().lowercase()
+		form_name = self.cleaned_data['names'].capitalize()
 		value_name = Car_Type.objects.filter(names=form_name).exists()
 		if value_name == True:
 			raise forms.ValidationError('Car type already exist')
@@ -90,7 +90,7 @@ class LocationForm(forms.ModelForm):
 
 
 	def clean_name(self):
-		name = self.cleaned_data['name'].capitalize().lowercase()
+		name = self.cleaned_data['name'].capitalize()
 		value_name = Car_Type.objects.filter(name=name).exists()
 		if value_name == True:
 			raise forms.ValidationError('Location  already exist')
@@ -99,8 +99,8 @@ class LocationForm(forms.ModelForm):
 	class Meta():
 		model = Location
 		fields = ('name',)
-  
-   
+
+
 
 
 class CarForm(forms.ModelForm):
@@ -132,7 +132,7 @@ class CarForm(forms.ModelForm):
 	]
 
 
-	
+
 	make = forms.ModelChoiceField(
 		queryset= Brands.objects.all(),
 		widget=forms.Select(attrs={'class':'form-control col-md-9'}),
@@ -142,7 +142,7 @@ class CarForm(forms.ModelForm):
 		queryset=Car_Type.objects.all(),
 		widget=forms.Select(attrs={'class':' form-control btn-outline-primary  col-md-7 rounded-0',}),
 		empty_label='Select vehicle type '
-	) 
+	)
 	car_model = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control col-md-9'} ))
 	location_id = forms.ModelChoiceField(
 		queryset=Location.objects.all(),
@@ -163,8 +163,8 @@ class CarForm(forms.ModelForm):
 	maintenance = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control col-md-12'}))
 	prize = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'form-control col-md-7'}))
 	old_prize = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'form-control col-md-7'}))
-	approve = forms.BooleanField(widget=forms.CheckboxInput())
-	first_registration = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'form-control col-md-7'}))
+# 	approve = forms.BooleanField(widget=forms.CheckboxInput())
+	first_registration = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control col-md-7'}))
 
 	# manufacturing_date = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'form-control col-md-7'}))
 
@@ -176,7 +176,7 @@ class CarForm(forms.ModelForm):
 
 
 
-	
+
 
 
 
@@ -227,7 +227,7 @@ class FilterForm(forms.ModelForm):
 	]
 
 
-	
+
 	make = forms.ModelChoiceField(
 		queryset= Brands.objects.all(),
 		widget=forms.Select(),
@@ -238,7 +238,7 @@ class FilterForm(forms.ModelForm):
 		widget=forms.Select(),
 		empty_label='Select vehicle type '
 	)
-	offer_type = forms.CharField(widget=forms.Select(choices=OFFER_TYPE),) 
+	offer_type = forms.CharField(widget=forms.Select(choices=OFFER_TYPE),)
 	transmission = forms.CharField(widget=forms.Select(choices=SELECT),)
 
 
@@ -257,7 +257,7 @@ class CommentForm(forms.ModelForm):
 	class Meta():
 		model = Comment
 		fields = ('name','content',)
-		
+
 
 
 class BlogForm(forms.ModelForm):
@@ -280,11 +280,11 @@ class BlogForm(forms.ModelForm):
 		(CHOOSE, 'Select category')
 
 	]
-   
+
 	title = forms.CharField(widget= forms.Textarea(attrs={'class':'form-control'}))
 	author = forms.ModelChoiceField(
-	queryset= User.objects.all(), 
-	widget= forms.Select(attrs={'class':'form-control'}), 
+	queryset= User.objects.all(),
+	widget= forms.Select(attrs={'class':'form-control'}),
 	empty_label='Select Author'
 	)
 	category = forms.ChoiceField(widget=forms.Select(choices=SELECT,attrs={'class':'form-control'}))
@@ -296,9 +296,9 @@ class BlogForm(forms.ModelForm):
 		model = Blog
 		fields = '__all__'
 
-     
-            
-        
+
+
+
 
 
 
@@ -311,9 +311,9 @@ class TeamForm(forms.ModelForm):
 	class Meta():
 		model = Team
 		exclude = ('created', 'modified')
-    
 
-    
+
+
 
 
 class EngineForm(forms.ModelForm):
@@ -323,26 +323,26 @@ class EngineForm(forms.ModelForm):
 		model = Car_Engine
 		fields = ('engine_name',)
 
-    
+
 
 
 class ContactDealerForm(forms.ModelForm):
 	name = forms.CharField(widget= forms.TextInput(attrs={'class':'form-control'}))
 	phone = forms.CharField(widget=forms.NumberInput(attrs={'class':'form-control'}))
 	email = forms.EmailField(widget= forms.EmailInput(attrs={'class':'form-control'}))
-	location_id = forms.ModelChoiceField(queryset= Location.objects.all(), 
-	widget= forms.Select(attrs={'class':'form-control'}), 
+	location_id = forms.ModelChoiceField(queryset= Location.objects.all(),
+	widget= forms.Select(attrs={'class':'form-control'}),
 	empty_label= 'Select location'
 	)
-	dealer_id = forms.ModelChoiceField(queryset= User.objects.all(), 
-	widget=forms.Select(attrs={'class':'form-control'}), 
+	dealer_id = forms.ModelChoiceField(queryset= User.objects.all(),
+	widget=forms.Select(attrs={'class':'form-control'}),
 	empty_label= 'Select a user'
 	)
 
 	class Meta():
 		model = Contact_Dealer
 		fields = ('__all__')
-       
+
 
 
 

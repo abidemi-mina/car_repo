@@ -1,127 +1,91 @@
 {% extends 'htmls/base-reuse.html' %}
 {% load static %}
 {% block title%}
-Cars   
+Cars
 {% endblock%}
 
-        
+
 {% block content %}
-<!-- ***** Call to Action Start ***** -->
-    <section class="section section-bg" id="call-to-action" style="background-image: url({% static 'assets/images/banner-image-1-1920x500.jpg' %})">
+ <!-- ***** Main Banner Area Start ***** -->
+
+
+  <section class="section section-bg" id="call-to-action" style="background-image: url({% static 'assets/images/banner-image-1-1920x500.jpg' %})">
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 offset-lg-1">
                     <div class="cta-content">
-                        <br>
-                        <br>
-                        <h2>Our <em>Cars</em></h2>
-                        <p>Ut consectetur, metus sit amet aliquet placerat, enim est ultricies ligula</p>
+                        <h2>Best <em>Car Listings</em> in Nigeria!</h2>
+                    <div class="main-button">
+                    <a href="{% url 'Cars:contact' %}">Contact Us</a>
+                </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- ***** Call to Action End ***** -->
+    <br>
+    <br>
+        <!-- ***** Main Banner Area End ***** -->
 
-    <!-- ***** Fleet Starts ***** -->
-    <section class="section" id="trainers">
-            <a href="{% url 'Cars:motor2' %}"></a>
-            <div class="container">
-                <br>
-                <br>
-                <div class="contact-form">
-                    <form action="{% url 'Cars:form' %}"  method="GET">
-                        <div class="row">
-                            <div class="col-lg-3 col-md-3 5col-sm-5 col-xs-12">
-                                <div class="form-group">
-                                    <label>Offer Type</label>
-                                    <div class="select-wrap">
-                                        <!-- <span class="icon icon-arrow_drop_down"></span> -->
-                                       {{ fil.offer_type }}
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                    
-                            <div class="col-lg-3 col-md-3 col-sm-5 col-xs-12">
-                                <div class="form-group">
-                                    <label>Vehicle Type</label>
-                                    <div class="select-wrap">
-                                        {{ fil.vehicle_type }}
-                                    </div>
-                                </div>
-                            </div>
-                
-                           
-                    
-                            <div class="col-lg-3 col-md-3 col-sm-5 col-xs-12">
-                                <div class="form-group">
-                                    <label>Make</label>
-                                    <div class="select-wrap">
-                                        {{ fil.make }}
-                                    </div>
-                                </div>
-                            </div>
-                    
-                            
-                    
-                            <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Price</label>
-                                    <div class="select-wrap">
-                                        {{ fil.prize.errors }}
-                                        {{ fil.prize }}
-                                    </div>
-                                </div>
-                            </div>
-                     -->
-                            
-                    
-                            <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Milleage</label>
-                                    <div class="select-wrap">
-                                        {{ fil.milleage.errors }}
-                                        {{ fil.milleage }}
-                                    </div>
-                                </div>
-                            </div> -->
-                           
-                
-                            <div class="col-lg-3 col-md-3 col-sm-5 col-xs-12">
-                                <div class="form-group">
-                                    <label>Transmission</label>
-                                    <div class="select-wrap">
-                                        {{ fil.transmission }}
-                                    </div>
-                
-                                </div>
-                            </div>
-                
-                
-                            <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label></label>
-                                    <input type="number"  placeholder="Enter the car year">
-                                </div>
-                            </div>
-                    
-                             -->
-                             <div class="col-sm-5 offset-sm-3">
-                                <div class="main-button text-center">
-                                    <button type="submit" value="Search" > Search</button>
-                                  
-                                </div>
-                            
-                        
-                        </div>
-                        <br>
-                        <br>
-                    </form>
+    <div class="container">
+  <div class="contact-form">
+    <form action="{% url 'Cars:form' %}"  method="GET" class="form-inline">
+        <div class="row">
+
+            <div class="col-lg-3 col-md-2.5 col-sm-2 col-xs-12">
+
+                    <label>Offer Type</label>
+                    <div class="select-wrap">
+                        <!-- <span class="icon icon-arrow_drop_down"></span> -->
+                       {{ fil.offer_type }}
+
+
                 </div>
-                
-                <br>
-    
+            </div>
+
+            <div class="col-lg-3 col-md-2.5 col-sm-2 col-xs-12">
+
+                    <label>Vehicle Type</label>
+                    <div class="select-wrap">
+                        {{ fil.vehicle_type }}
+                </div>
+            </div>
+
+
+
+            <div class="col-lg-2.5 col-md-2.5 col-sm-2 col-xs-12">
+                    <label>Make</label>
+                    <div class="select-wrap">
+                        {{ fil.make }}
+                </div>
+            </div>
+
+
+
+
+            <div class="col-lg-2.5 col-md-2.5 col-sm-3 col-xs-12">
+                    <label>Transmission</label>
+                    <div class="select-wrap">
+                        {{ fil.transmission }}
+
+                </div>
+            </div>
+
+
+
+
+
+            <div class="col-lg-1 col-md-1 col-sm-2 ">
+                                    &nbsp;
+
+                <div class="button text-center">
+                    <button type="submit"  class="btn" value="Search" > Search</button>
+
+                </div>
+        </div>
+    </form>
+</div>
+</div>
                 <div class="row">
                     {% if coo %}
                         {% for c in coo %}
@@ -134,15 +98,15 @@ Cars
                                 <span>
                                     <del><sup>$</sup>{{c.old_prize }} </del> &nbsp; <sup>$</sup>{{c.prize}}
                                 </span>
-    
+
                                 <h4>{{ c.description}}</h4>
-    
+
                                 <p>
                                     <i class="fa fa-dashboard"></i> 130 000km &nbsp;&nbsp;&nbsp;
                                     <i class="fa fa-cube"></i> 1800 cc &nbsp;&nbsp;&nbsp;
                                     <i class="fa fa-cog"></i> Manual &nbsp;&nbsp;&nbsp;
                                 </p>
-    
+
                                 <ul class="social-icons">
                                     <li><a href="{% url 'Cars:car_detail2' c.id %}">+ View Car</a></li>
                                 </ul>
@@ -164,15 +128,15 @@ Cars
                                 <span>
                                     <del><sup>$</sup>{{t.old_prize }} </del> &nbsp; <sup>$</sup>{{t.prize}}
                                 </span>
-    
+
                                 <h4>{{ t.description}}</h4>
-    
+
                                 <p>
                                     <i class="fa fa-dashboard"></i> 130 000km &nbsp;&nbsp;&nbsp;
                                     <i class="fa fa-cube"></i> 1800 cc &nbsp;&nbsp;&nbsp;
                                     <i class="fa fa-cog"></i> Manual &nbsp;&nbsp;&nbsp;
                                 </p>
-    
+
                                 <ul class="social-icons">
                                     <li><a href="{% url 'Cars:car_detail2' t.id %}">+ View Car</a></li>
                                 </ul>
@@ -182,9 +146,9 @@ Cars
                         {% endfor %}
                     {% endif %}
                 </div>
-    
+
                 <br>
-                    
+
                 <nav>
                   <ul class="pagination pagination-lg justify-content-center">
                     <li class="page-item">
@@ -204,11 +168,11 @@ Cars
                     </li>
                   </ul>
                 </nav>
-    
+
             </div>
-            
+
     </section>
     <!-- ***** Fleet Ends ***** -->
 
-    
+
     {% endblock %}

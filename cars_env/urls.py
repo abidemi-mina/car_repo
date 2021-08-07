@@ -19,7 +19,6 @@ from Cars import views
 from django.contrib.auth import views as auth_views #import this
 from django.conf import settings
 from django.conf.urls.static import static
-from django.conf.urls import url
 from backend.views import activation_sent_view, activate
 
 
@@ -29,7 +28,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('pages/', include('Cars.urls')),
     path('backend/', include('backend.urls')),
-    path('admin/', admin.site.urls),
+    path('whobe-20-42/', admin.site.urls),
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='htmls/password-rest-done.html'), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="htmls/password-reset-confirm.html"), name='password_reset_confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='htmls/password-reset-complete.html'), name='password_reset_complete'),

@@ -20,6 +20,7 @@ urlpatterns = [
    path('blog3/', views.blog3, name='blog3'),
    path('login-view/', views.login_view, name='login_view'),
    path('dashboard/', views.dashboard, name='dashboard'),
+   path('addbrand', views.addbrand, name='addbrand'),
    # path('addlistings', views.addlistings, name='addlistings'),
    path('addlistings2', views.addlistings2, name='addlistings2'),
    path('logout/', views.logout, name='logout'),
@@ -45,6 +46,6 @@ urlpatterns = [
    path('team-details/<int:team_id>', views.team_details, name='team_details'),
    path('team-details2/<int:team_id>', views.team_details2, name='team_details2'),
    path("password_reset", views.password_reset_request, name="password_reset")
-      
+
 ]
 

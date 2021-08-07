@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-from cars_env import secret
 import os
 from django.contrib.messages import constants as messages
 
@@ -42,7 +41,7 @@ SECRET_KEY = 'b9uv&-ig(4*q=w5##=qs^)vm1b4ev7^w*xhv8m_p1itgx)1u4&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mina.pythonanywhere.com']
 
 
 # Application definition
@@ -56,7 +55,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Cars',
     'backend',
-    'crispy_forms'
+    'crispy_forms',
+
 ]
 
 MIDDLEWARE = [
@@ -75,6 +75,9 @@ EMAIL_USE_SSL = True
 EMAIL_PORT = 465
 EMAIL_HOST_USER = 'aminatabidemi212@gmail.com'
 EMAIL_HOST_PASSWORD = 'oluwatobiloba'
+EMAIL_FROM = 'aminatabidemi212@gmail.com'
+EMAIL_USE_TLS = False
+
 
 
 MESSAGES_TAGS = {
@@ -87,15 +90,6 @@ MESSAGES_TAGS = {
 
 
 
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# EMAIL_HOST = 'smtp.hushmail.com'
-# EMAIL_USE_TLS = True
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = 'alayandesteven@gmail.com'
-# EMAIL_FROM = 'alayandesteven@gmail.com'
-# EMAIL_HOST_PASSWORD = secret.password
-# EMAIL_USE_SSL = False
 
 
 

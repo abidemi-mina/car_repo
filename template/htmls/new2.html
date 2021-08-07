@@ -1,126 +1,98 @@
 {% extends 'htmls/base-reuse.html' %}
 {% load static %}
 {% block title %}
-New Cars   
+New Cars
 {% endblock%}
 
-    
+
   {% block content %}
     <!-- ***** Main Banner Area Start ***** -->
-    <div class="main-banner" id="top">
-        <video autoplay muted loop id="bg-video">
-            <source src="{% static 'assets/images/video.mp4' %}" type="video/mp4" />
-        </video>
 
-        <div class="video-overlay header-text">
-            <div class="caption">
-                <h6>Lorem ipsum dolor sit amet</h6>
-                <h2>Best <em>car dealer</em> in town!</h2>
-                <div class="main-button">
+
+  <section class="section section-bg" id="call-to-action" style="background-image: url({% static 'assets/images/banner-image-1-1920x500.jpg' %})">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="cta-content">
+                        <h2>Best <em>Car Listings</em> in Nigeria!</h2>
+                    <div class="main-button">
                     <a href="{% url 'Cars:contact' %}">Contact Us</a>
+                </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- ***** Main Banner Area End ***** -->
+    </section>
+    <br>
+    <br>
+        <!-- ***** Main Banner Area End ***** -->
 
-  <br>
+    <div class="container">
   <div class="contact-form">
-    <form action="{% url 'Cars:form' %}"  method="GET">
+    <form action="{% url 'Cars:form' %}"  method="GET" class="form-inline">
         <div class="row">
-            <div class="col-lg-3 col-md-3 5col-sm-5 col-xs-12">
-                <div class="form-group">
+
+            <div class="col-lg-3 col-md-2.5 col-sm-2 col-xs-12">
+
                     <label>Offer Type</label>
                     <div class="select-wrap">
                         <!-- <span class="icon icon-arrow_drop_down"></span> -->
                        {{ fil.offer_type }}
-                    </div>
-                    
+
+
                 </div>
             </div>
-    
-            <div class="col-lg-3 col-md-3 col-sm-5 col-xs-12">
-                <div class="form-group">
+
+            <div class="col-lg-3 col-md-2.5 col-sm-2 col-xs-12">
+
                     <label>Vehicle Type</label>
                     <div class="select-wrap">
                         {{ fil.vehicle_type }}
-                    </div>
                 </div>
             </div>
 
-           
-    
-            <div class="col-lg-3 col-md-3 col-sm-5 col-xs-12">
-                <div class="form-group">
+
+
+            <div class="col-lg-2.5 col-md-2.5 col-sm-2 col-xs-12">
                     <label>Make</label>
                     <div class="select-wrap">
                         {{ fil.make }}
-                    </div>
                 </div>
             </div>
-    
-            
-    
-            <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="form-group">
-                    <label>Price</label>
-                    <div class="select-wrap">
-                        {{ fil.prize.errors }}
-                        {{ fil.prize }}
-                    </div>
-                </div>
-            </div>
-     -->
-            
-    
-            <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="form-group">
-                    <label>Milleage</label>
-                    <div class="select-wrap">
-                        {{ fil.milleage.errors }}
-                        {{ fil.milleage }}
-                    </div>
-                </div>
-            </div> -->
-           
 
-            <div class="col-lg-3 col-md-3 col-sm-5 col-xs-12">
-                <div class="form-group">
+
+
+
+            <div class="col-lg-2.5 col-md-2.5 col-sm-3 col-xs-12">
                     <label>Transmission</label>
                     <div class="select-wrap">
                         {{ fil.transmission }}
-                    </div>
 
                 </div>
             </div>
 
 
-            <!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="form-group">
-                    <label></label>
-                    <input type="number"  placeholder="Enter the car year">
+
+
+
+            <div class="col-lg-1 col-md-1 col-sm-2 ">
+                                    &nbsp;
+
+                <div class="button text-center">
+                    <button type="submit"  class="btn" value="Search" > Search</button>
+
                 </div>
-            </div>
-    
-             -->
-             <div class="col-sm-5 offset-sm-3">
-                <div class="main-button text-center">
-                    <button type="submit" value="Search" > Search</button>
-                  
-                </div>
-            
-        
         </div>
-        <br>
-        <br>
     </form>
 </div>
+</div>
 
- 
-    
+
+
+
 
    <!-- ***** Cars Starts ***** -->
-    
+
     <section class="section" id="trainers">
         <div class="container">
             <div class="row">
@@ -160,21 +132,21 @@ New Cars
                         </div>
                     </div>
                 </div>
-                
+
                 {% endfor  %}
             {% endif  %}
-                
+
             </div>
 
-            <br> 
+            <br>
 
             <div class="main-button text-center">
                 <a href="{% url 'Cars:motor' %}">View Cars</a>
             </div>
         </div>
     </section>
-    
-    
+
+
 
     <section class="section section-bg" id="schedule" style="background-image: url({% static 'assets/images/about-fullscreen-1-1920x700.jpg' %})">
         <div class="container">
@@ -237,8 +209,8 @@ New Cars
                   </article>
                    {% endfor %}
                 {% endif %}
-                 
-                 
+
+
                 </section>
               </div>
             </div>
@@ -265,8 +237,8 @@ New Cars
     <!-- ***** Call to Action End ***** -->
 
     <!-- ***** Testimonials Item Start ***** -->
-   
+
     <!-- ***** Testimonials Item End ***** -->
-    
+
     <!-- ***** Footer Start ***** -->
     {% endblock %}

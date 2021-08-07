@@ -1,22 +1,26 @@
 {% extends 'htmls/base-reuse.html' %}
 {% load static %}
 {% block title %}
-Home Page  
+Home Page
 {% endblock%}
 
-    
+
   {% block content %}
     <!-- ***** Main Banner Area Start ***** -->
     <div class="main-banner" id="top">
-        <video autoplay muted loop id="bg-video">
-            <source src="{% static 'assets/images/video.mp4' %}" type="video/mp4" />
-        </video>
+        <!--<video autoplay muted loop id="bg-video">-->
+        <!--    <source src="{% static 'assets/images/video.mp4' %}" type="video/mp4" />-->
+        <!--</video>-->
+                                <img src="{% static 'assets/images/used-cars.png' %}" alt="">
+
 
         <div class="video-overlay header-text">
             <div class="caption">
-                <h6>Lorem ipsum dolor sit amet</h6>
-                <h2>Best <em>car dealer</em> in town!</h2>
-                
+                <h6>Welcome to our car listings website</h6>
+                <h2>Best <em>Car Listings</em> in Nigeria!</h2>
+                <div class="main-button">
+                    <a href="{% url 'Cars:contact' %}">Contact Us</a>
+                </div>
             </div>
         </div>
     </div>
@@ -33,10 +37,10 @@ Home Page
                         <!-- <span class="icon icon-arrow_drop_down"></span> -->
                        {{ fil.offer_type }}
                     </div>
-                    
+
                 </div>
             </div>
-    
+
             <div class="col-lg-3 col-md-3 col-sm-5 col-xs-12">
                 <div class="form-group">
                     <label>Vehicle Type</label>
@@ -46,8 +50,8 @@ Home Page
                 </div>
             </div>
 
-           
-    
+
+
             <div class="col-lg-3 col-md-3 col-sm-5 col-xs-12">
                 <div class="form-group">
                     <label>Make</label>
@@ -56,10 +60,10 @@ Home Page
                     </div>
                 </div>
             </div>
-    
-            
-    
-           
+
+
+
+
             <div class="col-lg-3 col-md-3 col-sm-5 col-xs-12">
                 <div class="form-group">
                     <label>Transmission</label>
@@ -77,23 +81,23 @@ Home Page
                     <input type="number"  placeholder="Enter the car year">
                 </div>
             </div>
-    
+
              -->
              <div class="col-sm-5 offset-sm-3">
                 <div class="main-button text-center">
                     <button type="submit" value="Search" > Search</button>
-                  
+
                 </div>
-            
-        
+
+
         </div>
         <br>
         <br>
     </form>
 </div>
 
- 
-    
+
+
 
    <!-- ***** Cars Starts ***** -->
     <section class="section" id="trainers">
@@ -121,10 +125,10 @@ Home Page
                             </span>
 
                             {% comment %} <h4>Lorem ipsum dolor sit amet, consectetur</h4> {% endcomment %}
-                            
+
                                 <h4>{{ f.car_model }}</h4>
                                 <h4>{{ f.location_id.name }}</h4>
-    
+
 
                             <p>
                                 <i class="fa fa-dashboard"></i> 130 000km &nbsp;&nbsp;&nbsp;
@@ -138,10 +142,10 @@ Home Page
                         </div>
                     </div>
                 </div>
-                
+
                     {% endfor  %}
                 {% endif  %}
-                
+
             </div>
 
             <br>
@@ -151,7 +155,7 @@ Home Page
             </div>
         </div>
     </section>
-    
+
     <section class="section" id="trainers">
         <div class="container">
             <div class="row">
@@ -191,20 +195,20 @@ Home Page
                         </div>
                     </div>
                 </div>
-                
+
                 {% endfor  %}
             {% endif  %}
-                
+
             </div>
 
-            <br> 
+            <br>
 
             <div class="main-button text-center">
                 <a href="{% url 'Cars:motor2' %}">View Cars</a>
             </div>
         </div>
     </section>
-    
+
     <section class="section" id="trainers">
         <div class="container">
             <div class="row">
@@ -228,26 +232,26 @@ Home Page
                                 <span>
                                     <del><sup>&#8358;</sup>{{ s.old_prize }} </del> &nbsp; <sup>&#8358;</sup>{{ s.prize }}
                                 </span>
-    
+
                                 <h4>{{ s.car_model }}</h4>
                                 <h4>{{ s.location_id.name }}</h4>
-    
+
                                 <p>
                                     <i class="fa fa-dashboard"></i> 130 000km &nbsp;&nbsp;&nbsp;
                                     <i class="fa fa-cube"></i> 1800 cc &nbsp;&nbsp;&nbsp;
                                     <i class="fa fa-cog"></i> Automatic &nbsp;&nbsp;&nbsp;
                                 </p>
-    
+
                                 <ul class="social-icons">
                                     <li><a href="{% url 'Cars:car_detail' s.id %}">+ View Car</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    
+
                 {% endfor %}
             {%  endif %}
-                
+
             </div>
 
             <br>
@@ -280,16 +284,16 @@ Home Page
                                 <span>
                                     <del><sup>&#8358;</sup>{{ r.old_prize}} </del> &nbsp; <sup>&#8358;</sup>{{r.prize}}
                                 </span>
-    
+
                                 <h4>{{ r.car_model }}</h4>
                                 <h4>{{ r.location_id.name }}</h4>
-    
+
                                 <p>
                                     <i class="fa fa-dashboard"></i> 130 000km &nbsp;&nbsp;&nbsp;
                                     <i class="fa fa-cube"></i> 1800 cc &nbsp;&nbsp;&nbsp;
                                     <i class="fa fa-cog"></i> Automatic &nbsp;&nbsp;&nbsp;
                                 </p>
-    
+
                                 <ul class="social-icons">
                                     <li><a href="{% url 'Cars:car_detail' r.id %}">+ View Car</a></li>
                                 </ul>
@@ -298,8 +302,8 @@ Home Page
                     </div>
                     {%  endfor %}
                 {% endif %}
-                
-                
+
+
             </div>
 
             <br>
@@ -309,7 +313,7 @@ Home Page
             </div>
         </div>
     </section>
-   
+
 
     <section class="section section-bg" id="schedule" style="background-image: url({% static 'assets/images/about-fullscreen-1-1920x700.jpg' %})">
         <div class="container">
@@ -372,8 +376,8 @@ Home Page
                   </article>
                    {% endfor %}
                 {% endif %}
-                 
-                 
+
+
                 </section>
               </div>
             </div>
@@ -400,8 +404,8 @@ Home Page
     <!-- ***** Call to Action End ***** -->
 
     <!-- ***** Testimonials Item Start ***** -->
-   
+
     <!-- ***** Testimonials Item End ***** -->
-    
+
     <!-- ***** Footer Start ***** -->
     {% endblock %}

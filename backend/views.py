@@ -4,17 +4,12 @@ from django.contrib import messages
 from backend.forms import *
 from Cars.forms import *
 from django.contrib.auth.models import User
-from django.contrib.auth import login,logout,authenticate
-
-
-from django.contrib.auth.forms import PasswordChangeForm 
-from django.contrib.auth import update_session_auth_hash 
+from Cars.tokens import account_activation_token
+from django.contrib.auth import login
+from django.contrib.auth import update_session_auth_hash
 from Cars.models import *
 from django.contrib.auth.decorators import login_required
-from .tokens import account_activation_token
-from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_text
-from django.db import IntegrityError
 from django.utils.http import urlsafe_base64_decode
 
 
@@ -26,33 +21,45 @@ def index(request):
 def foreign(request):
     foreign = Cars.objects.filter(status='Foreign Used')
     filter_obj = FilterForm()
-    args = {'fil':filter_obj}
-    return render(request, 'backend/foreign-used.html',{'for':foreign}, args)
+    args = {'fil':filter_obj,'for':foreign}
+    return render(request, 'backend/foreign-used.html', args)
 
 def new(request):
     New = Cars.objects.filter(status='New')
     filter_obj = FilterForm()
-    args = {'fil':filter_obj}
-    return render(request, 'backend/new.html', {'new':New}, args)
+    args = {'fil':filter_obj,'new':New}
+    return render(request, 'backend/new.html', args)
 
 def sale(request):
     sale = Cars.objects.filter(offer_type='Sale')
     filter_obj = FilterForm()
-    args = {'fil':filter_obj}
-    return render(request, 'backend/sale.html',{'sale':sale}, args)
-    
+    args = {'fil':filter_obj,'sale':sale}
+    return render(request, 'backend/sale.html', args)
+
 def rent(request):
     rent = Cars.objects.filter(offer_type='Rent')
     filter_obj = FilterForm()
-    args = {'fil':filter_obj}
-    return render(request, 'backend/rent.html', {'rent':rent}, args)
+    args = {'fil':filter_obj,'rent':rent}
+    return render(request, 'backend/rent.html', args)
+
+@login_required(login_url='/pages/login-view/')
+def addbrand(request):
+    car_brand = BrandForm()
+    if request.method == 'POST':
+        car_brand = BrandForm(request.POST)
+        if car_brand.is_valid():
+            car_brand.save()
+            messages.success(request, 'Brand Added')
+    else:
+        car_brand = BrandForm()
+    return render(request, 'backend/add-brand.html', {'brand' : car_brand})
 
 
 def foreign2(request):
     foreign = Cars.objects.filter(status='Foreign Used')
     filter_obj = FilterForm()
-    args = {'fil':filter_obj}
-    return render(request, 'htmls/foreign2-used.html',{'for':foreign}, args)
+    args = {'fil':filter_obj,'for':foreign}
+    return render(request, 'htmls/foreign2.html', args)
 
 def new2(request):
     New = Cars.objects.filter(status='New')
@@ -65,7 +72,7 @@ def sale2(request):
     filter_obj = FilterForm()
     args = {'fil':filter_obj, 'sale':sale}
     return render(request, 'htmls/sale2.html', args)
-    
+
 def rent2(request):
     rent = Cars.objects.filter(offer_type='Rent')
     filter_obj = FilterForm()
@@ -109,7 +116,7 @@ def change_password(request):
     # else:
     #     form = PasswordChangeForm(request.user)
     # return render(request, 'accounts/change_password.html', {'form': form})
-    
+
 
 @login_required(login_url='/pages/login-view/')
 def admin(request):
@@ -135,7 +142,7 @@ def addlistings(request):
     else:
         add_car =  CarForm()
     return render(request, 'backend/add-listings.html' , {'add': add_car})
-    
+
 @login_required(login_url='/pages/login-view/')
 def addlocation(request):
     location_form = LocationForm()
@@ -184,7 +191,7 @@ def updateprofile(request, prop_id):
         dealer = DealerForm(instance=dealer)
     return render(request, 'backend/update-profile.html', {'dealer' : dealer})
 
-    
+
 
 def createprofile(request):
     user = DealerForm()

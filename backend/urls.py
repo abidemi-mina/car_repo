@@ -1,4 +1,4 @@
-from django.urls import path,include
+from django.urls import path
 from backend import views
 app_name ='backend'
 
@@ -17,6 +17,7 @@ urlpatterns = [
     path('sale2/', views.sale2, name='sale2'),
     path('new2/', views.new2, name='new2'),
     path('addlistings', views.addlistings, name='addlistings'),
+    path('addbrand', views.addbrand, name='addbrand'),
     path('edit-list/<int:prop_id>/', views.edit_list, name='edit-list'),
     path('addlocation', views.addlocation, name='addlocation'),
     path('addcars', views.addcar, name='addcar'),

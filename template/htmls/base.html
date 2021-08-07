@@ -22,9 +22,9 @@
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
 
     </head>
-    
+
     <body>
-    
+
     <!-- ***** Preloader Start ***** -->
     <div id="js-preloader" class="js-preloader">
       <div class="preloader-inner">
@@ -37,8 +37,8 @@
       </div>
     </div>
     <!-- ***** Preloader End ***** -->
-    
-    
+
+
     <!-- ***** Header Area Start ***** -->
     <header class="header-area header-sticky">
         <div class="container-fluid">
@@ -46,10 +46,10 @@
                 <div class="col-12">
                         <nav class="main-nav">
                             <!-- ***** Logo Start ***** -->
-                            <a href="{% url 'home' %}" class="logo col-5"> &nbsp;Car Dealer<em> Website</em></a>
+                            <a href="{% url 'home' %}" class="logo col-5 "> &nbsp;Car Listings<em> Website</em></a>
                             <!-- ***** Logo End ***** -->
                             <!-- ***** Menu Start ***** -->
-                            
+
                             <ul class="nav col-7">
                                         {% url 'home' as Home %}
                                         {% url 'Cars:about' as About %}
@@ -59,45 +59,45 @@
                                         {% url 'Cars:blog' as Blog %}
                                         {% url 'Cars:team' as Team %}
                                         {% url 'Cars:contact' as Contact  %}
-    
-                                        
+
+
                                 <li class="nav-link">
                                     <a href="{% url 'home' %}" >Home</a>
                                 </li>
-                                
-    
+
+
                                 <!-- <li {% if request.path == About %} class="active"  {% endif %}>
                                     <a href="{% url 'Cars:about' %}">About</a>
-    
+
                                 </li> -->
                                 <li class="nav-link">
                                     <a href="{% url 'Cars:rent' %}">Rent</a>
-    
+
                                 </li>
                                 <li class="nav-link">
                                     <a href="{% url 'Cars:sale' %}">Sale</a>
-    
+
                                 </li>
                                 <li class="nav-link">
                                     <a href="{% url 'Cars:new' %}">New Cars</a>
-    
+
                                 </li>
                                 <li class="nav-link">
                                     <a href="{% url 'Cars:foreign' %}">Foreign Used</a>
-    
+
                                 </li>
-    
-    
-                                
-    
+
+
+
+
                                 <li class="nav-link">
                                     <a href="{% url 'Cars:team' %}">Team</a>
-    
+
                                 </li>
-                                
+
                                 <li class="dropdown nav-link">
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Login</a>
-                                  
+
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="{% url 'Cars:login_view' %}">Login</a>
                                         <a class="dropdown-item" href="{% url 'Cars:register' %}">Register</a>
@@ -105,26 +105,26 @@
                                 </li>
                                 <li class="nav-link">
                                     <a href="{% url 'Cars:contact' %}">Contact</a>
-                                </li> 
-                                
-                            </ul>        
+                                </li>
+
+                            </ul>
                             <a class='menu-trigger'>
                                 <span>Menu</span>
                             </a>
                             <!-- ***** Menu End ***** -->
                         </nav>
-                  
+
                 </div>
             </div>
         </div>
     </header>
     <!-- ***** Header Area End ***** -->
-    
+
 
     {% block content %}
     {% endblock %}
-     
-    
+
+
     <!-- ***** Footer Start ***** -->
     <footer>
         <div class="container">
@@ -150,10 +150,10 @@
     <script src="{% static 'assets/js/scrollreveal.min.js' %}"></script>
     <script src="{% static 'assets/js/waypoints.min.js' %}"></script>
     <script src="{% static 'assets/js/jquery.counterup.min.js' %}"></script>
-    <script src="{% static 'assets/js/imgfix.min.js' %}"></script> 
-    <script src="{% static 'assets/js/mixitup.js' %}"></script> 
+    <script src="{% static 'assets/js/imgfix.min.js' %}"></script>
+    <script src="{% static 'assets/js/mixitup.js' %}"></script>
     <script src="{% static 'assets/js/accordions.js' %}"></script>
-    
+
     <!-- Global Init -->
     <script src="{% static 'assets/js/custom.js' %}"></script>
 
