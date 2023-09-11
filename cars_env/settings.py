@@ -41,7 +41,7 @@ SECRET_KEY = 'b9uv&-ig(4*q=w5##=qs^)vm1b4ev7^w*xhv8m_p1itgx)1u4&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mina.pythonanywhere.com']
+# ALLOWED_HOSTS = ['mina.pythonanywhere.com']
 
 
 # Application definition
