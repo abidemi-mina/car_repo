@@ -1,0 +1,104 @@
+{% extends 'htmls/base.html' %}
+{% load static %}
+{% block title%}
+Blog Detail 
+{% endblock%}
+
+    
+    {% block content %}
+
+    <section class="section section-bg" id="call-to-action" style="background-image: url({% static 'assets/images/banner-image-1-1920x500.jpg' %})">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="cta-content">
+                        <br>
+                        <br>
+                        <h2>Single <em>blog post</em></h2>
+                        <p>Ut consectetur, metus sit amet aliquet placerat, enim est ultricies ligula</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ***** Blog Start ***** -->
+    <section class="section" id="our-classes">
+        <div class="container">
+            <br>
+            <br>
+            {% if post %}
+                <article>
+                <h4>{{ post.title  }}</h4>
+
+                <p><i class="fa fa-user"></i> {{ post.author }} &nbsp;|&nbsp; <i class="fa fa-calendar"></i>{{ post.time }} &nbsp;|&nbsp; <i class="fa fa-comments"></i>  15 comments</p>
+
+                <div><img height="700" src="{{ post.img_url }}" alt=""  ></div>
+
+                <p class="lead col-lg-6">
+                    {{ post.content }}
+
+                </p>
+
+
+                <ul class="social-icons">
+                    <li>Share this:</li>
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                </ul>
+              </article>
+            {% endif %}
+            <div id="comments">
+						<h5 style="color: black; font-size: 40px; font-family: serif;">Comments</h5>
+
+
+							{% for comment in comm %}
+								<ul>
+									<li>
+										<div class="comment_right clearfix">
+											<div class="comment_info">
+												<figure class="rev-thumb"><img src="../frontend" height="60px"
+													style="border-radius: 10px;" alt="">
+													<strong style="color: black;">{{ comment.name}}</strong><span>|</span>{{ comment.timestamp|timesince}} ago
+													<strong style="color: black;">{{ comment.author}}</strong><span>|</span>{{ comment.timestamp|timesince}} ago
+												</figure>
+											</div>
+											<p style="font-family: 'Charm', cursive; font-size: 20px;">
+											{{ comment.content }}
+											</p>
+										</div>
+									</li>
+								</ul>
+							{% endfor %}
+
+					</div>
+
+					<hr>
+
+				
+
+					{% if post %}
+						<h5 style="color: black;">Leave a Comment</h5>
+						<form method="POST" action="" class="commenting-form">
+						{% csrf_token %}
+
+
+							<div class="form-group">
+								{{ form.as_p }}
+							</div>
+
+							<div class="form-group">
+								<button type="submit" class="btn_1 rounded add_bottom_30"> Submit</button>
+							</div>
+						</form>
+					{% endif %}
+        {% include 'htmls/comm_details.html'  %}
+
+           
+</div>
+    
+    <!-- ***** Blog End ***** -->
+
+    {% endblock %}
