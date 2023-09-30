@@ -1,7 +1,9 @@
+from django.db.models import query
 from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse
 from Cars.models import *
 from Cars.forms import *
+from backend.views import activate, activation_sent_view
 from django.contrib.auth.forms import User
 from django.contrib.auth import login,logout,authenticate
 from django.contrib import messages
@@ -18,6 +20,12 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from .tokens import account_activation_token
+from django.conf import settings
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.encoding import force_text
+from django.db import IntegrityError
+from django.utils.http import urlsafe_base64_decode
+
 
 
 
