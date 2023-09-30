@@ -1,0 +1,66 @@
+{% extends 'htmls/base.html' %}
+{% load static %}
+{% block title%}
+Login   
+{% endblock %}
+
+    
+  {% block content %}
+  <!-- <div class="site-section">
+    <div class="container">
+      <div class="row"> -->
+     
+        <section class="section section-bg" id="call-to-action" style="background-image: url({% static 'assets/images/banner-image-1-1920x500.jpg' %})">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-10 offset-lg-1">
+                      <div class="cta-content">
+                          <br>
+                          <br>
+                          <h2>Our <em>Cars</em></h2>
+                          <p>Ut consectetur, metus sit amet aliquet placerat, enim est ultricies ligula</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+        <div class="col-md-12 col-lg-8 mb-5">
+        
+          <form method="POST" class="p-5 bg-white border">
+            {% if messages %}
+              {% for mes in messages %}
+                <div class="alert alert-danger">{{ mes }}</div>
+              {% endfor %}
+            {% endif %}
+            
+            <div class="row form-group">
+              <div class="col-md-12 mb-3 mb-md-0">
+                <label class="font-weight-bold" for="username">Username</label>
+                <input type="text" name="username" id="username" class="form-control" placeholder="Username">
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-md-12 mb-3 mb-md-0">
+                <label class="font-weight-bold" for="password">Password</label>
+                <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-md-12">
+                <input type="submit" value="Login" class="btn btn-primary  py-2 px-4 rounded-0">
+              </div>
+            </div>  
+                  <a href="{% url 'Cars:password_reset' %}">Forgot password?</a>
+
+
+  
+             {% csrf_token %} 
+          </form>
+        </div>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  {% endblock %}
