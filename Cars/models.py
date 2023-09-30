@@ -176,7 +176,7 @@ class Cars(models.Model):
 
 
     class Meta():
-        verbose_name_plural = 'Car'
+        verbose_name_plural = 'Cars'
 
     def __str__(self):
         return self.car_model
